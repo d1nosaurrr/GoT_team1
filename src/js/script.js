@@ -58,36 +58,48 @@ function stopRotate() {
 }
 
 let characters = [];
+
 const getCharactersList = async () => {
     await axios.get('https://thronesapi.com/api/v2/Characters')
-        .then(({data}) => characters.push(...data));
+        .then(async ({data}) => {
+            characters.push(...data);
+        });
 };
 const charactersList = document.querySelector('.characters__list');
 
 getCharactersList().then(() => {
     characters.forEach((el) => {
-        const li = document.createElement('li');
-        li.classList.add('card');
-        const a = document.createElement('a');
-        const characterCard = document.createElement('div');
-        characterCard.classList.add('card-item', 'blur');
-        const characterImg = document.createElement('div');
-        characterImg.classList.add('card-img');
-        const img = document.createElement('img');
-        img.src = el.imageUrl;
-        img.alt = el.fullName;
-        img.width = '200';
-        img.height = '200';
-        const characterDescription = document.createElement('div');
-        characterDescription.classList.add('card-text');
-        const p = document.createElement('p');
-        p.textContent = el.fullName;
+        console.log(el);
+        /*
+         axios.get('https://www.anapioficeandfire.com/api/characters?name=' + el.fullName)
+             .then(({data}) => {
+                 const {died, tvSeries} = data;
+                 // console.log(data);
+                 // if ([...data].tvSeries && [...data].tvSeries.length > 0) {
+                 isCharacterAlive.push(...data);
+                 // }
+             })
+             .then(() => {
+                 isCharacterAlive.forEach((el) => {
+                     console.log(el.name);
 
-        characterImg.append(img);
-        characterDescription.append(p);
-        characterCard.append(characterImg, characterDescription);
-        a.append(characterCard);
-        li.append(a,);
-        charactersList.append(li)
+                 })
+
+             });
+
+         */
+        const listItem = `
+        <li class="list__item card">
+                    <div class="card__body blur">
+                        <div class="card__img">
+                            <img class="img" src="${el.imageUrl}" alt="${el.fullName}" width="150" height="150">
+                        </div>
+                        <div class="card__description">
+                            <p class="card__text">${el.fullName}</p>
+                        </div>
+                    </div>
+                </li>  
+        `;
+        charactersList.innerHTML += listItem;
     })
 });
