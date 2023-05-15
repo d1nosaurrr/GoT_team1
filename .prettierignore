@@ -1,0 +1,13 @@
+.git
+.vscode
+
+/build
+/node_modules
+/flow-typed/npm
+
+jsconfig.json
+
+package.json
+package-lock.json
+
+README.md
