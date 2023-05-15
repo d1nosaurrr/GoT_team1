@@ -63,7 +63,7 @@ const img = () => {
 const watcher = (cb) => {
     watch("./index.html", bsReload);
     watch("./src/scss/*.scss", styles);
-    watch("./src/js/index.js", js);
+    watch("./src/js/script.js", js);
     watch("./src/img/*", img);
     cb();
 };

@@ -1,243 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="keywords" content="game of thrones, seven kingdoms characters, characters from game of thrones">
-  <meta name="description" content="Find out who can take the iron throne in the Seven Kingdoms. More information about any of the characters in the Game of Thrones series.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Julius+Sans+One&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./dist/styles/style.min.css">
-  <link rel="icon" href="./dist/img/favicon.ico">
-  <title>Hand of the King</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="game of thrones, seven kingdoms characters, characters from game of thrones">
+    <meta name="description"
+          content="Find out who can take the iron throne in the Seven Kingdoms. More information about any of the characters in the Game of Thrones series.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Julius+Sans+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./dist/styles/style.min.css">
+    <link rel="icon" href="./dist/img/favicon.ico">
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <title>Hand of the King</title>
 </head>
 <body>
-<div class="body">
-  <header>
-    <div class="header">
-      <div class="header-fixed">
-        <div class="header-title blur">
-          <div class="logo">
-            <a href="/"><img src="./dist/img/logo.png" class="logo-img" alt="logo.png"></a>
-          </div>
-          <div class="title">
-            <div>
-              <h1 class="h1 focus-in-expand">A Song of Ice and Fire</h1>
-              <h2 class="h2 focus-in-expand">Who will be the next king of the Seven Kingdoms?</h2>
+<div class="root">
+    <header class="header">
+        <div class="header-fixed">
+            <div class="header-title blur">
+                <div class="logo">
+                    <a href="/"><img src="./dist/img/logo.png" class="logo-img" alt="logo.png"></a>
+                </div>
+                <div class="title">
+                    <div>
+                        <h1 class="h1 focus-in-expand">A Song of Ice and Fire</h1>
+                        <h2 class="h2 focus-in-expand">Who will be the next king of the Seven Kingdoms?</h2>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-        <div class="input-block">
-          <label>
-            <input class="input" type="text" placeholder="Choose a character">
-          </label>
-        </div>
-      </div>
-      <div class="shadow-block"></div>
-    </div>
-  </header>
-  <main>
-    <div class="main">
-
-      <div class="container">
-
-        <div class="card">
-          <a href="#">
-            <div class="card-item blur">
-              <div class="card-img">
-                <img src="./dist/img/daenerys.jpg" alt="daenerys.jpg">
-              </div>
-              <div class="card-text">
-                <p>daenerys</p>
-              </div>
+            <div class="input-block">
+                <label>
+                    <input class="input" type="text" placeholder="Choose a character">
+                </label>
             </div>
-          </a>
         </div>
-        <div class="card">
-          <a href="#">
-            <div class="card-item blur">
-              <div class="card-img">
-                <img src="./dist/img/littlefinger.jpg" alt="littlefinger.jpg">
-              </div>
-              <div class="card-text">
-                <p>littlefinger</p>
-              </div>
-            </div>
-          </a>
+        <div class="shadow-block"></div>
+    </header>
+    <main class="main">
+        <div class="container">
+            <ul class="characters__list">
+            </ul>
         </div>
-        <div class="card">
-          <a href="#">
-            <div class="card-item blur">
-              <div class="card-img">
-                <img src="./dist/img/theon.jpg" alt="theon.jpg">
-              </div>
-              <div class="card-text">
-                <p>theon</p>
-              </div>
-            </div>
-          </a>
+    </main>
+    <footer class="footer">
+        <div class="footer-text blur">
+            <p>Created by The King`s Hand team</p>
         </div>
-        <div class="card">
-          <a href="#">
-            <div class="card-item blur">
-              <div class="card-img">
-                <img src="./dist/img/tormund-giantsbane.jpg" alt="tormund-giantsbane.jpg">
-              </div>
-              <div class="card-text">
-                <p>Tormund Giantsbane</p>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="card">
-          <a href="#">
-            <div class="card-item blur">
-              <div class="card-img">
-                <img src="./dist/img/daenerys.jpg" alt="daenerys.jpg">
-              </div>
-              <div class="card-text">
-                <p>daenerys</p>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="card">
-          <a href="#">
-            <div class="card-item blur">
-              <div class="card-img">
-                <img src="./dist/img/daenerys.jpg" alt="daenerys.jpg">
-              </div>
-              <div class="card-text">
-                <p>daenerys</p>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="card">
-          <a href="#">
-            <div class="card-item blur">
-              <div class="card-img">
-                <img src="./dist/img/daenerys.jpg" alt="daenerys.jpg">
-              </div>
-              <div class="card-text">
-                <p>daenerys</p>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="card">
-          <a href="#">
-            <div class="card-item blur">
-              <div class="card-img">
-                <img src="./dist/img/daenerys.jpg" alt="daenerys.jpg">
-              </div>
-              <div class="card-text">
-                <p>daenerys</p>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="card">
-          <a href="#">
-            <div class="card-item blur">
-              <div class="card-img">
-                <img src="./dist/img/littlefinger.jpg" alt="littlefinger.jpg">
-              </div>
-              <div class="card-text">
-                <p>littlefinger</p>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="card">
-          <a href="#">
-            <div class="card-item blur">
-              <div class="card-img">
-                <img src="./dist/img/theon.jpg" alt="theon.jpg">
-              </div>
-              <div class="card-text">
-                <p>theon</p>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="card">
-          <a href="#">
-            <div class="card-item blur">
-              <div class="card-img">
-                <img src="./dist/img/tormund-giantsbane.jpg" alt="tormund-giantsbane.jpg">
-              </div>
-              <div class="card-text">
-                <p>Tormund Giantsbane</p>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="card">
-          <a href="#">
-            <div class="card-item blur">
-              <div class="card-img">
-                <img src="./dist/img/daenerys.jpg" alt="daenerys.jpg">
-              </div>
-              <div class="card-text">
-                <p>daenerys</p>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="card">
-          <a href="#">
-            <div class="card-item blur">
-              <div class="card-img">
-                <img src="./dist/img/daenerys.jpg" alt="daenerys.jpg">
-              </div>
-              <div class="card-text">
-                <p>daenerys</p>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="card">
-          <a href="#">
-            <div class="card-item blur">
-              <div class="card-img">
-                <img src="./dist/img/daenerys.jpg" alt="daenerys.jpg">
-              </div>
-              <div class="card-text">
-                <p>daenerys</p>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="card">
-          <a href="#">
-            <div class="card-item blur">
-              <div class="card-img">
-                <img src="./dist/img/daenerys.jpg" alt="daenerys.jpg">
-              </div>
-              <div class="card-text">
-                <p>daenerys</p>
-              </div>
-            </div>
-          </a>
-        </div>
-
-
-
-      </div>
-    </div>
-  </main>
-  <footer>
-    <div class="footer">
-      <div class="footer-text blur">
-        <p>Created by the Hand of the King team</p>
-      </div>
-    </div>
-  </footer>
+    </footer>
 </div>
-
-<script src="./dist/js/script.min.js"></script>
+<script type="module" src="./dist/js/script.min.js"></script>
 </body>
 </html>
