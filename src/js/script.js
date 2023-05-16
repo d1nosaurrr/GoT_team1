@@ -58,23 +58,15 @@ function stopRotate() {
   cardItem.style.transform = `rotate(0)`;
 }
 
-let characters = [];
-let startIndex = 0;
-const charactersPerLoad = 10;
-
 const getCharactersList = async () => {
   const { data } = await axios.get("https://thronesapi.com/api/v2/Characters");
-  characters.push(...data);
+  return data;
 };
 
 const charactersList = document.querySelector(".characters__list");
 
-const renderCharacters = () => {
-  const sortedCharacters = characters
-    .slice(startIndex, startIndex + charactersPerLoad)
-    .sort((a, b) => a.fullName.localeCompare(b.fullName));
-
-  sortedCharacters.forEach((el) => {
+const renderCharacters = (characters) => {
+  characters.forEach((el) => {
     const listItem = `
       <li class="list__item card">
         <div class="card__body blur">
@@ -89,20 +81,11 @@ const renderCharacters = () => {
     `;
     charactersList.insertAdjacentHTML("beforeend", listItem);
   });
-
-  startIndex += charactersPerLoad;
 };
 
-const handleScroll = () => {
-  const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
-
-  if (scrollTop + clientHeight >= scrollHeight) {
-    renderCharacters();
-  }
+const initializeCharacters = async () => {
+  const characters = await getCharactersList();
+  renderCharacters(characters);
 };
 
-window.addEventListener("scroll", handleScroll);
-
-getCharactersList().then(() => {
-  renderCharacters();
-});
+initializeCharacters();
