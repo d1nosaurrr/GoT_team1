@@ -1,8 +1,9 @@
-let families = [];
 const loader = document.querySelector('.loader__wrapper');
 const root = document.querySelector('#root');
 root.style.display = 'none';
-const characters = [];
+
+let characters = [];
+let families = [];
 
 const getCharactersList = async () => {
   await axios.get('https://thronesapi.com/api/v2/Characters')
@@ -10,19 +11,29 @@ const getCharactersList = async () => {
       for (const el of [...data]) {
         await axios.get('https://www.anapioficeandfire.com/api/characters?name=' + el.fullName)
           .then(({ data }) => {
-            data.forEach(({ name, born, died, tvSeries }) => {
-              if (tvSeries && tvSeries.length > 0 && tvSeries[0] !== '') {
-                if (born === '') {
-                  born = 'Unknown';
-                } else if (died === '') {
-                  died = 'Unknown';
-                } else {
-                  born = 'Unknown';
-                  died = 'Unknown';
+            if (data && data.length > 0) {
+              data.forEach(({ born, died, tvSeries }) => {
+                if (tvSeries && tvSeries.length > 0 && tvSeries[0] !== '') {
+                  if (!born) {
+                    born = 'Unknown';
+                  }
+                  if (!died) {
+                    died = 'Unknown';
+                  }
+                  const date = {
+                    born: born,
+                    died: died
+                  };
+                  characters.push({ ...el, ...date });
                 }
-                characters.push({ ...el, name, died, born });
-              }
-            });
+              });
+            } else {
+              const date = {
+                born: 'Unknown',
+                died: 'Unknown'
+              };
+              characters.push({ ...el, ...date });
+            }
           });
       }
     });
@@ -30,7 +41,7 @@ const getCharactersList = async () => {
 
 getCharactersList().then(() => {
   const charactersList = document.querySelector('.characters__list');
-
+  console.log(characters);
   characters.forEach((el) => {
     !el.family ? families.push('None') : families.push(el.family);
     const listItem = `
