@@ -26,5 +26,8 @@
     "last 5 version",
     "> 5%",
     "IE 10"
-  ]
+  ],
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
+  }
 }
