@@ -30,7 +30,7 @@ const bsReload = (cb) => {
   cb();
 };
 const html = () => {
-  return src('./src/index.html')
+  return src('./index.html')
     .pipe(htmlInclude({
       prefix: '@@',
       basepath: '@file'
