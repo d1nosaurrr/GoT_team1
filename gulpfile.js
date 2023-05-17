@@ -2,6 +2,7 @@ const { series, parallel, watch, src, dest } = require('gulp');
 const browserSync = require('browser-sync').create();
 const sass = require('gulp-sass')(require('sass'));
 const autoprefixer = require('gulp-autoprefixer');
+const htmlInclude = require('gulp-file-include');
 const minifyjs = require('gulp-js-minify');
 const imagemin = require('gulp-imagemin');
 const clean = require('gulp-clean');
@@ -28,7 +29,15 @@ const bsReload = (cb) => {
   browserSync.reload();
   cb();
 };
-
+const html = () => {
+  return src('./src/index.html')
+    .pipe(htmlInclude({
+      prefix: '@@',
+      basepath: '@file'
+    }))
+    .pipe(dest('./'))
+    .pipe(browserSync.stream());
+};
 const styles = () => {
   return src('./src/scss/style.scss')
     .pipe(sass().on('error', sass.logError))
@@ -71,6 +80,6 @@ const watcher = (cb) => {
   cb();
 };
 
-exports.dev = parallel(serv, watcher, series(styles, js, img));
-exports.build = series(cleanDist, styles, js, img);
+exports.dev = parallel(serv, watcher, series(html, styles, js, img));
+exports.build = series(cleanDist, html, styles, js, img);
 exports.styles = styles;
