@@ -105,13 +105,13 @@ a {
     }
   }
 
-  & > .input__block {
+  & > .filter__block {
     margin: 0;
   }
 
 }
 
-.logo, .h1, .h2, .input__block {
+.logo, .h1, .h2, .filter__block {
   transition: 0.3s ease;
 
 }
@@ -136,10 +136,11 @@ a {
   width: 100%;
 }
 
-.input__block {
+.filter__block {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  gap: 10px;
   margin: 0.8rem;
   padding: 1rem;
 }
@@ -148,14 +149,13 @@ a {
   width: 100%;
   border: 1px solid rgba(108, 108, 108, 0.22);
   border-radius: 5px;
-  font-size: 2rem;
   margin: 0;
   padding: 5px 10px;
 }
 
 ::placeholder {
   color: black;
-  font-size: 2rem;
+  font-size: 1.2rem;
 }
 
 .shadow-block {
@@ -276,7 +276,7 @@ a {
     font-size: 1.3rem;
   }
 
-  .scroll > .header__banner > .input__block {
+  .scroll > .header__banner > .filter__block {
     display: none;
   }
 

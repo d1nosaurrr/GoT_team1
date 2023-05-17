@@ -43,10 +43,14 @@
         <div class='header__logo'>
           <a href='/'><img src='./dist/img/logo.png' class='logo__img' alt='logo.png'></a>
         </div>
-        <div class='input__block'>
-          <label>
-            <input class='input' type='text' placeholder='Enter character`s name'>
-          </label>
+        <div class='filter__block'>
+          <label for='nameSort'></label>
+          <select name='name_sort' id='nameSort'>
+            <option value='A'>A-Z</option>
+            <option value='Z'>Z-A</option>
+          </select>
+          <label for='findName'></label>
+          <input class='input' type='text' id='findName' placeholder='Character`s name'>
         </div>
         <div class='header__title'>
           <h1 class='h1 focus-in-expand'>A Song of Ice and Fire</h1>
