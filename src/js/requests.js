@@ -3,6 +3,8 @@ const loader = document.querySelector('.loader__wrapper');
 const charactersList = document.querySelector('.characters__list');
 const inputBlock = document.querySelector('.filter__block');
 
+const input = document.querySelector('.input');
+
 root.style.display = 'none';
 
 const getCharactersList = async () => {
@@ -13,7 +15,8 @@ const getAdditionalInfo = async (list) => {
   const characterList = [];
   const houses = [];
   for (const character of list) {
-    await axios.get('https://anapioficeandfire.com/api/characters?name=' + character.fullName)
+    await axios
+      .get('https://anapioficeandfire.com/api/characters?name=' + character.fullName)
       .then(async ({ data }) => {
         if (data && data.length > 0) {
           for (let { allegiances, born, died, tvSeries } of data) {
@@ -32,7 +35,7 @@ const getAdditionalInfo = async (list) => {
               const addon = {
                 house: houseInfo,
                 born: born,
-                died: died
+                died: died,
               };
               characterList.push({ ...character, ...addon });
               houses.push(...houseInfo);
@@ -42,7 +45,7 @@ const getAdditionalInfo = async (list) => {
           const addon = {
             house: ['Unknown'],
             born: 'Unknown',
-            died: 'Unknown'
+            died: 'Unknown',
           };
           characterList.push({ ...character, ...addon });
           houses.push('Unknown');
@@ -61,6 +64,8 @@ const getFullInfo = async () => {
 };
 
 const renderCharacters = (list) => {
+  //очищаємо список перед рендерингом
+  charactersList.innerHTML = '';
   list.forEach(({ fullName, family, born, died, imageUrl }) => {
     charactersList.innerHTML += `
         <li class='list__item card'>
@@ -76,12 +81,15 @@ const renderCharacters = (list) => {
         `;
   });
 };
+
 const renderFamiliesList = (list) => {
   const familyLabel = document.createElement('label');
   familyLabel.for = 'familySort';
   const familiesList = document.createElement('select');
   familiesList.id = 'familySort';
-  list.forEach((family) => familiesList.innerHTML += `<option value='${family}'>${family}</option>`);
+  list.forEach(
+    (family) => (familiesList.innerHTML += `<option value='${family}'>${family}</option>`)
+  );
   inputBlock.append(familyLabel, familiesList);
 };
 
@@ -91,3 +99,25 @@ getFullInfo().then(({ characterList, houseList }) => {
   root.style.display = 'block';
   loader.remove();
 });
+
+//=============input filter==================//
+const handleNameFilter = async () => {
+  try {
+    const characters = await getCharactersList();
+    // console.log('characters', characters);
+
+    const filterValue = input.value.toLowerCase();
+    // console.log('filterValue', filterValue);
+
+    const filteredCharacters = characters.filter((character) =>
+      character.fullName.toLowerCase().includes(filterValue)
+    );
+    // console.log('filteredCharacters', filteredCharacters);
+
+    renderCharacters(filteredCharacters);
+  } catch (error) {
+    console.error('Помилка при отриманні даних:', error);
+  }
+};
+input.addEventListener('input', handleNameFilter);
+//===============================================//
