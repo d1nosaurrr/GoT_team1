@@ -114,7 +114,13 @@ const handleNameFilter = async () => {
     );
     // console.log('filteredCharacters', filteredCharacters);
 
-    renderCharacters(filteredCharacters);
+    if (filteredCharacters.length === 0) {
+      // Якщо немає збігів, рендеримо повідомлення
+      charactersList.innerHTML = '<p class="no-results">No matches</p>';
+    } else {
+      // Якщо є збіги, рендеримо відфільтровані герої
+      renderCharacters(filteredCharacters);
+    }
   } catch (error) {
     console.error('Помилка при отриманні даних:', error);
   }
