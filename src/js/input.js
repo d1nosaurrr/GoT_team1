@@ -6,7 +6,7 @@ const handleNameFilter = async () => {
     const characters = await getCharactersList();
     // console.log('characters', characters);
 
-    const filterValue = input.value.toLowerCase();
+    const filterValue = input.value.toLowerCase().trim();
     // console.log('filterValue', filterValue);
 
     const filteredCharacters = characters.filter((character) =>
@@ -25,5 +25,6 @@ const handleNameFilter = async () => {
     console.error('Помилка при отриманні даних:', error);
   }
 };
+
 input.addEventListener('input', handleNameFilter);
 //===============================================//
