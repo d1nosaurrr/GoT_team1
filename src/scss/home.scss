@@ -9,11 +9,16 @@
   font-size: 10px;
   --white-color: #fff;
   cursor: url("../img/cursor.png"), auto;
+  cursor: url("../img/cursor.png"), pointer;
   box-sizing: border-box;
 }
 
 a {
   text-decoration: none;
+}
+
+a:hover {
+  cursor: url("../img/cursor.png"), auto;
 }
 
 /* header start */
@@ -85,6 +90,7 @@ a {
   > .header__banner {
     flex-direction: row;
     justify-content: space-evenly;
+    background: rgb(108 108 108 / 85%);
 
     & > .header__logo {
       //margin: auto 0;
@@ -129,7 +135,7 @@ a {
 .blur {
   background: rgba(108, 108, 108, 0.27);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  border-radius: 15px;
+  border-radius: 10px;
 }
 
 .logo__img {
@@ -145,17 +151,25 @@ a {
   padding: 1rem;
 }
 
-.input {
-  width: 100%;
-  border: 1px solid rgba(108, 108, 108, 0.22);
+.filter__block select, .filter__block .input{
   border-radius: 5px;
-  margin: 0;
-  padding: 5px 10px;
+  font-size: 1.5rem;
+  border: 1px solid rgba(108, 108, 108, 0.22);
+  padding: 5px;
+
 }
+
+// .input {
+//   width: 100%;
+//   border: 1px solid rgba(108, 108, 108, 0.22);
+//   border-radius: 5px;
+//   margin: 0;
+//   padding: 5px 10px;
+// }
 
 ::placeholder {
   color: black;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
 }
 
 .shadow-block {
@@ -188,6 +202,10 @@ a {
   gap: 15px;
   padding: 20px;
   margin: 0;
+}
+
+.characters__list li {
+  list-style-type: none;
 }
 
 .card {
