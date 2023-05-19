@@ -62,32 +62,70 @@ body.modal-open {
 
 //=========houses background=============//
 .housestark {
-    background-size: cover;
-    background-image: url('https://media.giphy.com/media/dAyD6PWoQRs40/giphy.gif');
+    // background-size: cover;
+    // background-image: url('https://media.giphy.com/media/dAyD6PWoQRs40/giphy.gif');
+    background: rgb(128, 128, 128);
+    background: linear-gradient(142deg, rgba(128, 128, 128, 1) 0%, rgba(222, 222, 222, 1) 39%, rgba(255, 255, 255, 1) 100%);
 }
 
 .stark {
-    background-size: cover;
-    background-image: url('https://media.giphy.com/media/dAyD6PWoQRs40/giphy.gif');
+    // background-size: cover;
+    // background-image: url('https://media.giphy.com/media/dAyD6PWoQRs40/giphy.gif');
+    // background: rgb(128, 128, 128);
+    background: rgb(128, 128, 128);
+    background: linear-gradient(142deg, rgba(128, 128, 128, 1) 0%, rgba(222, 222, 222, 1) 39%, rgba(255, 255, 255, 1) 100%);
+
 }
 
 .housetargaryen {
-    background-size: cover;
-    background-image: url('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZjNiYjgzYWIxMTAwNjk5NGQ0NTc5NTQyNmExZjc0ZTRjN2Y4NmQ3NyZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/T24yEf6Cx3XVRFByxe/giphy.gif');
+    // background-size: cover;
+    // background-image: url('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZjNiYjgzYWIxMTAwNjk5NGQ0NTc5NTQyNmExZjc0ZTRjN2Y4NmQ3NyZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/T24yEf6Cx3XVRFByxe/giphy.gif');
+    // background: rgb(184, 10, 10);
+    background: #C02425;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #F0CB35, #C02425);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #F0CB35, #C02425);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
 
 .housetarly {
-    background-size: cover;
-    background-image: url('https://i.gifer.com/2ZtZ.gif');
+    // background-size: cover;
+    // background-image: url('https://i.gifer.com/2ZtZ.gif');
+    background: #6D6027;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #D3CBB8, #6D6027);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #D3CBB8, #6D6027);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 
 }
 
 .housebaratheon {
-    background-size: cover;
-    background-image: url('https://i.gifer.com/MGHp.gif');
+    // background-size: cover;
+    // background-image: url('https://i.gifer.com/MGHp.gif');
+    background: #1e130c;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #9a8478, #1e130c);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #9a8478, #1e130c);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
 
 }
 
+.houselannister {
+    background: rgb(171, 22, 22);
+    background: linear-gradient(101deg, rgba(171, 22, 22, 1) 22%, rgba(191, 178, 0, 1) 53%);
+}
+
+.housegreyjoy {
+    background: rgb(191, 178, 0);
+    background: radial-gradient(circle, rgba(191, 178, 0, 1) 16%, rgba(0, 0, 0, 1) 100%);
+}
 
 .modal__button {
     cursor: pointer;
