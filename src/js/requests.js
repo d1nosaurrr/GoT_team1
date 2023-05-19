@@ -75,10 +75,15 @@ const renderCharacters = (list) => {
                             <p class='card__text'>${fullName}</p>
                         </div>
                     </div>
+                    <p style='display:none'>${family}</p>
+                    <p style='display:none'>${born}</p>
+                    <p style='display:none'>${died}</p>
         </li>
         `;
   });
+
   //=========open hero modal==========//
+
   setupCardClick();
 };
 
