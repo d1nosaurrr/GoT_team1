@@ -28,3 +28,19 @@ function toggleModal() {
   refs.modal.classList.toggle('backdrop--is-hidden');
   document.body.classList.toggle('modal-open');
 }
+
+//=========open hero modal==========//
+function setupCardClick() {
+  const cards = document.querySelectorAll('.card');
+
+  cards.forEach((char) => {
+    const openHeroModal = (e) => {
+      const heroImageUrl = e.currentTarget.children[0].children[0].children[0].src;
+      const heroImage = document.getElementById('hero-image');
+      heroImage.src = heroImageUrl;
+      toggleModal();
+    };
+    char.addEventListener('click', openHeroModal);
+  });
+}
+//=========open hero modal==========//
