@@ -78,6 +78,20 @@ const renderCharacters = (list) => {
         </li>
         `;
   });
+  //==================open modal================//
+  const cards = document.querySelectorAll('.card');
+  // console.log('cards', cards);
+  cards.forEach((char) => {
+    const openHeroModal = (e) => {
+      const heroImageUrl = e.currentTarget.children[0].children[0].children[0].src;
+      // console.log(heroImageUrl);
+      const heroImage = document.getElementById('hero-image');
+      heroImage.src = heroImageUrl;
+      // console.log('heroImage', heroImage);
+      toggleModal();
+    };
+    char.addEventListener('click', openHeroModal);
+  });
 };
 
 const renderFamiliesList = (list) => {

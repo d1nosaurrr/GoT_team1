@@ -1,0 +1,79 @@
+body.modal-open {
+    overflow: hidden;
+}
+
+.modal-is-open {
+    margin: 0;
+}
+
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    opacity: 1;
+    scale: 1;
+    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 11111;
+}
+
+.backdrop--is-hidden {
+    opacity: 0;
+    pointer-events: none;
+
+
+}
+
+.backdrop--is-hidden .modal {
+    transform: translate(-50%, -50%) scale(0);
+}
+
+.modal {
+    // z-index: 11111;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding: 40px;
+    width: 25vw;
+    min-height: 25vw;
+    background-color: white;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+        0px 2px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+
+    transform: translate(-50%, -50%) scale(1);
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    &__card {
+        min-width: 250px;
+        max-width: 250px;
+        height: 250px;
+        padding: 5px;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+
+}
+
+.open-modal-button {
+    cursor: pointer;
+    display: block;
+    padding: 8px;
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    z-index: 222;
+}
+
+
+
+.modal__button {
+    cursor: pointer;
+    display: block;
+    padding: 8px;
+    margin-left: auto;
+    margin-right: auto;
+}
