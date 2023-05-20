@@ -8,6 +8,7 @@ const classToKeep = 'modal';
 
 // refs.openModalBtn.addEventListener('click', toggleModal);
 refs.closeModalBtn.addEventListener('click', toggleModal);
+refs.closeModalBtn.addEventListener('click', klassToKeep);
 refs.modal.addEventListener('click', toggleByBackdrop);
 document.addEventListener('keydown', handleModalCloseOnESC);
 
@@ -16,16 +17,20 @@ function toggleByBackdrop({ target }) {
   if (target.classList.contains('backdrop')) {
     refs.modal.classList.toggle('backdrop--is-hidden');
     document.body.classList.toggle('modal-open');
-
-    modalHero.className = classToKeep;
+    klassToKeep();
   }
 }
 
+function klassToKeep() {
+  setTimeout(function () {
+    modalHero.className = classToKeep;
+  }, 100);
+}
 function handleModalCloseOnESC({ key }) {
   // console.log(key)
   if (key === 'Escape' && !refs.modal.classList.contains('backdrop--is-hidden')) {
     toggleModal();
-    modalHero.className = classToKeep;
+    klassToKeep();
   }
 }
 
@@ -58,12 +63,25 @@ function setupCardClick() {
       heroDied.innerHTML = `Died:&nbsp${died}`;
 
       const normFamily = family.toLowerCase().replace(/\s/g, '');
-      if (normFamily === '' || normFamily === 'none') {
+      const excludedFamilies = [
+        '',
+        'none',
+        'unknown',
+        'unkown',
+        'naharis',
+        'lorathi',
+        'lorath',
+        'sparrow',
+        'viper',
+        'sand',
+      ];
+
+      if (excludedFamilies.includes(normFamily)) {
         modalHero.classList.add('unknown');
       } else {
         modalHero.classList.add(normFamily);
       }
-
+      console.log('normFamily', normFamily);
       toggleModal();
     };
     char.addEventListener('click', openHeroModal);
