@@ -16,23 +16,18 @@ const getAdditionalInfo = async (list) => {
     await axios.get('https://anapioficeandfire.com/api/characters?name=' + character.fullName)
       .then(async ({ data }) => {
         if (data && data.length > 0) {
-          for (let { allegiances, born, died, tvSeries } of data) {
+          for (let { allegiances, gender, born, died, tvSeries } of data) {
             if (tvSeries && tvSeries.length > 0 && tvSeries[0] !== '') {
               let houseInfo = [];
               for (const house of allegiances) {
                 const { data } = await axios.get(house);
-                houseInfo.push(data.name);
-              }
-              if (!born) {
-                born = 'Unknown';
-              }
-              if (!died) {
-                died = 'Unknown';
+                houseInfo.push({ name: data.name.split('of')[0].trim(), words: data.words });
               }
               const addon = {
                 house: houseInfo,
-                born: born,
-                died: died
+                gender: gender,
+                born: !born ? 'Unknown' : born,
+                died: !died ? 'Unknown' : died
               };
               characterList.push({ ...character, ...addon });
               houses.push(...houseInfo);
@@ -40,12 +35,13 @@ const getAdditionalInfo = async (list) => {
           }
         } else {
           const addon = {
-            house: ['Unknown'],
+            house: [{ name: 'Unknown', words: 'Unknown' }],
+            gender: 'Unknown',
             born: 'Unknown',
             died: 'Unknown'
           };
           characterList.push({ ...character, ...addon });
-          houses.push('Unknown');
+          houses.push({ name: 'Unknown', words: 'Unknown' });
         }
       });
   }
@@ -55,8 +51,9 @@ const getAdditionalInfo = async (list) => {
 const getFullInfo = async () => {
   const characters = await getCharactersList();
   const { characterList, houses } = await getAdditionalInfo(characters);
-  console.log(characterList);
-  const houseList = Array.from(new Set(houses));
+  const houseList = houses.filter((obj, index) => {
+    return index === houses.findIndex(o => obj.name === o.name);
+  });
   return { characterList, houseList };
 };
 
@@ -81,10 +78,9 @@ const renderFamiliesList = (list) => {
   familyLabel.for = 'familySort';
   const familiesList = document.createElement('select');
   familiesList.id = 'familySort';
-  list.forEach((family) => familiesList.innerHTML += `<option value='${family}'>${family}</option>`);
+  list.forEach(({ name }) => familiesList.innerHTML += `<option value='${name}'>${name}</option>`);
   inputBlock.append(familyLabel, familiesList);
 };
-
 getFullInfo().then(({ characterList, houseList }) => {
   renderCharacters(characterList);
   renderFamiliesList(houseList);
