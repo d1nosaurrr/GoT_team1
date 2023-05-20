@@ -25,10 +25,10 @@ const getAdditionalInfo = async (list) => {
                 houseInfo.push({ name: data.name.split('of')[0].trim(), words: data.words });
               }
               const addon = {
-                house: houseInfo,
-                gender: gender,
-                born: !born ? 'Unknown' : born,
-                died: !died ? 'Unknown' : died
+                house: houseInfo.length > 0 ? houseInfo : [{ name: 'Unknown', words: 'Unknown' }],
+                gender: gender ? gender : 'Unknown',
+                born: born ? born : 'Unknown',
+                died: died ? died : 'Unknown'
               };
               characterList.push({ ...character, ...addon });
               houses.push(...houseInfo);
@@ -56,7 +56,6 @@ const getFullInfo = async () => {
   const houseList = houses.filter((obj, index) => {
     return index === houses.findIndex(o => obj.name === o.name);
   });
-  // console.log(characterList);
 
   globalCharacterList = characterList;
   return { characterList, houseList };
@@ -76,21 +75,17 @@ const renderCharacters = (list) => {
                             <p class='card__text'>${fullName}</p>
                         </div>
                     </div>
-                  
         </li>
         `;
   });
-
-  //=========open hero modal==========//
-
-  setupCardClick(list);
 };
 
 const renderFamiliesList = (list) => {
   const familyLabel = document.createElement('label');
-  familyLabel.for = 'familySort';
+  familyLabel.for = 'houseSort';
   const familiesList = document.createElement('select');
-  familiesList.id = 'familySort';
+  familiesList.id = 'houseSort';
+  familiesList.innerHTML = `<option value='none' selected>None</option>`;
   list.forEach(({ name }) => familiesList.innerHTML += `<option value='${name}'>${name}</option>`);
   inputBlock.append(familyLabel, familiesList);
 };
@@ -99,5 +94,13 @@ getFullInfo().then(({ characterList, houseList }) => {
   renderFamiliesList(houseList);
   root.style.display = 'block';
   loader.remove();
+  const nameSort = document.querySelector('.input');
+  const houseSort = document.querySelector('#houseSort');
+  const alphabetSort = document.querySelector('#alphabetSort');
+  //=========open hero modal==========//
+  nameSort.addEventListener('input', (e) => handleNameFilter(e, characterList));
+  houseSort.addEventListener('change', (e) => handleHouseFilter(e, characterList));
+  alphabetSort.addEventListener('change', (e) => handleAlphabetFilter(e, characterList));
+  setupCardClick(characterList);
 });
 
