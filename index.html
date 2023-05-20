@@ -32,16 +32,16 @@
   <title>The King`s Hand</title>
 </head>
 <body>
-  <!-- MODAL -->
-<div class="backdrop backdrop--is-hidden" data-modal>
-  <div class="modal">
-    <button class="modal__button" data-modal-close>close</button>
-    <div class="modal__card">
-      <img class="img" id='hero-image' src="" alt="hero-image" >
+<!-- MODAL -->
+<div class='backdrop backdrop--is-hidden' data-modal>
+  <div class='modal'>
+    <button class='modal__button' data-modal-close>close</button>
+    <div class='modal__card'>
+      <img class='img' id='hero-image' src='' alt='hero-image'>
     </div>
-    <p class="family"></p>
-    <p class="born"></p>
-    <p class="died"></p>
+    <p class='family'></p>
+    <p class='born'></p>
+    <p class='died'></p>
   </div>
 </div>
 <!-- MODAL -->
@@ -55,23 +55,27 @@
     <div class='header__fixed'>
       <div class='header__banner blur'>
         <div class='header__logo'>
-          <a href='/'><img src='./dist/img/logo.png' class='logo__img' alt='logo.png'></a>
+          <a href='/'><img src='./dist/img/logo.png' class='logo__img' alt='logo.png' width='42' height='42'></a>
         </div>
-        <div class='filter__block'>
-          <label for='alphabetSort'></label>
-          <select name='name_sort' id='alphabetSort' autocomplete="off">
-            <option value='ASC' selected>A-Z</option>
-            <option value='DESC'>Z-A</option>
-          </select>
-          <label for='findName'></label>
-          <input autocomplete="off" class='input' type='text' id='findName' placeholder='Character`s name'>
-        </div>
+
         <div class='header__title'>
           <h1 class='h1 focus-in-expand'>A Song of Ice and Fire</h1>
           <h2 class='h2 focus-in-expand'>Who will be the next king of the Seven Kingdoms?</h2>
         </div>
+        <img src='./dist/img/Arrow-down.svg' class='header__dropdown' alt='arrow-down' width='32' height='32'>
       </div>
+
+      <nav class='filter__block'>
+        <label for='alphabetSort'></label>
+        <select name='name_sort' id='alphabetSort' autocomplete='off'>
+          <option value='ASC' selected>A-Z</option>
+          <option value='DESC'>Z-A</option>
+        </select>
+        <label for='findName'></label>
+        <input autocomplete='off' class='input' type='text' id='findName' placeholder='Character`s name'>
+      </nav>
     </div>
+
     <div class='shadow-block'></div>
   </header>
   <main class='main'>

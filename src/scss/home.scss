@@ -1,34 +1,9 @@
-@font-face {
-  font-family: GameofThronesKG;
-  src: url(../../fonts/GameofThronesKG.ttf);
-}
-
-:root {
-  font-family: 'Julius Sans One', sans-serif;
-  font-weight: 400;
-  font-size: 10px;
-  --white-color: #fff;
-  cursor: url("../img/cursor.png"), auto;
-  cursor: url("../img/cursor.png"), pointer;
-  box-sizing: border-box;
-}
-
-a {
-  text-decoration: none;
-}
-
-a:hover {
-  cursor: url("../img/cursor.png"), auto;
-}
-
-/* header start */
-
+/***************header***************/
 .header {
   padding: 15rem 0;
   position: relative;
 
   background-image: url("../img/map2.jpg");
-  //min-height: 500px;
   z-index: 99;
   /* Create the parallax scrolling effect */
   background-attachment: fixed;
@@ -39,93 +14,84 @@ a:hover {
   @media only screen and (max-device-width: 1000px) {
     background-attachment: scroll;
   }
+
+  &__fixed {
+    margin-top: 5px;
+    position: relative;
+  }
+
+  &__banner {
+    position: relative;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-around;
+    align-items: center;
+    gap: 5px;
+
+    padding: 0;
+    margin: 0 auto;
+    border-radius: 0;
+    color: var(--white-color);
+    width: 100%;
+  }
+
+  &__title {
+    margin: 0;
+    padding: 7px 1px;
+  }
+
+  &__logo {
+    display: none;
+  }
+
+  &__dropdown {
+    display: none;
+  }
 }
 
-.header__fixed {
-  margin-top: 0.1rem;
-}
-
-.header__banner {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 5px;
-  padding: 0;
-  margin: 0;
-  border-radius: 0;
-  color: var(--white-color);
+#alphabetSort,
+#houseSort,
+#findName {
   width: 100%;
 }
 
-.header__title {
-  margin: 0;
-  padding: 7px 1px;
-}
-
-.header__banner {
-  display: flex;
-  flex-direction: column-reverse;
-  justify-content: space-around;
-  align-items: center;
-  margin: 0 auto;
-}
-
-.header__logo {
-  display: none;
+.logo__img {
+  width: 50px;
+  height: 50px;
 }
 
 .h1 {
   font-family: GameofThronesKG, serif;
   letter-spacing: 3px;
   text-align: center;
-  font-size: 4rem;
+  font-size: 2rem;
 }
 
 .h2 {
-  font-size: 2rem;
+  font-size: 1.2rem;
   text-align: center;
 }
 
-
-.scroll {
-  >.header__banner {
-    flex-direction: row;
-    justify-content: space-evenly;
-    background: rgb(108 108 108 / 85%);
-
-    &>.header__logo {
-      //margin: auto 0;
-      width: 6rem;
-      display: block;
-    }
-
-    .h1 {
-      font-size: 2rem;
-    }
-
-    .h2 {
-      display: none;
-    }
-
-    .header__logo,
-    .h1,
-    .h2 {
-      margin: 0.5rem;
-    }
-  }
-
-  &>.filter__block {
-    margin: 0;
-  }
-
+.filter__block {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin: 0.8rem;
+  padding: 1rem;
 }
 
-.logo,
-.h1,
-.h2,
-.filter__block {
-  transition: 0.3s ease;
+.filter__block select, .filter__block .input {
+  border-radius: 5px;
+  font-size: 1.5rem;
+  border: 1px solid rgba(108, 108, 108, 0.22);
+  padding: 5px;
+}
 
+::placeholder {
+  color: black;
+  font-size: 1.5rem;
 }
 
 .scroll {
@@ -136,46 +102,51 @@ a:hover {
   font-size: 1rem;
   width: 100%;
   margin-top: 0;
-}
 
-.blur {
-  background: rgba(108, 108, 108, 0.27);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-}
+  > .header__banner {
+    flex-direction: row;
+    justify-content: center;
+    background: rgb(108 108 108);
 
-.logo__img {
-  width: 100%;
-}
+    & > .header__dropdown {
+      display: block;
 
-.filter__block {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  gap: 10px;
-  margin: 0.8rem;
-  padding: 1rem;
-}
+      position: fixed;
+      right: 10px;
+      top: 50px;
+      transition: all .5s ease;
+    }
 
-.filter__block select, .filter__block .input{
-  border-radius: 5px;
-  font-size: 1.5rem;
-  border: 1px solid rgba(108, 108, 108, 0.22);
-  padding: 5px;
+    & > .header__title {
+      & > .h1 {
+        font-size: 1.6rem;
+      }
 
-}
+      & > .h2 {
+        display: none;
+      }
 
-// .input {
-//   width: 100%;
-//   border: 1px solid rgba(108, 108, 108, 0.22);
-//   border-radius: 5px;
-//   margin: 0;
-//   padding: 5px 10px;
-// }
+      & > .h1,
+      & > .h2 {
+        margin: 0.5rem;
+      }
+    }
+  }
 
-::placeholder {
-  color: black;
-  font-size: 1.5rem;
+  & > .filter__block {
+    display: none;
+  }
+
+  .active {
+    background-color: rgba(255, 255, 255, .623);;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin: 0;
+    padding: 25px 10px;
+  }
 }
 
 .shadow-block {
@@ -187,14 +158,8 @@ a:hover {
   background: linear-gradient(0deg, rgb(27, 31, 34) 0%, rgba(255, 255, 255, 0) 100%);
 }
 
-/* header end */
+/***************************************/
 /* main start */
-.container {
-  max-width: 1200px;
-  min-width: 320px;
-  margin: 0 auto;
-}
-
 .main {
   position: relative;
   background-color: rgb(27, 31, 34);
@@ -281,28 +246,54 @@ a:hover {
 }
 
 /* footer end */
-
-@media screen and (max-width: 1000px) {
-  .h1 {
-    font-size: 3.3rem;
+@media screen and (min-width: 535px) {
+  #alphabetSort,
+  #houseSort,
+  #findName {
+    width: auto;
   }
 
-  .h2 {
-    font-size: 1.6rem;
+  .scroll > .header__banner > .header__dropdown {
+    right: 10px;
+    top: 10px;
   }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (min-width: 800px) {
   .h1 {
+    padding: 10px 15px;
     font-size: 2.6rem;
   }
 
   .h2 {
     font-size: 1.3rem;
   }
+  .scroll {
+    & > .header__banner {
+      width: 100%;
+      justify-content: space-between;
 
-  .scroll>.header__banner>.filter__block {
-    display: none;
+      & > .header__dropdown {
+        display: none;
+      }
+    }
+
+    & > .filter__block {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin: 0;
+      padding: 25px 10px;
+
+      background-color: rgba(159, 157, 157, 0.95);;
+    }
+
+    & > .header__banner > .header__logo {
+      display: block;
+      padding: 10px 15px;
+    }
   }
 
   ::placeholder {
@@ -314,25 +305,14 @@ a:hover {
   }
 }
 
-@media screen and (max-width: 650px) {
+
+@media screen and (min-width: 1000px) {
   .h1 {
-    font-size: 2rem;
+    font-size: 3.3rem;
   }
 
   .h2 {
-    font-size: 1.2rem;
+    font-size: 1.6rem;
   }
-
-
-
-
-  //.input {
-  //  margin: 0;
-  //  width: 100%;
-  //}
-
-  .scroll>.header__banner>.header__logo {
-    display: none;
-  }
-
 }
+
