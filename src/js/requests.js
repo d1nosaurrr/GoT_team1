@@ -3,6 +3,8 @@ const loader = document.querySelector('.loader__wrapper');
 const charactersList = document.querySelector('.characters__list');
 const inputBlock = document.querySelector('.filter__block');
 
+let globalCharacterList;
+
 root.style.display = 'none';
 
 const getCharactersList = async () => {
@@ -10,7 +12,7 @@ const getCharactersList = async () => {
   return data;
 };
 const getAdditionalInfo = async (list) => {
-  const characterList = [];
+  let characterList = [];
   const houses = [];
   for (const character of list) {
     await axios
@@ -46,10 +48,11 @@ const getAdditionalInfo = async (list) => {
         }
       });
   }
+  characterList = handleAlphabetFilter(characterList, 'asc');
+
   return { characterList, houses };
 };
 
-let globalCharacterList;
 const getFullInfo = async () => {
   const characters = await getCharactersList();
   const { characterList, houses } = await getAdditionalInfo(characters);
@@ -85,10 +88,11 @@ const renderFamiliesList = (list) => {
   familyLabel.for = 'houseSort';
   const familiesList = document.createElement('select');
   familiesList.id = 'houseSort';
-  familiesList.innerHTML = `<option value='none' selected>None</option>`;
+  familiesList.innerHTML = `<option value='all' selected>All</option>`;
   list.forEach(({ name }) => familiesList.innerHTML += `<option value='${name}'>${name}</option>`);
   inputBlock.append(familyLabel, familiesList);
 };
+
 getFullInfo().then(({ characterList, houseList }) => {
   renderCharacters(characterList);
   renderFamiliesList(houseList);
@@ -98,9 +102,18 @@ getFullInfo().then(({ characterList, houseList }) => {
   const houseSort = document.querySelector('#houseSort');
   const alphabetSort = document.querySelector('#alphabetSort');
   //=========open hero modal==========//
-  nameSort.addEventListener('input', (e) => handleNameFilter(e, characterList));
-  houseSort.addEventListener('change', (e) => handleHouseFilter(e, characterList));
-  alphabetSort.addEventListener('change', (e) => handleAlphabetFilter(e, characterList));
+  alphabetSort.addEventListener('change',
+    ({ target }) =>
+      handleFilter('alphabetic', target.value, characterList));
+
+  nameSort.addEventListener('input',
+    ({ target }) =>
+      handleFilter('name', target.value, characterList));
+
+  houseSort.addEventListener('change',
+    ({ target }) =>
+      handleFilter('houses', target.value, characterList));
+
   setupCardClick(characterList);
 });
 

@@ -34,65 +34,6 @@ const handleModalCloseOnESC = ({ key }) => {
   }
 };
 
-
-
-// axios
-//   .get('https://64687c8760c8cb9a2caac9fc.mockapi.io/fire/fire')
-//   .then((response) => {
-//     console.log(response.data);
-//   })
-//   .catch((error) => {
-//     console.error(error);
-//   });
-
-// //=========open hero modal==========//
-// function setupCardClick() {
-//   const cards = document.querySelectorAll('.card');
-
-//   cards.forEach((char) => {
-//     const openHeroModal = (e) => {
-//       const heroImageUrl = e.currentTarget.children[0].children[0].children[0].src;
-//       const heroImage = document.getElementById('hero-image');
-//       heroImage.src = heroImageUrl;
-
-//       const family = e.currentTarget.children[1].textContent;
-
-//       const heroFamily = document.querySelector('.family');
-//       heroFamily.innerHTML = `Family:&nbsp${family}`;
-
-//       const born = e.currentTarget.children[2].textContent;
-//       const heroBorn = document.querySelector('.born');
-//       heroBorn.innerHTML = `Born:&nbsp${born}`;
-
-//       const died = e.currentTarget.children[3].textContent;
-//       const heroDied = document.querySelector('.died');
-//       heroDied.innerHTML = `Died:&nbsp${died}`;
-
-//       const normFamily = family.toLowerCase().replace(/\s/g, '');
-//       const excludedFamilies = [
-//         '',
-//         'none',
-//         'unknown',
-//         'unkown',
-//         'naharis',
-//         'lorathi',
-//         'lorath',
-//         'sparrow',
-//         'viper',
-//         'sand',
-//       ];
-
-//       if (excludedFamilies.includes(normFamily)) {
-//         modalHero.classList.add('unknown');
-//       } else {
-//         modalHero.classList.add(normFamily);
-//       }
-//       console.log('normFamily', normFamily);
-//       toggleModal();
-//     };
-//     char.addEventListener('click', openHeroModal);
-//   });
-// }
 // =========open hero modal==========//
 
 const setupCardClick = (list) => {
@@ -104,8 +45,7 @@ const setupCardClick = (list) => {
 
       const hero = list.find(
         ({ fullName }) =>
-          fullName.toLowerCase().trim() ===
-          heroName.toLowerCase().trim()
+          fullName.toLowerCase().trim() === heroName.toLowerCase().trim()
       );
 
       if (hero) {
