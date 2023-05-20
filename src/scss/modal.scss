@@ -61,6 +61,11 @@ body.modal-open {
 }
 
 //=========houses background=============//
+.unknown {
+    background: rgb(238, 174, 202);
+    background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+}
+
 .housestark {
     // background-size: cover;
     // background-image: url('https://media.giphy.com/media/dAyD6PWoQRs40/giphy.gif');

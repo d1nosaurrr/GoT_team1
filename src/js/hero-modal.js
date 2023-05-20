@@ -58,7 +58,11 @@ function setupCardClick() {
       heroDied.innerHTML = `Died:&nbsp${died}`;
 
       const normFamily = family.toLowerCase().replace(/\s/g, '');
-      modalHero.classList.add(normFamily);
+      if (normFamily === '' || normFamily === 'none') {
+        modalHero.classList.add('unknown');
+      } else {
+        modalHero.classList.add(normFamily);
+      }
 
       toggleModal();
     };
