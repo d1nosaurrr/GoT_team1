@@ -55,7 +55,6 @@ const getAdditionalInfo = async (list) => {
 const getFullInfo = async () => {
   const characters = await getCharactersList();
   const { characterList, houses } = await getAdditionalInfo(characters);
-  console.log(characterList);
   const houseList = Array.from(new Set(houses));
   return { characterList, houseList };
 };
