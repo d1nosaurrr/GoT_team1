@@ -13,7 +13,8 @@ const getAdditionalInfo = async (list) => {
   const characterList = [];
   const houses = [];
   for (const character of list) {
-    await axios.get('https://anapioficeandfire.com/api/characters?name=' + character.fullName)
+    await axios
+      .get('https://anapioficeandfire.com/api/characters?name=' + character.fullName)
       .then(async ({ data }) => {
         if (data && data.length > 0) {
           for (let { allegiances, gender, born, died, tvSeries } of data) {
@@ -48,16 +49,22 @@ const getAdditionalInfo = async (list) => {
   return { characterList, houses };
 };
 
+let globalCharacterList;
 const getFullInfo = async () => {
   const characters = await getCharactersList();
   const { characterList, houses } = await getAdditionalInfo(characters);
   const houseList = houses.filter((obj, index) => {
     return index === houses.findIndex(o => obj.name === o.name);
   });
+  // console.log(characterList);
+
+  globalCharacterList = characterList;
   return { characterList, houseList };
 };
 
 const renderCharacters = (list) => {
+  //очищаємо список перед рендерингом
+  charactersList.innerHTML = '';
   list.forEach(({ fullName, family, born, died, imageUrl }) => {
     charactersList.innerHTML += `
         <li class='list__item card'>
@@ -69,10 +76,16 @@ const renderCharacters = (list) => {
                             <p class='card__text'>${fullName}</p>
                         </div>
                     </div>
+                  
         </li>
         `;
   });
+
+  //=========open hero modal==========//
+
+  setupCardClick(list);
 };
+
 const renderFamiliesList = (list) => {
   const familyLabel = document.createElement('label');
   familyLabel.for = 'familySort';
@@ -87,3 +100,4 @@ getFullInfo().then(({ characterList, houseList }) => {
   root.style.display = 'block';
   loader.remove();
 });
+
