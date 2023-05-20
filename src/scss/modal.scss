@@ -190,3 +190,15 @@ body.modal-open {
     object-fit: contain;
     object-position: top;
 }
+
+.family,
+.born,
+.died {
+    border: 1px solid rgb(97, 97, 97);
+    background-color: rgb(97, 97, 97);
+    padding: 2px;
+    border-radius: 4px;
+    color: rgb(255, 255, 255);
+    font-family: GameofThronesKG, serif;
+    letter-spacing: 4px;
+}
