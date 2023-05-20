@@ -39,52 +39,125 @@ function toggleModal() {
   document.body.classList.toggle('modal-open');
 }
 
-//=========open hero modal==========//
+// axios
+//   .get('https://64687c8760c8cb9a2caac9fc.mockapi.io/fire/fire')
+//   .then((response) => {
+//     console.log(response.data);
+//   })
+//   .catch((error) => {
+//     console.error(error);
+//   });
+
+// //=========open hero modal==========//
+// function setupCardClick() {
+//   const cards = document.querySelectorAll('.card');
+
+//   cards.forEach((char) => {
+//     const openHeroModal = (e) => {
+//       const heroImageUrl = e.currentTarget.children[0].children[0].children[0].src;
+//       const heroImage = document.getElementById('hero-image');
+//       heroImage.src = heroImageUrl;
+
+//       const family = e.currentTarget.children[1].textContent;
+
+//       const heroFamily = document.querySelector('.family');
+//       heroFamily.innerHTML = `Family:&nbsp${family}`;
+
+//       const born = e.currentTarget.children[2].textContent;
+//       const heroBorn = document.querySelector('.born');
+//       heroBorn.innerHTML = `Born:&nbsp${born}`;
+
+//       const died = e.currentTarget.children[3].textContent;
+//       const heroDied = document.querySelector('.died');
+//       heroDied.innerHTML = `Died:&nbsp${died}`;
+
+//       const normFamily = family.toLowerCase().replace(/\s/g, '');
+//       const excludedFamilies = [
+//         '',
+//         'none',
+//         'unknown',
+//         'unkown',
+//         'naharis',
+//         'lorathi',
+//         'lorath',
+//         'sparrow',
+//         'viper',
+//         'sand',
+//       ];
+
+//       if (excludedFamilies.includes(normFamily)) {
+//         modalHero.classList.add('unknown');
+//       } else {
+//         modalHero.classList.add(normFamily);
+//       }
+//       console.log('normFamily', normFamily);
+//       toggleModal();
+//     };
+//     char.addEventListener('click', openHeroModal);
+//   });
+// }
+// =========open hero modal==========//
+
 function setupCardClick() {
   const cards = document.querySelectorAll('.card');
 
   cards.forEach((char) => {
-    const openHeroModal = (e) => {
-      const heroImageUrl = e.currentTarget.children[0].children[0].children[0].src;
-      const heroImage = document.getElementById('hero-image');
-      heroImage.src = heroImageUrl;
+    const openHeroModal = async (e) => {
+      const heroName = e.currentTarget.children[0].children[1].children[0].textContent;
+      // console.log(heroName.toLowerCase().replace(/\s/g, ''));
+      try {
+        const response = await axios.get('https://64687c8760c8cb9a2caac9fc.mockapi.io/fire/fire');
+        const data = response.data;
 
-      const family = e.currentTarget.children[1].textContent;
+        const hero = data.find(
+          (char) =>
+            char.fullName.toLowerCase().replace(/\s/g, '') ===
+            heroName.toLowerCase().replace(/\s/g, '')
+        );
 
-      const heroFamily = document.querySelector('.family');
-      heroFamily.innerHTML = `Family:&nbsp${family}`;
+        if (hero) {
+          console.log('hero.image', hero.image);
+          const heroImage = document.getElementById('hero-image');
+          heroImage.src = hero.imageUrl;
 
-      const born = e.currentTarget.children[2].textContent;
-      const heroBorn = document.querySelector('.born');
-      heroBorn.innerHTML = `Born:&nbsp${born}`;
+          const heroFamily = document.querySelector('.family');
+          heroFamily.innerHTML = `Family:&nbsp${hero.family}`;
 
-      const died = e.currentTarget.children[3].textContent;
-      const heroDied = document.querySelector('.died');
-      heroDied.innerHTML = `Died:&nbsp${died}`;
+          const heroBorn = document.querySelector('.born');
+          heroBorn.innerHTML = `Born:&nbsp${hero.born}`;
 
-      const normFamily = family.toLowerCase().replace(/\s/g, '');
-      const excludedFamilies = [
-        '',
-        'none',
-        'unknown',
-        'unkown',
-        'naharis',
-        'lorathi',
-        'lorath',
-        'sparrow',
-        'viper',
-        'sand',
-      ];
+          const heroDied = document.querySelector('.died');
+          heroDied.innerHTML = `Died:&nbsp${hero.died}`;
 
-      if (excludedFamilies.includes(normFamily)) {
-        modalHero.classList.add('unknown');
-      } else {
-        modalHero.classList.add(normFamily);
+          const normFamily = hero.family.toLowerCase().replace(/\s/g, '');
+          const excludedFamilies = [
+            '',
+            'none',
+            'unknown',
+            'unkown',
+            'naharis',
+            'lorathi',
+            'lorath',
+            'sparrow',
+            'viper',
+            'sand',
+          ];
+
+          if (excludedFamilies.includes(normFamily)) {
+            modalHero.classList.add('unknown');
+          } else {
+            modalHero.classList.add(normFamily);
+          }
+          console.log('normFamily', normFamily);
+          toggleModal();
+        } else {
+          console.log('Hero not found');
+        }
+      } catch (error) {
+        console.error(error);
       }
-      console.log('normFamily', normFamily);
-      toggleModal();
     };
+
     char.addEventListener('click', openHeroModal);
   });
 }
-//=========open hero modal==========//

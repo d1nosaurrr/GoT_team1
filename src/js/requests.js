@@ -53,12 +53,14 @@ const getAdditionalInfo = async (list) => {
   return { characterList, houses };
 };
 
+let globalCharacterList;
 const getFullInfo = async () => {
   const characters = await getCharactersList();
   const { characterList, houses } = await getAdditionalInfo(characters);
   // console.log(characterList);
-  console.log(JSON.stringify(characterList));
+
   const houseList = Array.from(new Set(houses));
+  globalCharacterList = characterList;
   return { characterList, houseList };
 };
 
@@ -76,9 +78,7 @@ const renderCharacters = (list) => {
                             <p class='card__text'>${fullName}</p>
                         </div>
                     </div>
-                    <p style='display:none'>${family}</p>
-                    <p style='display:none'>${born}</p>
-                    <p style='display:none'>${died}</p>
+                  
         </li>
         `;
   });
