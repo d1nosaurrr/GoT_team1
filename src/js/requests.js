@@ -3,6 +3,8 @@ const loader = document.querySelector('.loader__wrapper');
 const charactersList = document.querySelector('.characters__list');
 const inputBlock = document.querySelector('.filter__block');
 
+let globalCharacterList;
+
 root.style.display = 'none';
 
 const getCharactersList = async () => {
@@ -10,29 +12,25 @@ const getCharactersList = async () => {
   return data;
 };
 const getAdditionalInfo = async (list) => {
-  const characterList = [];
+  let characterList = [];
   const houses = [];
   for (const character of list) {
-    await axios.get('https://anapioficeandfire.com/api/characters?name=' + character.fullName)
+    await axios
+      .get('https://anapioficeandfire.com/api/characters?name=' + character.fullName)
       .then(async ({ data }) => {
         if (data && data.length > 0) {
-          for (let { allegiances, born, died, tvSeries } of data) {
+          for (let { allegiances, gender, born, died, tvSeries } of data) {
             if (tvSeries && tvSeries.length > 0 && tvSeries[0] !== '') {
               let houseInfo = [];
               for (const house of allegiances) {
                 const { data } = await axios.get(house);
-                houseInfo.push(data.name);
-              }
-              if (!born) {
-                born = 'Unknown';
-              }
-              if (!died) {
-                died = 'Unknown';
+                houseInfo.push({ name: data.name.split('of')[0].trim(), words: data.words });
               }
               const addon = {
-                house: houseInfo,
-                born: born,
-                died: died
+                house: houseInfo.length > 0 ? houseInfo : [{ name: 'Unknown', words: 'Unknown' }],
+                gender: gender ? gender : 'Unknown',
+                born: born ? born : 'Unknown',
+                died: died ? died : 'Unknown'
               };
               characterList.push({ ...character, ...addon });
               houses.push(...houseInfo);
@@ -40,27 +38,35 @@ const getAdditionalInfo = async (list) => {
           }
         } else {
           const addon = {
-            house: ['Unknown'],
+            house: [{ name: 'Unknown', words: 'Unknown' }],
+            gender: 'Unknown',
             born: 'Unknown',
             died: 'Unknown'
           };
           characterList.push({ ...character, ...addon });
-          houses.push('Unknown');
+          houses.push({ name: 'Unknown', words: 'Unknown' });
         }
       });
   }
+  characterList = handleAlphabetFilter(characterList, 'asc');
+
   return { characterList, houses };
 };
 
 const getFullInfo = async () => {
   const characters = await getCharactersList();
   const { characterList, houses } = await getAdditionalInfo(characters);
-  console.log(characterList);
-  const houseList = Array.from(new Set(houses));
+  const houseList = houses.filter((obj, index) => {
+    return index === houses.findIndex(o => obj.name === o.name);
+  });
+
+  globalCharacterList = characterList;
   return { characterList, houseList };
 };
 
 const renderCharacters = (list) => {
+  //очищаємо список перед рендерингом
+  charactersList.innerHTML = '';
   list.forEach(({ fullName, family, born, died, imageUrl }) => {
     charactersList.innerHTML += `
         <li class='list__item card'>
@@ -76,12 +82,14 @@ const renderCharacters = (list) => {
         `;
   });
 };
+
 const renderFamiliesList = (list) => {
   const familyLabel = document.createElement('label');
-  familyLabel.for = 'familySort';
+  familyLabel.for = 'houseSort';
   const familiesList = document.createElement('select');
-  familiesList.id = 'familySort';
-  list.forEach((family) => familiesList.innerHTML += `<option value='${family}'>${family}</option>`);
+  familiesList.id = 'houseSort';
+  familiesList.innerHTML = `<option value='all' selected>All</option>`;
+  list.forEach(({ name }) => familiesList.innerHTML += `<option value='${name}'>${name}</option>`);
   inputBlock.append(familyLabel, familiesList);
 };
 
@@ -90,4 +98,22 @@ getFullInfo().then(({ characterList, houseList }) => {
   renderFamiliesList(houseList);
   root.style.display = 'block';
   loader.remove();
+  const nameSort = document.querySelector('.input');
+  const houseSort = document.querySelector('#houseSort');
+  const alphabetSort = document.querySelector('#alphabetSort');
+  //=========open hero modal==========//
+  alphabetSort.addEventListener('change',
+    ({ target }) =>
+      handleFilter('alphabetic', target.value, characterList));
+
+  nameSort.addEventListener('input',
+    ({ target }) =>
+      handleFilter('name', target.value, characterList));
+
+  houseSort.addEventListener('change',
+    ({ target }) =>
+      handleFilter('houses', target.value, characterList));
+
+  setupCardClick(characterList);
 });
+

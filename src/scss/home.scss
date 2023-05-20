@@ -35,6 +35,7 @@ a:hover {
   background-position: center;
   background-repeat: no-repeat;
   background-size: auto;
+
   @media only screen and (max-device-width: 1000px) {
     background-attachment: scroll;
   }
@@ -87,12 +88,12 @@ a:hover {
 
 
 .scroll {
-  > .header__banner {
+  >.header__banner {
     flex-direction: row;
     justify-content: space-evenly;
     background: rgb(108 108 108 / 85%);
 
-    & > .header__logo {
+    &>.header__logo {
       //margin: auto 0;
       width: 6rem;
       display: block;
@@ -106,18 +107,23 @@ a:hover {
       display: none;
     }
 
-    .header__logo, .h1, .h2 {
+    .header__logo,
+    .h1,
+    .h2 {
       margin: 0.5rem;
     }
   }
 
-  & > .filter__block {
+  &>.filter__block {
     margin: 0;
   }
 
 }
 
-.logo, .h1, .h2, .filter__block {
+.logo,
+.h1,
+.h2,
+.filter__block {
   transition: 0.3s ease;
 
 }
@@ -290,11 +296,12 @@ a:hover {
   .h1 {
     font-size: 2.6rem;
   }
+
   .h2 {
     font-size: 1.3rem;
   }
 
-  .scroll > .header__banner > .filter__block {
+  .scroll>.header__banner>.filter__block {
     display: none;
   }
 
@@ -316,12 +323,15 @@ a:hover {
     font-size: 1.2rem;
   }
 
+
+
+
   //.input {
   //  margin: 0;
   //  width: 100%;
   //}
 
-  .scroll > .header__banner > .header__logo {
+  .scroll>.header__banner>.header__logo {
     display: none;
   }
 
