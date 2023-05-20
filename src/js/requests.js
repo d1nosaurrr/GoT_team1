@@ -24,10 +24,10 @@ const getAdditionalInfo = async (list) => {
                 houseInfo.push({ name: data.name.split('of')[0].trim(), words: data.words });
               }
               const addon = {
-                house: houseInfo,
-                gender: gender,
-                born: !born ? 'Unknown' : born,
-                died: !died ? 'Unknown' : died
+                house: houseInfo.length > 0 ? houseInfo : [{ name: 'Unknown', words: 'Unknown' }],
+                gender: gender ? gender : 'Unknown',
+                born: born ? born : 'Unknown',
+                died: died ? died : 'Unknown'
               };
               characterList.push({ ...character, ...addon });
               houses.push(...houseInfo);
@@ -54,6 +54,8 @@ const getFullInfo = async () => {
   const houseList = houses.filter((obj, index) => {
     return index === houses.findIndex(o => obj.name === o.name);
   });
+  winChance(characterList);
+
   return { characterList, houseList };
 };
 
