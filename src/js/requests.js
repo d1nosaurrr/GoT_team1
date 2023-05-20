@@ -13,7 +13,8 @@ const getAdditionalInfo = async (list) => {
   const characterList = [];
   const houses = [];
   for (const character of list) {
-    await axios.get('https://anapioficeandfire.com/api/characters?name=' + character.fullName)
+    await axios
+      .get('https://anapioficeandfire.com/api/characters?name=' + character.fullName)
       .then(async ({ data }) => {
         if (data && data.length > 0) {
           for (let { allegiances, born, died, tvSeries } of data) {
@@ -32,7 +33,7 @@ const getAdditionalInfo = async (list) => {
               const addon = {
                 house: houseInfo,
                 born: born,
-                died: died
+                died: died,
               };
               characterList.push({ ...character, ...addon });
               houses.push(...houseInfo);
@@ -42,7 +43,7 @@ const getAdditionalInfo = async (list) => {
           const addon = {
             house: ['Unknown'],
             born: 'Unknown',
-            died: 'Unknown'
+            died: 'Unknown',
           };
           characterList.push({ ...character, ...addon });
           houses.push('Unknown');
@@ -75,13 +76,16 @@ const renderCharacters = (list) => {
         </li>
         `;
   });
+  setupCardClick();
 };
 const renderFamiliesList = (list) => {
   const familyLabel = document.createElement('label');
   familyLabel.for = 'familySort';
   const familiesList = document.createElement('select');
   familiesList.id = 'familySort';
-  list.forEach((family) => familiesList.innerHTML += `<option value='${family}'>${family}</option>`);
+  list.forEach(
+    (family) => (familiesList.innerHTML += `<option value='${family}'>${family}</option>`)
+  );
   inputBlock.append(familyLabel, familiesList);
 };
 

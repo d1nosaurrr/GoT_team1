@@ -39,13 +39,6 @@ function toggleModal() {
   document.body.classList.toggle('modal-open');
 }
 
-// axios
-//   .get('https://64687c8760c8cb9a2caac9fc.mockapi.io/fire/fire')
-function toggleModal() {
-  refs.modal.classList.toggle('backdrop--is-hidden');
-  document.body.classList.toggle('modal-open');
-}
-// }
 // =========open hero modal==========//
 
 function setupCardClick() {
