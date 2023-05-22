@@ -228,6 +228,32 @@
   transition: all 0.2s ease;
 }
 
+
+/* cards effect start */
+
+.characters__list li{
+  position: relative;
+  z-index: 1;
+  perspective: 1000px;
+  
+  
+  &:hover .card__body {
+    transform: rotateX(7deg) translateY(-6px);
+
+    &::after {
+      transform: translateY(0%);
+    }
+    
+  }
+  
+}
+
+/* cards effect end */
+
+.mainNew {
+  height: calc(100vh - 202px);
+}
+
 /* main end */
 
 /* footer start */
