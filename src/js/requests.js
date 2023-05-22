@@ -67,7 +67,7 @@ const getFullInfo = async () => {
 const renderCharacters = (list) => {
   //очищаємо список перед рендерингом
   charactersList.innerHTML = '';
-  list.forEach(({ fullName, family, born, died, imageUrl }) => {
+  list.forEach(({ fullName, house, born, died, imageUrl }) => {
     charactersList.innerHTML += `
         <li class='list__item card'>
                     <div class='card__body blur'>
