@@ -73,6 +73,11 @@ body.modal-open {
 
     }
 
+    @media screen and (min-width: 820px) {
+        width: 360px;
+
+    }
+
     @media screen and (min-width: 1024px) {
         width: 400px;
     }
@@ -135,7 +140,7 @@ body.modal-open {
         opacity: 1;
     }
 
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 1023px) {
         width: 16px;
         height: 16px;
 
@@ -152,7 +157,7 @@ body.modal-open {
     height: 3px;
     background: rgb(255, 255, 255);
 
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 1023px) {
         width: 16px;
         height: 16px;
         height: 2px;
