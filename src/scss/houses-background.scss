@@ -1,9 +1,24 @@
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
 .unknown {
     background: radial-gradient(circle, rgba(238, 174, 202, 0.5) 0%, rgba(148, 187, 233, 0.5) 100%);
 }
 
 .housestark,
 .stark {
+
     background: linear-gradient(142deg, rgba(128, 128, 128, 0.5) 0%, rgba(222, 222, 222, 0.5) 39%, rgba(255, 255, 255, 0.5) 100%);
 
 }
@@ -11,7 +26,10 @@
 
 .housetargaryen,
 .targaryan {
+
     background: linear-gradient(to left, rgba(240, 203, 53, 0.5), rgba(192, 36, 37, 0.5));
+    background-size: 200% 200%;
+    animation: gradient 10s ease infinite;
 }
 
 .housetarly {
@@ -29,6 +47,7 @@
 .qyburn,
 .bronn,
 .houselanister {
+
     background: linear-gradient(101deg, rgba(171, 22, 22, 0.5) 22%, rgba(191, 178, 0, 0.5) 53%);
 
 }
@@ -80,4 +99,33 @@
 
 .mormont {
     background: linear-gradient(0deg, rgba(5, 149, 8, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%);
+}
+
+.unknown,
+.housestark,
+.stark,
+.housetargaryen,
+.targaryan,
+.housetarly,
+.housebaratheon,
+.baratheon,
+.houselannister,
+.lannister,
+.qyburn,
+.bronn,
+.houselanister,
+.housegreyjoy,
+.greyjoy,
+.houseclegane,
+.housebaelish,
+.houseseaworth,
+.housetyrell,
+.tyrell,
+.freefolk,
+.tarth,
+.naathi,
+.bolton,
+.mormont {
+    background-size: 200% 200%;
+    animation: gradient 7s ease infinite;
 }
