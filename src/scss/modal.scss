@@ -34,9 +34,7 @@ body.modal-open {
     position: absolute;
     top: 50%;
     left: 50%;
-    padding: 40px;
-    width: 25vw;
-    min-height: 25vw;
+
     background-color: black !important;
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
         0px 2px 1px rgba(0, 0, 0, 0.2);
@@ -46,127 +44,124 @@ body.modal-open {
     transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
     &__card {
-        width: 250px;
-        height: 200px;
+
+
         margin: auto;
         display: flex;
         justify-content: center;
         align-items: center;
 
+        @media screen and (min-width: 320px) {
+            width: 190px;
+            height: 150px;
+        }
+
+        @media screen and (min-width: 425px) {
+            width: 210px;
+            height: 170px;
+        }
+
+        @media screen and (min-width: 1440px) {
+            width: 250px;
+            height: 200px;
+        }
+
 
     }
 
-}
+    @media screen and (min-width: 320px) {
+        width: 280px;
+        min-height: 300px;
+        padding: 40px 10px;
+    }
 
-//=========houses background=============//
-.unknown {
-    background: radial-gradient(circle, rgba(238, 174, 202, 0.5) 0%, rgba(148, 187, 233, 0.5) 100%);
-}
-
-.housestark,
-.stark {
-    background: linear-gradient(142deg, rgba(128, 128, 128, 0.5) 0%, rgba(222, 222, 222, 0.5) 39%, rgba(255, 255, 255, 0.5) 100%);
-
-}
-
-
-.housetargaryen,
-.targaryan {
-    background: linear-gradient(to left, rgba(240, 203, 53, 0.5), rgba(192, 36, 37, 0.5));
-}
-
-.housetarly {
-    background: linear-gradient(to bottom, rgba(211, 203, 184, 0.5), rgba(109, 96, 39, 0.5));
-
-}
-
-.housebaratheon,
-.baratheon {
-    background: linear-gradient(to bottom, rgba(154, 132, 120, 0.5), rgba(30, 19, 12, 0.5));
-}
-
-.houselannister,
-.lannister,
-.qyburn,
-.bronn,
-.houselanister {
-    background: linear-gradient(101deg, rgba(171, 22, 22, 0.5) 22%, rgba(191, 178, 0, 0.5) 53%);
-
-}
+    @media screen and (min-width: 425px) {
+        width: 320px;
+        min-height: 300px;
+        padding: 40px 10px;
+    }
 
 
 
-.housegreyjoy,
-.greyjoy {
-    background: radial-gradient(circle, rgba(191, 178, 0, 0.5) 16%, rgba(0, 0, 0, 0.5) 100%);
-}
 
-.houseclegane {
+    @media screen and (min-width: 1024px) {
+        width: 360px;
+    }
 
-    background: linear-gradient(301deg, rgba(0, 0, 0, 0.5) 0%, rgba(255, 237, 0, 0.5) 91%);
-
-}
-
-.housebaelish {
-    background: linear-gradient(320deg, rgba(59, 59, 59, 0.5) 28%, rgba(255, 125, 28, 0.5) 41%, rgba(90, 226, 98, 0.5) 51%);
-
-}
-
-.houseseaworth {
-    background: linear-gradient(17deg, rgba(255, 255, 255, 0.5) 0%, rgba(59, 59, 59, 0.5) 58%, rgba(0, 0, 0, 0.5) 74%);
-}
-
-.housetyrell,
-.tyrell {
-
-    background: linear-gradient(17deg, rgba(39, 163, 0, 0.5) 0%, rgba(255, 224, 0, 0.5) 88%);
-}
-
-.freefolk {
-
-    background: linear-gradient(17deg, rgba(0, 163, 146, 0.5) 0%, rgba(50, 87, 122, 0.5) 88%);
-}
-
-.tarth {
-    background: linear-gradient(10deg, rgba(255, 233, 0, 0.5) 0%, rgba(255, 255, 255, 0.5) 52%, rgba(43, 24, 126, 0.5) 91%);
-}
-
-.naathi {
-    background: linear-gradient(16deg, rgba(255, 255, 255, 0.5) 32%, rgba(24, 126, 40, 0.5) 91%);
-}
-
-.bolton {
-    background: linear-gradient(17deg, rgba(206, 0, 0, 0.5) 12%, rgba(126, 24, 68, 0.5) 96%);
-}
-
-.mormont {
-    background: linear-gradient(0deg, rgba(5, 149, 8, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%);
-}
-
-.modal__button {
-    cursor: pointer;
-    display: block;
-    padding: 8px;
-    margin-left: auto;
-    margin-right: auto;
+    @media screen and (min-width: 1440px) {
+        padding: 40px;
+        width: 30vw;
+    }
 }
 
 #hero-image {
-
+    border-radius: 6px;
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: top;
+
+}
+
+.hero-info {
+    margin: auto;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 70%;
+
 }
 
 .family,
 .born,
 .died {
-    border: 1px solid rgb(97, 97, 97);
-    background-color: rgb(97, 97, 97);
+
+    margin: 0;
     padding: 2px;
     border-radius: 4px;
     color: rgb(255, 255, 255);
-    font-family: GameofThronesKG, serif;
-    letter-spacing: 4px;
+    font-size: 15px;
+    // font-family: GameofThronesKG, serif;
+    letter-spacing: 2px;
+
+    @media screen and (max-width: 768px) {
+        font-size: 12px;
+
+    }
+}
+
+.close-modal {
+    z-index: 111;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 24px;
+    height: 24px;
+    opacity: 0.2;
+
+    transition: opacity ease 0.5s;
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
+.close-modal::before,
+.close-modal::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    display: block;
+    width: 24px;
+    height: 3px;
+    background: rgb(255, 255, 255);
+}
+
+.close-modal::before {
+    transform: rotate(45deg);
+}
+
+.close-modal::after {
+    transform: rotate(-45deg);
 }

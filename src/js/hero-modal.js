@@ -84,6 +84,7 @@ function setupCardClick() {
             'sparrow',
             'viper',
             'sand',
+            'worm',
           ];
 
           if (excludedFamilies.includes(normFamily)) {
