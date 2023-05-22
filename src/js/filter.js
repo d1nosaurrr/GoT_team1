@@ -22,7 +22,7 @@ const characterFilter = (list) => {
 
   if (houseSort !== 'all') {
     filteredCharacters = list.filter(({ fullName, house }) =>
-      house[0].name.toLowerCase().trim() === houseSort.trim()
+      house.name.toLowerCase().trim() === houseSort.trim()
       &&
       fullName.toLowerCase().includes(nameSort)
     );

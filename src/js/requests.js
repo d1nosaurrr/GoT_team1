@@ -14,37 +14,92 @@ const getCharactersList = async () => {
 const getAdditionalInfo = async (list) => {
   let characterList = [];
   const houses = [];
-  for (const character of list) {
+  for (let character of list) {
+    if (character.fullName === 'Robert Baratheon') {
+      character.fullName = 'Robert I Baratheon';
+    }
+    if (character.fullName === 'Ned Stark') {
+      character.fullName = 'Eddard Stark';
+    }
+    if (character.fullName === 'Rob Stark') {
+      character.fullName = 'Robb Stark';
+    }
+    if (character.fullName === 'Jamie Lannister') {
+      character.fullName = 'Jaime Lannister';
+    }
+    if (character.fullName === 'The Hound') {
+      character.fullName = 'Sandor Clegane';
+    }
+    if (character.fullName === 'Khal Drogo') {
+      character.fullName = 'Drogo';
+    }
+    if (character.fullName === 'Viserys Targaryn') {
+      character.fullName = 'Viserys Targaryen';
+    }
+    if (character.fullName === 'Daario') {
+      character.fullName = 'Daario Naharis';
+    }
+    if (character.fullName === 'Ramsey Bolton') {
+      character.fullName = 'Ramsay Snow';
+    }
+    if (character.fullName === 'The High Sparrow') {
+      character.fullName = 'High Septon';
+    }
+    if (character.fullName === 'Oberyn Martell') {
+      character.fullName = 'Oberyn Nymeros Martell';
+    }
+    if (character.fullName === 'Tormund Giantsbane') {
+      character.fullName = 'Tormund';
+    }
+    if (character.fullName === 'Hodor') {
+      character.fullName = 'Walder';
+    }
+    if (character.fullName === 'Olenna Tyrell') {
+      character.fullName = 'Olenna Redwyne';
+    }
+    if (character.fullName === 'Lord Bronn') {
+      character.fullName = 'Bronn';
+    }
+    if (character.fullName === 'Yara Greyjoy') {
+      character.fullName = 'Asha Greyjoy';
+    }
+    if (character.fullName === 'Gendry Baratheon') {
+      character.fullName = 'Gendry';
+    }
     await axios
       .get('https://anapioficeandfire.com/api/characters?name=' + character.fullName)
       .then(async ({ data }) => {
         if (data && data.length > 0) {
-          for (let { allegiances, gender, born, died, tvSeries } of data) {
+          for (const { allegiances, gender, born, died, tvSeries } of data) {
             if (tvSeries && tvSeries.length > 0 && tvSeries[0] !== '') {
               let houseInfo = [];
               for (const house of allegiances) {
                 const { data } = await axios.get(house);
-                houseInfo.push({ name: data.name.split('of')[0].trim(), words: data.words });
+                houseInfo.push({ name: data.name.split('of')[0].trim(), words: data.words ? data.words : 'Unknown' });
+              }
+              if (houseInfo.length > 1) {
+                let uniqueHouse = houseInfo.find(e => e.name.includes(character.lastName));
+                houseInfo = [uniqueHouse ? uniqueHouse : houseInfo[0]];
               }
               const addon = {
-                house: houseInfo.length > 0 ? houseInfo : [{ name: 'Unknown', words: 'Unknown' }],
+                house: houseInfo.length > 0 ? houseInfo[0] : { name: 'Unknown', words: 'Unknown' },
                 gender: gender ? gender : 'Unknown',
                 born: born ? born : 'Unknown',
                 died: died ? died : 'Unknown'
               };
               characterList.push({ ...character, ...addon });
-              houses.push(...houseInfo);
+              houses.push(addon.house);
             }
           }
         } else {
           const addon = {
-            house: [{ name: 'Unknown', words: 'Unknown' }],
+            house: { name: 'Unknown', words: 'Unknown' },
             gender: 'Unknown',
             born: 'Unknown',
             died: 'Unknown'
           };
           characterList.push({ ...character, ...addon });
-          houses.push({ name: 'Unknown', words: 'Unknown' });
+          houses.push(addon.house);
         }
       });
   }
@@ -59,7 +114,8 @@ const getFullInfo = async () => {
   const houseList = houses.filter((obj, index) => {
     return index === houses.findIndex(o => obj.name === o.name);
   });
-
+  houseList.sort((a, b) =>
+    (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
   globalCharacterList = characterList;
   return { characterList, houseList };
 };
@@ -67,7 +123,7 @@ const getFullInfo = async () => {
 const renderCharacters = (list) => {
   //очищаємо список перед рендерингом
   charactersList.innerHTML = '';
-  list.forEach(({ fullName, house, born, died, imageUrl }) => {
+  list.forEach(({ fullName, imageUrl }) => {
     charactersList.innerHTML += `
         <li class='list__item card'>
                     <div class='card__body blur'>
