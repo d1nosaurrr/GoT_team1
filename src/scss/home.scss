@@ -157,7 +157,8 @@ a:hover {
   padding: 1rem;
 }
 
-.filter__block select, .filter__block .input{
+.filter__block select,
+.filter__block .input {
   border-radius: 5px;
   font-size: 1.5rem;
   border: 1px solid rgba(108, 108, 108, 0.22);
@@ -242,7 +243,9 @@ a:hover {
 
 .img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
 
 }
 
@@ -266,21 +269,21 @@ a:hover {
 
 /* cards effect start */
 
-.characters__list li{
+.characters__list li {
   position: relative;
   z-index: 1;
   perspective: 1000px;
-  
-  
+
+
   &:hover .card__body {
     transform: rotateX(7deg) translateY(-6px);
 
     &::after {
       transform: translateY(0%);
     }
-    
+
   }
-  
+
 }
 
 /* cards effect end */
