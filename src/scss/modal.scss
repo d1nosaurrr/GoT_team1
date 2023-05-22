@@ -44,27 +44,20 @@ body.modal-open {
     transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
     &__card {
-
+        width: 250px;
+        height: 200px;
 
         margin: auto;
         display: flex;
         justify-content: center;
         align-items: center;
 
-        @media screen and (min-width: 320px) {
+        @media screen and (max-width: 1023px) {
             width: 190px;
             height: 150px;
         }
 
-        @media screen and (min-width: 425px) {
-            width: 210px;
-            height: 170px;
-        }
 
-        @media screen and (min-width: 1440px) {
-            width: 250px;
-            height: 200px;
-        }
 
 
     }
@@ -77,15 +70,11 @@ body.modal-open {
 
     @media screen and (min-width: 425px) {
         width: 320px;
-        min-height: 300px;
-        padding: 40px 10px;
+
     }
 
-
-
-
     @media screen and (min-width: 1024px) {
-        width: 360px;
+        width: 400px;
     }
 
     @media screen and (min-width: 1440px) {
@@ -125,7 +114,7 @@ body.modal-open {
     // font-family: GameofThronesKG, serif;
     letter-spacing: 2px;
 
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 767px) {
         font-size: 12px;
 
     }
@@ -145,6 +134,12 @@ body.modal-open {
     &:hover {
         opacity: 1;
     }
+
+    @media screen and (max-width: 768px) {
+        width: 16px;
+        height: 16px;
+
+    }
 }
 
 .close-modal::before,
@@ -153,9 +148,15 @@ body.modal-open {
     position: absolute;
     top: 10px;
     display: block;
-    width: 24px;
+    width: 100%;
     height: 3px;
     background: rgb(255, 255, 255);
+
+    @media screen and (max-width: 768px) {
+        width: 16px;
+        height: 16px;
+        height: 2px;
+    }
 }
 
 .close-modal::before {
