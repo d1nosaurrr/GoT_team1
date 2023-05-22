@@ -33,17 +33,10 @@
 </head>
 <body>
 <!-- MODAL -->
-<div class='backdrop backdrop--is-hidden' data-modal>
-  <div class='modal'>
-    <button class='modal__button' data-modal-close>close</button>
-    <div class='modal__card'>
-      <img class='img' id='hero-image' src='' alt='hero-image'>
-    </div>
-    <p class='family'></p>
-    <p class='born'></p>
-    <p class='died'></p>
-  </div>
-</div>
+<dialog class='modal'>
+  <span class='modal__close' data-modal-close>&times;</span>
+  <div class='modal__card'></div>
+</dialog>
 <!-- MODAL -->
 <div class='loader__wrapper'>
   <div class='loader'></div>

@@ -1,71 +1,63 @@
-const refs = {
-  // openModalBtn: document.querySelector('[data-modal-open]'),
-  closeModalBtn: document.querySelector('[data-modal-close]'),
-  modal: document.querySelector('[data-modal]')
-};
 const modalHero = document.querySelector('.modal');
-const classToKeep = 'modal';
+const modalContent = document.querySelector('.modal__card');
+const modalClose = document.querySelector('.modal__close');
 
+const openModal = () => modalHero.showModal();
+const closeModal = () => modalHero.close();
 
-
-const toggleByBackdrop = ({ target }) => {
-  // console.log(target.classList);
-  if (target.classList.contains('backdrop')) {
-    refs.modal.classList.toggle('backdrop--is-hidden');
-    document.body.classList.toggle('modal-open');
-    klassToKeep();
+modalHero.addEventListener('click', e => {
+  const dialogDimensions = modalHero.getBoundingClientRect();
+  if (
+    e.clientX < dialogDimensions.left ||
+    e.clientX > dialogDimensions.right ||
+    e.clientY < dialogDimensions.top ||
+    e.clientY > dialogDimensions.bottom
+  ) {
+    modalHero.close();
   }
-};
+});
 
-const klassToKeep = () => {
-  setTimeout(function() {
-    modalHero.className = classToKeep;
-  }, 100);
-};
-const toggleModal = () => {
-  refs.modal.classList.toggle('backdrop--is-hidden');
-  document.body.classList.toggle('modal-open');
-};
-const handleModalCloseOnESC = ({ key }) => {
-  // console.log(key)
-  if (key === 'Escape' && !refs.modal.classList.contains('backdrop--is-hidden')) {
-    toggleModal();
-    klassToKeep();
-  }
-};
+modalClose.addEventListener('click', closeModal);
 
-// =========open hero modal==========//
-
+/******************* Setup Modal On Click***********************************/
 const setupCardClick = (list) => {
   const cards = document.querySelectorAll('.card');
 
   cards.forEach((char) => {
     char.addEventListener('click', () => {
+
       const heroName = char.querySelector('.card__text').textContent;
 
       const hero = list.find(
         ({ fullName }) =>
           fullName.toLowerCase().trim() === heroName.toLowerCase().trim()
       );
-
       if (hero) {
-        console.log('hero.image', hero.image);
-        const heroImage = document.getElementById('hero-image');
-        heroImage.src = hero.imageUrl;
+        modalContent.innerHTML = '';
+        const { imageUrl, fullName, house, born, died } = hero;
+        const heroImage = document.createElement('img');
+        heroImage.className = 'character__image';
+        heroImage.width = 150;
+        heroImage.height = 150;
+        heroImage.src = imageUrl.trim();
 
-        const heroFamily = document.querySelector('.family');
-        heroFamily.innerHTML = `Family:&nbsp${hero.family}`;
+        const heroName = document.createElement('p');
+        heroName.className = 'character__name';
+        heroName.textContent = 'Name: ' + fullName;
+        const heroHouse = document.createElement('p');
+        heroHouse.className = 'character__house';
+        heroHouse.textContent = 'House: ' + house.name;
 
-        const heroBorn = document.querySelector('.born');
-        heroBorn.innerHTML = `Born:&nbsp${hero.born}`;
+        const heroBorn = document.createElement('p');
+        heroBorn.className = 'character__born';
+        heroBorn.textContent = 'Born: ' + born;
 
-        const heroDied = document.querySelector('.died');
-        heroDied.innerHTML = `Died:&nbsp${hero.died}`;
+        const heroDied = document.createElement('p');
+        heroDied.className = 'character__died';
+        heroDied.textContent = 'Died: ' + died;
 
-        const normFamily = hero.family.toLowerCase().replace(/\s/g, '');
+        const normFamily = house.name.toLowerCase().replace(/\s/g, '');
         const excludedFamilies = [
-          '',
-          'none',
           'unknown',
           'unkown',
           'naharis',
@@ -75,23 +67,11 @@ const setupCardClick = (list) => {
           'viper',
           'sand'
         ];
+        modalHero.classList.add(excludedFamilies.includes(normFamily) ? 'unknown' : normFamily);
 
-        if (excludedFamilies.includes(normFamily)) {
-          modalHero.classList.add('unknown');
-        } else {
-          modalHero.classList.add(normFamily);
-        }
-        console.log('normFamily', normFamily);
-        toggleModal();
-      } else {
-        console.log('Hero not found');
+        modalContent.append(heroImage, heroName, heroHouse, heroBorn, heroDied);
+        openModal();
       }
     });
   });
 };
-
-// refs.openModalBtn.addEventListener('click', toggleModal);
-refs.closeModalBtn.addEventListener('click', toggleModal);
-refs.closeModalBtn.addEventListener('click', klassToKeep);
-refs.modal.addEventListener('click', toggleByBackdrop);
-document.addEventListener('keydown', handleModalCloseOnESC);
