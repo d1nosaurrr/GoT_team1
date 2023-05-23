@@ -10,21 +10,23 @@ const greatHouses = [
   'House Martell',
   'House Bolton'
 ];
-const winChance = (list) => {
-  const winnerList = potentialWinner(list).length;
-  list.map((el) => {
-    if (el.died !== 'Unknown') {
-      console.log('Your character is dead');
-    } else {
-      if (!greatHouses.includes(el.house[0].name)) {
-        console.log('Your character is not from one of the Great House');
-      } else {
-        console.log();
-        console.log('Let`s check the luck of your pick');
-        console.log(1/winnerList * 100 + '%');
-      }
-    }
-  });
-};
+const winChance = (list, hero) => {
+  let winner ;
 
-const potentialWinner = (list) => list.map((el) => el.died === 'Unknown' && greatHouses.includes(el.house[0].name) ? el : '').filter((el) => el !== '');
+  list = list.filter(({ house, died }) => greatHouses.includes(house.name) && died === 'Unknown');
+
+  if (!list.includes(hero)) {
+    if (hero.died !== 'Unknown') winner = ('Sorry, your character is dead');
+    if (!greatHouses.includes(hero.house.name)) winner = ('Sorry, your character is not from Great House');
+  } else {
+    list = list.filter(({ title }) => title !== '');
+    list.sort((a, b) => (a.born < b.born) ? 1 : ((b.born < a.born) ? -1 : 0));
+
+    const length = list.length;
+    list = list.findIndex(({ fullName }) => fullName === hero.fullName);
+
+    winner = ((((1 / length) * 100) + Math.abs(list)).toFixed(2) + '%');
+  }
+  console.log(winner);
+  return winner;
+};

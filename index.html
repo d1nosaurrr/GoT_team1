@@ -35,7 +35,33 @@
 <!-- MODAL -->
 <dialog class='modal'>
   <span class='modal__close' data-modal-close>&times;</span>
-  <div class='modal__card'></div>
+  <div class='modal__card character'>
+    <div class='character__label'>
+      <img src='' alt='' class='character__image' width='150' height='150'>
+    </div>
+    <div class='character__label'>
+      Name:
+      <span class='character__name'></span>
+    </div>
+    <label class='character__label' for='houseOption'>House:
+    <select name='houseOption' class='character__house' id='houseOption' autocomplete='off' disabled>
+    </select>
+    </label>
+    <div class='character__label'>
+      Born:
+      <span class='character__born'></span>
+    </div>
+    <label class='character__label' for='diedOption'>Died:
+      <select name='diedOption' class='character__died' id='diedOption' autocomplete='off' disabled>
+      </select>
+    </label>
+
+    <div class='character__label'>
+      Chance to became a king:
+      <span class='character__chance'></span>
+    </div>
+    <button class='character__change' type='button'>Change</button>
+  </div>
 </dialog>
 <!-- MODAL -->
 <div class='loader__wrapper'>
@@ -60,12 +86,12 @@
 
       <nav class='filter__block'>
         <label for='alphabetSort'></label>
-        <select name='name_sort' id='alphabetSort' autocomplete='off'>
+        <select name='name_sort' class='filter__name' id='alphabetSort' autocomplete='off'>
           <option value='ASC' selected>A-Z</option>
           <option value='DESC'>Z-A</option>
         </select>
         <label for='findName'></label>
-        <input autocomplete='off' class='input' type='text' id='findName' placeholder='Character`s name'>
+        <input autocomplete='off' class='input filter__input' type='text' id='findName' placeholder='Character`s name'>
       </nav>
     </div>
 
