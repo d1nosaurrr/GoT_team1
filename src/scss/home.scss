@@ -190,7 +190,7 @@ select::-ms-expand {
   }
 
   .active {
-    background-color: rgba(255, 255, 255, .623);;
+    background-color: rgba(255, 255, 255, .623);
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -363,9 +363,9 @@ select::-ms-expand {
       flex-wrap: wrap;
       gap: 5px;
       margin: 0;
-      padding: 25px 10px;
+      padding: 10px;
 
-      background-color: rgba(159, 157, 157, 0.95);;
+      background-color: rgba(159, 157, 157, 0.95);
     }
 
     & > .header__banner > .header__logo {
@@ -391,6 +391,9 @@ select::-ms-expand {
 
   .h2 {
     font-size: 1.6rem;
+  }
+  .mainNew {
+    height: auto;
   }
 }
 
