@@ -82,6 +82,23 @@
   padding: 1rem;
 }
 
+form{
+  position: relative;
+}
+#clearInput{
+  display: block;
+  font-size: 25px;
+  color: #fff;
+  position: absolute;
+  top: 0;
+  right: 5px;
+  z-index: 2;
+}
+#clearInput:hover,
+#clearInput:focus{
+  color: #ff0000;
+}
+
 .filter__block select, .filter__block .input {
   border-radius: 5px;
   font-size: 1.5rem;

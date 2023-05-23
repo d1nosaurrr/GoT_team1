@@ -19,6 +19,7 @@ const renderCharacters = (list) => {
   });
 };
 const renderFamiliesList = (list) => {
+  const form = document.createElement('form');
   const familyLabel = document.createElement('label');
   familyLabel.for = 'houseSort';
   const familiesList = document.createElement('select');
@@ -26,5 +27,6 @@ const renderFamiliesList = (list) => {
   familiesList.classList.add('filter__house');
   familiesList.innerHTML = `<option value='all' selected>All</option>`;
   list.forEach(({ name }) => familiesList.innerHTML += `<option value='${name}'>${name}</option>`);
-  inputBlock.append(familyLabel, familiesList);
+  form.append(familiesList);
+  inputBlock.append(form, familiesList);
 };

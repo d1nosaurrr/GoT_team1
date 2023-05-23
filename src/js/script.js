@@ -40,19 +40,24 @@ getFullInfo().then(({ characterList, houseList }) => {
   loader.remove();
 
   /***********************************FILTER**********************************/
-  const nameSort = document.querySelector('.input');
+  const nameFind = document.querySelector('.input');
   const houseSort = document.querySelector('#houseSort');
   const alphabetSort = document.querySelector('#alphabetSort');
+  const clearInput = document.querySelector('#clearInput');
   alphabetSort.addEventListener('change',
     ({ target }) =>
       handleFilter('alphabetic', target.value, characterList));
 
-  nameSort.addEventListener('input',
+  nameFind.addEventListener('input',
     ({ target }) =>
       handleFilter('name', target.value, characterList));
 
   houseSort.addEventListener('change',
     ({ target }) =>
       handleFilter('houses', target.value, characterList));
+
+  clearInput.addEventListener('click', () => {
+    nameFind.value = '';
+  });
   /***************************************************************************/
 });

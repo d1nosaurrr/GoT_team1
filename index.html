@@ -44,8 +44,8 @@
       <span class='character__name'></span>
     </div>
     <label class='character__label' for='houseOption'>House:
-    <select name='houseOption' class='character__house' id='houseOption' autocomplete='off' disabled>
-    </select>
+      <select name='houseOption' class='character__house' id='houseOption' autocomplete='off' disabled>
+      </select>
     </label>
     <div class='character__label'>
       Born:
@@ -85,13 +85,19 @@
       </div>
 
       <nav class='filter__block'>
-        <label for='alphabetSort'></label>
-        <select name='name_sort' class='filter__name' id='alphabetSort' autocomplete='off'>
-          <option value='ASC' selected>A-Z</option>
-          <option value='DESC'>Z-A</option>
-        </select>
-        <label for='findName'></label>
-        <input autocomplete='off' class='input filter__input' type='text' id='findName' placeholder='Character`s name'>
+        <form>
+          <label for='alphabetSort'></label>
+          <select name='name_sort' class='filter__name' id='alphabetSort' autocomplete='off'>
+            <option value='ASC' selected>A-Z</option>
+            <option value='DESC'>Z-A</option>
+          </select>
+        </form>
+        <form>
+          <label class='input__label' for='findName'></label>
+          <span id='clearInput'>&times;</span>
+          <input autocomplete='off' class='input filter__input' type='text' id='findName'
+                 placeholder='Character`s name'>
+        </form>
       </nav>
     </div>
 
