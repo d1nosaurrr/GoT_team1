@@ -12,111 +12,95 @@ const getCharactersList = async () => {
   return data;
 };
 const getAdditionalInfo = async (list) => {
-  let characterList = [];
-  const houses = [];
-  for (let character of list) {
-    if (character.fullName === 'Robert Baratheon') {
-      character.fullName = 'Robert I Baratheon';
-    }
-    if (character.fullName === 'Ned Stark') {
-      character.fullName = 'Eddard Stark';
-    }
-    if (character.fullName === 'Rob Stark') {
-      character.fullName = 'Robb Stark';
-    }
-    if (character.fullName === 'Jamie Lannister') {
-      character.fullName = 'Jaime Lannister';
-    }
-    if (character.fullName === 'The Hound') {
-      character.fullName = 'Sandor Clegane';
-    }
-    if (character.fullName === 'Khal Drogo') {
-      character.fullName = 'Drogo';
-    }
-    if (character.fullName === 'Viserys Targaryn') {
-      character.fullName = 'Viserys Targaryen';
-    }
-    if (character.fullName === 'Daario') {
-      character.fullName = 'Daario Naharis';
-    }
-    if (character.fullName === 'Ramsey Bolton') {
-      character.fullName = 'Ramsay Snow';
-    }
-    if (character.fullName === 'The High Sparrow') {
-      character.fullName = 'High Septon';
-    }
-    if (character.fullName === 'Oberyn Martell') {
-      character.fullName = 'Oberyn Nymeros Martell';
-    }
-    if (character.fullName === 'Tormund Giantsbane') {
-      character.fullName = 'Tormund';
-    }
-    if (character.fullName === 'Hodor') {
-      character.fullName = 'Walder';
-    }
-    if (character.fullName === 'Olenna Tyrell') {
-      character.fullName = 'Olenna Redwyne';
-    }
-    if (character.fullName === 'Lord Bronn') {
-      character.fullName = 'Bronn';
-    }
-    if (character.fullName === 'Yara Greyjoy') {
-      character.fullName = 'Asha Greyjoy';
-    }
-    if (character.fullName === 'Gendry Baratheon') {
-      character.fullName = 'Gendry';
-    }
-    await axios
-      .get('https://anapioficeandfire.com/api/characters?name=' + character.fullName)
-      .then(async ({ data }) => {
-        if (data && data.length > 0) {
-          for (const { allegiances, gender, born, died, tvSeries } of data) {
-            if (tvSeries && tvSeries.length > 0 && tvSeries[0] !== '') {
-              let houseInfo = [];
-              for (const house of allegiances) {
-                const { data } = await axios.get(house);
-                houseInfo.push({ name: data.name.split('of')[0].trim(), words: data.words ? data.words : 'Unknown' });
-              }
-              if (houseInfo.length > 1) {
-                let uniqueHouse = houseInfo.find(e => e.name.includes(character.lastName));
-                houseInfo = [uniqueHouse ? uniqueHouse : houseInfo[0]];
-              }
-              const addon = {
-                house: houseInfo.length > 0 ? houseInfo[0] : { name: 'Unknown', words: 'Unknown' },
-                gender: gender ? gender : 'Unknown',
-                born: born ? born : 'Unknown',
-                died: died ? died : 'Unknown'
-              };
-              characterList.push({ ...character, ...addon });
-              houses.push(addon.house);
-            }
-          }
-        } else {
-          const addon = {
-            house: { name: 'Unknown', words: 'Unknown' },
-            gender: 'Unknown',
-            born: 'Unknown',
-            died: 'Unknown'
-          };
-          characterList.push({ ...character, ...addon });
-          houses.push(addon.house);
-        }
-      });
-  }
-  characterList = handleAlphabetFilter(characterList, 'asc');
+    let characterList = [];
+    let houseList = [];
+    for (let character of list) {
+      let { fullName, lastName } = character;
+      if (fullName === 'Robert Baratheon') fullName = 'Robert I Baratheon';
+      if (fullName === 'Ned Stark') fullName = 'Eddard Stark';
+      if (fullName === 'Rob Stark') fullName = 'Robb Stark';
+      if (fullName === 'Jamie Lannister') fullName = 'Jaime Lannister';
+      if (fullName === 'The Hound') fullName = 'Sandor Clegane';
+      if (fullName === 'Khal Drogo') fullName = 'Drogo';
+      if (fullName === 'Viserys Targaryn') fullName = 'Viserys Targaryen';
+      if (fullName === 'Daario') fullName = 'Daario Naharis';
+      if (fullName === 'Ramsey Bolton') fullName = 'Ramsay Snow';
+      if (fullName === 'The High Sparrow') fullName = 'High Septon';
+      if (fullName === 'Oberyn Martell') fullName = 'Oberyn Nymeros Martell';
+      if (fullName === 'Tormund Giantsbane') fullName = 'Tormund';
+      if (fullName === 'Hodor') fullName = 'Walder';
+      if (fullName === 'Olenna Tyrell') fullName = 'Olenna Redwyne';
+      if (fullName === 'Lord Bronn') fullName = 'Bronn';
+      if (fullName === 'Yara Greyjoy') fullName = 'Asha Greyjoy';
+      if (fullName === 'Gendry Baratheon') fullName = 'Gendry';
 
-  return { characterList, houses };
-};
+      await axios
+        .get('https://anapioficeandfire.com/api/characters?name=' + fullName)
+        .then(async ({ data }) => {
+            if (data && data.length > 0) {
+              for (const { allegiances, gender, born, died, tvSeries } of data) {
+                if (tvSeries && tvSeries.length > 0 && tvSeries[0] !== '') {
+                  let houseInfo = [];
+
+                  for (const house of allegiances) {
+                    const { data } = await axios.get(house);
+                    houseInfo.push({ name: data.name.split('of')[0].trim(), words: data.words ? data.words : 'Unknown' });
+                  }
+
+                  if (houseInfo.length > 1) {
+                    let uniqueHouse = houseInfo.find(e => e.name.includes(lastName));
+                    houseInfo = [uniqueHouse ? uniqueHouse : houseInfo[0]];
+                  }
+
+                  const addon = {
+                    house: houseInfo.length > 0 ? houseInfo[0] : { name: 'Unknown', words: 'Unknown' },
+                    gender: gender ? gender : 'Unknown',
+                    born: born ? born : 'Unknown',
+                    died: died ? died : 'Unknown'
+                  };
+                  characterList.push({ ...character, ...addon });
+                  houseList.push(addon.house);
+                }
+              }
+            } else {
+              const addon = {
+                house: { name: 'Unknown', words: 'Unknown' },
+                gender: 'Unknown',
+                born: 'Unknown',
+                died: 'Unknown'
+              };
+
+              characterList.push({ ...character, ...addon });
+              houseList.push(addon.house);
+            }
+          });
+    }
+
+    characterList = characterList.filter((obj, index) =>
+      index === characterList.findIndex(o => obj.fullName === o.fullName)
+    );
+    characterList = handleAlphabetFilter(characterList, 'asc');
+
+    houseList = houseList.filter((obj, index) =>
+      index === houseList.findIndex(o => obj.name === o.name)
+    );
+
+    houseList.sort((a, b) =>
+      (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
+
+    characterList.forEach(e => {
+      if (e.house.name === 'Unknown') {
+        const findHouse = houseList.find(el => el.name.includes(e.lastName));
+        e.house = findHouse ? findHouse : e.house;
+      }
+    });
+    return { characterList, houseList };
+  }
+;
 
 const getFullInfo = async () => {
   const characters = await getCharactersList();
-  const { characterList, houses } = await getAdditionalInfo(characters);
-  const houseList = houses.filter((obj, index) => {
-    return index === houses.findIndex(o => obj.name === o.name);
-  });
-  houseList.sort((a, b) =>
-    (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
-  globalCharacterList = characterList;
+  const { characterList, houseList } = await getAdditionalInfo(characters);
   return { characterList, houseList };
 };
 
@@ -138,7 +122,6 @@ const renderCharacters = (list) => {
         `;
   });
 };
-
 const renderFamiliesList = (list) => {
   const familyLabel = document.createElement('label');
   familyLabel.for = 'houseSort';
