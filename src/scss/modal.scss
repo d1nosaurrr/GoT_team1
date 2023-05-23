@@ -34,29 +34,63 @@ body.modal-open {
   color: #FFFFFF;
 }
 
-.character__image,
-.character__name,
-.character__house,
-.character__born,
-.character__died {
-  display: block;
-  width: calc(100% - 20px);
-  padding: 5px;
-  margin: 5px;
-  border: 1px solid rgb(97, 97, 97);
-  background-color: rgb(97, 97, 97);
-  border-radius: 4px;
-  color: rgb(255, 255, 255);
-  font-family: GameofThronesKG, serif;
-  line-height: 2;
-  letter-spacing: 3px;
+.character {
+
+  &__label,
+  &__image,
+  &__name,
+  &__house,
+  &__born,
+  &__died,
+  &__chance,
+  &__change {
+    width: calc(100% - 6px);
+    display: block;
+    border: 1px solid rgb(97, 97, 97);
+    outline: none;
+    background-color: rgb(97, 97, 97);
+    color: rgb(255, 255, 255);
+    font-family: GameofThronesKG, serif;
+    line-height: 2;
+    letter-spacing: 3px;
+  }
+
+  &__chance {
+    font-family: 'Julius Sans One', sans-serif;
+  }
+
+  &__image {
+    width: auto;
+    height: 250px;
+    object-fit: contain;
+    object-position: top;
+    margin: 0 auto;
+  }
+
+  &__label,
+  &__change {
+    width: calc(100% - 20px);
+    padding: 5px;
+    margin: 5px;
+    border: 1px solid rgb(97, 97, 97);
+    border-radius: 4px;
+    color: #B4886B;
+    font-weight: bold;
+    float: left;
+  }
+
+  &__change:hover {
+    background-color: #B4886B;
+    color: rgb(97, 97, 97);
+  }
 }
 
-.character__image {
-  height: 250px;
-  object-fit: contain;
-  object-position: top;
+.editable,
+.editable > select {
+  border-color: rgb(159, 156, 156);
+  background-color: rgb(159, 156, 156);
 }
+
 
 //=========houses background=============//
 .unknown {

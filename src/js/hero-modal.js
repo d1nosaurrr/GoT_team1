@@ -1,77 +1,101 @@
 const modalHero = document.querySelector('.modal');
-const modalContent = document.querySelector('.modal__card');
 const modalClose = document.querySelector('.modal__close');
 
+const heroImage = document.querySelector('.character__image');
+const heroName = document.querySelector('.character__name');
+const heroHouse = document.querySelector('.character__house');
+const heroBorn = document.querySelector('.character__born');
+const heroDied = document.querySelector('.character__died');
+const heroChance = document.querySelector('.character__chance');
+
+const changeBtn = document.querySelector('.character__change');
+
 const openModal = () => modalHero.showModal();
-const closeModal = () => modalHero.close();
+const closeModal = () => {
+  heroHouse.parentElement.classList.remove('editable');
+  heroHouse.disabled = true;
+  heroDied.parentElement.classList.remove('editable');
+  heroDied.disabled = true;
+  modalHero.close();
+};
 
 modalHero.addEventListener('click', e => {
   const dialogDimensions = modalHero.getBoundingClientRect();
   if (
-    e.clientX < dialogDimensions.left ||
-    e.clientX > dialogDimensions.right ||
-    e.clientY < dialogDimensions.top ||
-    e.clientY > dialogDimensions.bottom
+    (e.clientX !== 0 && e.clientX < dialogDimensions.left) ||
+    (e.clientX !== 0 && e.clientX > dialogDimensions.right) ||
+    (e.clientY !== 0 && e.clientY < dialogDimensions.top) ||
+    (e.clientY !== 0 && e.clientY > dialogDimensions.bottom)
   ) {
-    modalHero.close();
+    console.log(e.clientX < dialogDimensions.left);
+    console.log(e.clientX > dialogDimensions.right);
+    console.log(e.clientY < dialogDimensions.top);
+    console.log(e.clientY > dialogDimensions.bottom);
+    console.log(e.clientX);
+    console.log(e.clientX);
+    console.log(e.clientY);
+    console.log(e.clientY);
+    closeModal();
   }
 });
 
 modalClose.addEventListener('click', closeModal);
 
-/******************* Setup Modal On Click***********************************/
-const setupCardClick = (list) => {
-  const cards = document.querySelectorAll('.card');
+const renderModalData = (hero, chance) => {
+  const { imageUrl, fullName, house, born, died } = hero;
 
-  cards.forEach((char) => {
-    char.addEventListener('click', () => {
+  heroImage.src = imageUrl.trim();
+  heroImage.alt = fullName;
 
-      const heroName = char.querySelector('.card__text').textContent;
+  heroName.innerHTML = fullName;
 
-      const hero = list.find(
-        ({ fullName }) =>
-          fullName.toLowerCase().trim() === heroName.toLowerCase().trim()
-      );
-      if (hero) {
-        modalContent.innerHTML = '';
-        const { imageUrl, fullName, house, born, died } = hero;
-        const heroImage = document.createElement('img');
-        heroImage.className = 'character__image';
-        heroImage.width = 150;
-        heroImage.height = 150;
-        heroImage.src = imageUrl.trim();
+  heroHouse.innerHTML = `<option value='${house.name}' selected>${house.name}</option>`;
 
-        const heroName = document.createElement('p');
-        heroName.className = 'character__name';
-        heroName.textContent = 'Name: ' + fullName;
-        const heroHouse = document.createElement('p');
-        heroHouse.className = 'character__house';
-        heroHouse.textContent = 'House: ' + house.name;
+  heroBorn.innerHTML = born;
 
-        const heroBorn = document.createElement('p');
-        heroBorn.className = 'character__born';
-        heroBorn.textContent = 'Born: ' + born;
+  heroDied.innerHTML = `<option value='${died.toLowerCase()}' selected>${died}</option>`;
 
-        const heroDied = document.createElement('p');
-        heroDied.className = 'character__died';
-        heroDied.textContent = 'Died: ' + died;
+  heroChance.innerHTML = chance;
+  const normFamily = house.name.toLowerCase().replace(/\s/g, '');
 
-        const normFamily = house.name.toLowerCase().replace(/\s/g, '');
-        const excludedFamilies = [
-          'unknown',
-          'unkown',
-          'naharis',
-          'lorathi',
-          'lorath',
-          'sparrow',
-          'viper',
-          'sand'
-        ];
-        modalHero.classList.add(excludedFamilies.includes(normFamily) ? 'unknown' : normFamily);
+  changeBtn.addEventListener('click', () => {
+    heroHouse.parentElement.classList.add('editable');
+    heroHouse.disabled = false;
+    heroDied.parentElement.classList.add('editable');
+    heroDied.disabled = false;
+    changeBtn.remove();
 
-        modalContent.append(heroImage, heroName, heroHouse, heroBorn, heroDied);
-        openModal();
-      }
-    });
   });
+  globalHousesList.forEach(e =>
+    heroHouse.innerHTML += `<option value='${e.name}'>${e.name}</option>`);
+
+  ['Alive', 'Died'].forEach(e =>
+    heroDied.innerHTML += `<option value='${e.toLowerCase()}'>${e}</option>`);
+
+  heroHouse.addEventListener('change', (e) => {
+    e.preventDefault();
+    hero.house = globalHousesList.find(el => el.name === e.target.value);
+    heroChance.textContent = 'If you was an author of original book, chance will be:';
+
+    heroChance.innerHTML = winChance(globalCharacterList, hero);
+  });
+
+  heroDied.addEventListener('change', (e) => {
+    e.preventDefault();
+    hero.died = e.target.value === 'alive' || e.target.value === 'unknown' ? 'Unknown' : 'Died';
+    heroChance.textContent = 'If you was an author of original book, chance will be:';
+    heroChance.innerHTML = winChance(globalCharacterList, hero);
+  });
+  modalHero.classList.add(greatHouses.includes(normFamily) ? 'unknown' : normFamily);
 };
+
+/******************* Setup Modal On Click***********************************/
+const handleModal = (hero) => {
+  if (hero) {
+    openModal();
+
+    const chance = winChance(globalCharacterList, hero);
+    renderModalData(hero, chance);
+  }
+};
+
