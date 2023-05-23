@@ -1,0 +1,40 @@
+@font-face {
+  font-family: GameofThronesKG;
+  src: url(../../fonts/GameofThronesKG.ttf);
+}
+
+:root {
+  font-family: 'Julius Sans One', sans-serif;
+  font-weight: 400;
+  font-size: 10px;
+  --white-color: #fff;
+  cursor: url("../img/cursor.png"), pointer;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  cursor: url("../img/cursor.png"), auto;
+}
+
+.logo,
+.h1,
+.h2,
+.filter__block {
+  transition: 0.3s ease;
+}
+
+.container {
+  max-width: 1200px;
+  min-width: 320px;
+  margin: 0 auto;
+}
+
+.blur {
+  background: rgba(108, 108, 108, 0.27);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}

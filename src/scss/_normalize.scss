@@ -62,6 +62,7 @@ audio,
 canvas,
 video {
   display: inline-block;
+
   @if $legacy_support_for_ie {
     *display: inline;
     *zoom: 1;
@@ -81,7 +82,8 @@ audio:not([controls]) {
 // Hide the `template` element in IE, Safari, and Firefox < 22.
 //
 
-[hidden], template {
+[hidden],
+template {
   display: none;
 }
 
@@ -98,6 +100,7 @@ html {
   @if $legacy_support_for_ie {
     font-size: 100%; // 1
   }
+
   background: $background;
   color: $color;
   -webkit-text-size-adjust: 100%; // 2
@@ -155,7 +158,7 @@ a {
 // Addresses font sizes and margins set differently in IE6/7
 // Addresses font sizes within 'section' and 'article' in FF4+, Chrome, S5
 
-@if $normalize_headings == true {
+@if $normalize_headings ==true {
   h1 {
     font-size: $h1_font_size;
     margin: $h1_margin;
@@ -206,6 +209,10 @@ strong {
   }
 }
 
+ul {
+  list-style: none;
+}
+
 // Addresses styling not present in S5, Chrome
 
 dfn {
@@ -221,6 +228,7 @@ mark {
 
 // Addresses margins set differently in IE6/7
 @if $legacy_support_for_ie {
+
   p,
   pre {
     margin: 1em 0;
@@ -235,9 +243,11 @@ kbd,
 pre,
 samp {
   font-family: monospace, serif;
+
   @if $legacy_support_for_ie {
     _font-family: 'courier new', monospace;
   }
+
   font-size: 1em;
 }
 
@@ -267,6 +277,7 @@ q {
 
 // 2
 q {
+
   &:before,
   &:after {
     content: '';
@@ -305,6 +316,7 @@ sub {
 
 // Addresses margins set differently in IE6/7
 @if $legacy_support_for_ie {
+
   dl,
   menu,
   ol,
@@ -321,6 +333,7 @@ sub {
 
 // Addresses paddings set differently in IE6/7
 @if $legacy_support_for_ie {
+
   menu,
   ol,
   ul {
@@ -331,6 +344,7 @@ sub {
 // Corrects list images handled incorrectly in IE7
 
 nav {
+
   ul,
   ol {
     @if $legacy_support_for_ie {
@@ -349,6 +363,7 @@ nav {
 
 img {
   border: 0; // 1
+
   @if $legacy_support_for_ie {
     -ms-interpolation-mode: bicubic; // 2
   }
@@ -398,6 +413,7 @@ legend {
   border: 0; // 1
   padding: 0; // 2
   white-space: normal; // 3
+
   @if $legacy_support_for_ie {
     *margin-left: -7px; // 4
   }
@@ -416,6 +432,7 @@ textarea {
   font-size: 100%; // 2
   margin: 0; // 3
   vertical-align: baseline; // 4
+
   @if $legacy_support_for_ie {
     *vertical-align: middle; // 4
   }
@@ -423,7 +440,8 @@ textarea {
 
 // Addresses FF3/4 setting line-height on 'input' using !important in the UA stylesheet
 
-button, input {
+button,
+input {
   line-height: normal;
 }
 
@@ -446,13 +464,15 @@ select {
 //    Known issue: inner spacing remains in IE6
 
 button,
-html input[type="button"], // 1
+html input[type="button"],
+// 1
 input[type="reset"],
 input[type="submit"] {
   -webkit-appearance: button; // 2
   cursor: pointer; // 3
+
   @if $legacy_support_for_ie {
-    *overflow: visible;  // 4
+    *overflow: visible; // 4
   }
 }
 
@@ -466,7 +486,8 @@ input[disabled] {
 // Removes inner padding and border in FF3+
 // www.sitepen.com/blog/2008/05/14/the-devils-in-the-details-fixing-dojos-toolbar-buttons/
 
-button, input {
+button,
+input {
   &::-moz-focus-inner {
     border: 0;
     padding: 0;
@@ -493,6 +514,7 @@ table {
 }
 
 input {
+
   // 1. Addresses appearance set to searchfield in S5, Chrome
   // 2. Addresses box-sizing set to border-box in S5, Chrome (include -moz to future-proof)
   &[type="search"] {
@@ -517,6 +539,7 @@ input {
   &[type="radio"] {
     box-sizing: border-box; // 1
     padding: 0; // 2
+
     @if $legacy_support_for_ie {
       *height: 13px; // 3
       *width: 13px; // 3
