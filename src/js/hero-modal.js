@@ -16,6 +16,7 @@ const closeModal = () => {
   heroHouse.disabled = true;
   heroDied.parentElement.classList.remove('editable');
   heroDied.disabled = true;
+  changeBtn.style.display = 'block';
   modalHero.close();
 };
 
@@ -63,7 +64,7 @@ const renderModalData = (hero, chance) => {
     heroHouse.disabled = false;
     heroDied.parentElement.classList.add('editable');
     heroDied.disabled = false;
-    changeBtn.remove();
+    changeBtn.style.display = 'none';
 
   });
   globalHousesList.forEach(e =>
@@ -77,14 +78,13 @@ const renderModalData = (hero, chance) => {
     hero.house = globalHousesList.find(el => el.name === e.target.value);
     heroChance.textContent = 'If you was an author of original book, chance will be:';
 
-    heroChance.innerHTML = winChance(globalCharacterList, hero);
+    heroChance.innerHTML = 'If you was an author of original book, chance will be: <br>' + winChance(globalCharacterList, hero);
   });
 
   heroDied.addEventListener('change', (e) => {
     e.preventDefault();
     hero.died = e.target.value === 'alive' || e.target.value === 'unknown' ? 'Unknown' : 'Died';
-    heroChance.textContent = 'If you was an author of original book, chance will be:';
-    heroChance.innerHTML = winChance(globalCharacterList, hero);
+    heroChance.innerHTML = 'If you was an author of original book, chance will be: <br>' + winChance(globalCharacterList, hero);
   });
   modalHero.classList.add(greatHouses.includes(normFamily) ? 'unknown' : normFamily);
 };
