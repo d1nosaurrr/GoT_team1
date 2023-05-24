@@ -10,24 +10,24 @@ const getAdditionalInfo = async (list) => {
   let houseList = [];
   for (let character of list) {
     let { fullName, lastName } = character;
-    if (fullName === 'Robert Baratheon') fullName = 'Robert I Baratheon';
-    if (fullName === 'Ned Stark') fullName = 'Eddard Stark';
+    if (fullName === 'Robert Baratheon') character.fullName = 'Robert I Baratheon';
+    if (fullName === 'Ned Stark') character.fullName = 'Eddard Stark';
     if (fullName === 'Rob Stark') fullName = 'Robb Stark';
-    if (fullName === 'Jamie Lannister') fullName = 'Jaime Lannister';
-    if (fullName === 'The Hound') fullName = 'Sandor Clegane';
-    if (fullName === 'Khal Drogo') fullName = 'Drogo';
-    if (fullName === 'Viserys Targaryn') fullName = 'Viserys Targaryen';
-    if (fullName === 'Daario') fullName = 'Daario Naharis';
-    if (fullName === 'Ramsey Bolton') fullName = 'Ramsay Snow';
-    if (fullName === 'The High Sparrow') fullName = 'High Septon';
-    if (fullName === 'Oberyn Martell') fullName = 'Oberyn Nymeros Martell';
-    if (fullName === 'Tormund Giantsbane') fullName = 'Tormund';
-    if (fullName === 'Hodor') fullName = 'Walder';
-    if (fullName === 'Olenna Tyrell') fullName = 'Olenna Redwyne';
-    if (fullName === 'Lord Bronn') fullName = 'Bronn';
-    if (fullName === 'Yara Greyjoy') fullName = 'Asha Greyjoy';
-    if (fullName === 'Gendry Baratheon') fullName = 'Gendry';
-
+    if (fullName === 'Jamie Lannister') character.fullName = 'Jaime Lannister';
+    if (fullName === 'The Hound') character.fullName = 'Sandor Clegane';
+    if (fullName === 'Khal Drogo') character.fullName = 'Drogo';
+    if (fullName === 'Viserys Targaryn') character.fullName = 'Viserys Targaryen';
+    if (fullName === 'Daario') character.fullName = 'Daario Naharis';
+    if (fullName === 'Ramsey Bolton') character.fullName = 'Ramsay Snow';
+    if (fullName === 'The High Sparrow') character.fullName = 'High Septon';
+    if (fullName === 'Oberyn Martell') character.fullName = 'Oberyn Nymeros Martell';
+    if (fullName === 'Tormund Giantsbane') character.fullName = 'Tormund';
+    if (fullName === 'Hodor') character.fullName = 'Walder';
+    if (fullName === 'Olenna Tyrell') character.fullName = 'Olenna Redwyne';
+    if (fullName === 'Lord Bronn') character.fullName = 'Bronn';
+    if (fullName === 'Yara Greyjoy') character.fullName = 'Asha Greyjoy';
+    if (fullName === 'Gendry Baratheon') character.fullName = 'Gendry';
+    fullName = character.fullName;
     await axios
       .get('https://anapioficeandfire.com/api/characters?name=' + fullName)
       .then(async ({ data }) => {
@@ -35,7 +35,6 @@ const getAdditionalInfo = async (list) => {
           for (const { allegiances, gender, born, died, titles, tvSeries } of data) {
             if (tvSeries && tvSeries.length > 0 && tvSeries[0] !== '') {
               let houseInfo = [];
-
               for (const house of allegiances) {
                 const { data } = await axios.get(house);
                 houseInfo.push({
@@ -97,7 +96,7 @@ const getAdditionalInfo = async (list) => {
 
   characterList.forEach((e) => {
     if (e.house.name === 'Unknown') {
-      const findHouse = houseList.find((el) => el.name.includes(e.lastName));
+      const findHouse = houseList.find((el) => e.lastName !== '' && el.name.includes(e.lastName));
       e.house = findHouse ? findHouse : e.house;
     }
   });

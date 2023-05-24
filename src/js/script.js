@@ -58,6 +58,7 @@ getFullInfo().then(({ characterList, houseList }) => {
 
   clearInput.addEventListener('click', () => {
     nameFind.value = '';
+    handleFilter('name', '', characterList);
   });
   /***************************************************************************/
 });
