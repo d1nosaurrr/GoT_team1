@@ -19,8 +19,7 @@ body.modal-open {
   background-repeat: no-repeat;
   background-size: auto;
 
-  &::backdrop {
-  }
+  &::backdrop {}
 
   &__background {
     position: absolute;
@@ -49,12 +48,14 @@ body.modal-open {
     text-align: right;
     font-size: 45px;
     font-weight: 600;
-    color: #000000;
+    color: #616161;
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
   }
 
   &__close:hover,
   &__close:focus {
-    color: #FFFFFF;
+    color: #dedede;
   }
 
 }
