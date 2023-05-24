@@ -6,11 +6,14 @@
 :root {
   font-family: 'Julius Sans One', sans-serif;
   font-weight: 400;
-  font-size: 10px;
+  // font-size: 10px;
   --white-color: #fff;
   cursor: url("../img/cursor.png"), pointer;
   box-sizing: border-box;
+  // height: 100vw;
 }
+
+
 
 a {
   text-decoration: none;

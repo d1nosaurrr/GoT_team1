@@ -28,8 +28,7 @@ window.addEventListener('scroll', () => {
 let isOpen = false;
 dropdown.addEventListener('click', () => {
   isOpen ? filterBlock.classList.remove('active') : filterBlock.classList.add('active');
-  isOpen ? dropdown.style.transform = 'rotate(0)'
-    : dropdown.style.transform = 'rotate(180deg)';
+  isOpen ? (dropdown.style.transform = 'rotate(0)') : (dropdown.style.transform = 'rotate(180deg)');
   isOpen = !isOpen;
 });
 
@@ -44,17 +43,17 @@ getFullInfo().then(({ characterList, houseList }) => {
   const houseSort = document.querySelector('#houseSort');
   const alphabetSort = document.querySelector('#alphabetSort');
   const clearInput = document.querySelector('#clearInput');
-  alphabetSort.addEventListener('change',
-    ({ target }) =>
-      handleFilter('alphabetic', target.value, characterList));
+  alphabetSort.addEventListener('change', ({ target }) =>
+    handleFilter('alphabetic', target.value, characterList)
+  );
 
-  nameFind.addEventListener('input',
-    ({ target }) =>
-      handleFilter('name', target.value, characterList));
+  nameFind.addEventListener('input', ({ target }) =>
+    handleFilter('name', target.value, characterList)
+  );
 
-  houseSort.addEventListener('change',
-    ({ target }) =>
-      handleFilter('houses', target.value, characterList));
+  houseSort.addEventListener('change', ({ target }) =>
+    handleFilter('houses', target.value, characterList)
+  );
 
   clearInput.addEventListener('click', () => {
     nameFind.value = '';
