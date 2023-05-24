@@ -99,9 +99,21 @@ form{
   color: #ff0000;
 }
 
+<<<<<<< Updated upstream
 .filter__block select, .filter__block .input {
   border-radius: 5px;
   font-size: 1.5rem;
+=======
+.filter__block>form {
+  width: 100%;
+  overflow: hidden;
+}
+
+.filter__block select,
+.filter__block .input, #findName {
+  border-radius: 5px;
+  font-size: 15px;
+>>>>>>> Stashed changes
   border: 1px solid rgba(108, 108, 108, 0.22);
   padding: 5px;
 }
@@ -141,9 +153,13 @@ select::-ms-expand {
 }
 
 
-::placeholder {
+#findName::placeholder {
   color: #fff;
+<<<<<<< Updated upstream
   font-size: 1.5rem;
+=======
+  font-size: 15px;
+>>>>>>> Stashed changes
 }
 
 .scroll {
