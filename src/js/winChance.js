@@ -8,10 +8,11 @@ const greatHouses = [
   'House Tully',
   'House Mormont',
   'House Martell',
-  'House Bolton'
+  'House Bolton',
+  'House Baelish'
 ];
 const winChance = (list, hero) => {
-  let winner ;
+  let winner;
 
   list = list.filter(({ house, died }) => greatHouses.includes(house.name) && died === 'Unknown');
 

@@ -66,12 +66,17 @@ const renderModalData = (hero, chance) => {
   });
 
   if (hero.house.name !== 'Unknown') {
-    const files = ['Baratheon', 'Bolton', 'Greyjoy', 'Lannister', 'Stark', 'Targaryen', 'Tyrell '];
+    const files = ['Baratheon', 'Bolton', 'Greyjoy', 'Lannister', 'Stark', 'Targaryen', 'Tyrell'];
     let { name, words } = hero.house;
     name = name.split('House')[1].trim();
 
-    const image = `./dist/img/houseSVG/${name}.svg`;
-    modalImg.src = files.includes(name) ? image : `./dist/img/houseSVG/throne.svg`;
+    const imageBackground = `./dist/img/houseSVG/${name}.svg`;
+    //setProperty(
+    //     '--editorScrollbarClr',
+    //      localStorage.getItem("Color")
+    // );
+    modalHero.style.setProperty('::backdrop', 'background-color: #2c2c2c');
+    modalImg.src = files.includes(name) ? imageBackground : `./dist/img/houseSVG/throne.svg`;
     houseLogo.src = `./dist/img/houseLogo/${name}.png`;
     houseWords.textContent = words !== 'Unknown' ? words : 'Game Of Thrones';
   } else {
