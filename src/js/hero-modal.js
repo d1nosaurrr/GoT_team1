@@ -1,107 +1,118 @@
-const refs = {
-  // openModalBtn: document.querySelector('[data-modal-open]'),
-  closeModalBtn: document.querySelector('[data-modal-close]'),
-  modal: document.querySelector('[data-modal]'),
-};
 const modalHero = document.querySelector('.modal');
-const classToKeep = 'modal';
+const modalClose = document.querySelector('.modal__close');
 
-// refs.openModalBtn.addEventListener('click', toggleModal);
-refs.closeModalBtn.addEventListener('click', toggleModal);
-refs.closeModalBtn.addEventListener('click', klassToKeep);
-refs.modal.addEventListener('click', toggleByBackdrop);
-document.addEventListener('keydown', handleModalCloseOnESC);
+const heroImage = document.querySelector('.character__image');
+const heroName = document.querySelector('.character__name');
+const heroHouse = document.querySelector('.character__house');
+const heroBorn = document.querySelector('.character__born');
+const heroDied = document.querySelector('.character__died');
+const heroChance = document.querySelector('.character__chance');
 
-function toggleByBackdrop({ target }) {
-  // console.log(target.classList);
-  if (target.classList.contains('backdrop')) {
-    refs.modal.classList.toggle('backdrop--is-hidden');
-    document.body.classList.toggle('modal-open');
-    klassToKeep();
+const changeBtn = document.querySelector('.character__change');
+
+const houseLogo = document.querySelector('.house__logo');
+const houseWords = document.querySelector('.coatOfArms__text');
+const modalImg = document.querySelector('.modal__background');
+
+const openModal = () => modalHero.showModal();
+const closeModal = () => {
+  heroHouse.parentElement.classList.remove('editable');
+  heroHouse.disabled = true;
+  heroDied.parentElement.classList.remove('editable');
+  heroDied.disabled = true;
+  changeBtn.style.display = 'block';
+  modalImg.src = '';
+  houseLogo.src = '';
+  houseWords.textContent = '';
+  modalHero.close();
+};
+
+modalHero.addEventListener('click', (e) => {
+  const dialogDimensions = modalHero.getBoundingClientRect();
+  if (
+    (e.clientX !== 0 && e.clientX < dialogDimensions.left) ||
+    (e.clientX !== 0 && e.clientX > dialogDimensions.right) ||
+    (e.clientY !== 0 && e.clientY < dialogDimensions.top) ||
+    (e.clientY !== 0 && e.clientY > dialogDimensions.bottom)
+  ) {
+    closeModal();
   }
-}
+});
 
-function klassToKeep() {
-  setTimeout(function () {
-    modalHero.className = classToKeep;
-  }, 100);
-}
-function handleModalCloseOnESC({ key }) {
-  // console.log(key)
-  if (key === 'Escape' && !refs.modal.classList.contains('backdrop--is-hidden')) {
-    toggleModal();
-    klassToKeep();
-  }
-}
+modalClose.addEventListener('click', closeModal);
 
-function toggleModal() {
-  refs.modal.classList.toggle('backdrop--is-hidden');
-  document.body.classList.toggle('modal-open');
-}
+const renderModalData = (hero, chance) => {
+  const { imageUrl, fullName, house, born, died } = hero;
 
-// =========open hero modal==========//
+  heroImage.src = imageUrl.trim();
+  heroImage.alt = fullName;
 
-function setupCardClick() {
-  const cards = document.querySelectorAll('.card');
+  heroName.innerHTML = fullName;
 
-  cards.forEach((char) => {
-    const openHeroModal = async (e) => {
-      const heroName = e.currentTarget.children[0].children[1].children[0].textContent;
-      // console.log(heroName.toLowerCase().replace(/\s/g, ''));
-      try {
-        const response = await axios.get('https://64687c8760c8cb9a2caac9fc.mockapi.io/fire/fire');
-        const data = response.data;
+  heroHouse.innerHTML = `<option value='${house.name}' selected>${house.name}</option>`;
 
-        const hero = data.find(
-          (char) =>
-            char.fullName.toLowerCase().replace(/\s/g, '') ===
-            heroName.toLowerCase().replace(/\s/g, '')
-        );
+  heroBorn.innerHTML = born;
 
-        if (hero) {
-          console.log('hero.image', hero.image);
-          const heroImage = document.getElementById('hero-image');
-          heroImage.src = hero.imageUrl;
+  heroDied.innerHTML = `<option value='${died.toLowerCase()}' selected>${died}</option>`;
 
-          const heroFamily = document.querySelector('.family');
-          heroFamily.innerHTML = `Family:&nbsp${hero.family}`;
+  heroChance.innerHTML = chance;
 
-          const heroBorn = document.querySelector('.born');
-          heroBorn.innerHTML = `Born:&nbsp${hero.born}`;
-
-          const heroDied = document.querySelector('.died');
-          heroDied.innerHTML = `Died:&nbsp${hero.died}`;
-
-          const normFamily = hero.family.toLowerCase().replace(/\s/g, '');
-          const excludedFamilies = [
-            '',
-            'none',
-            'unknown',
-            'unkown',
-            'naharis',
-            'lorathi',
-            'lorath',
-            'sparrow',
-            'viper',
-            'sand',
-            'worm',
-          ];
-
-          if (excludedFamilies.includes(normFamily)) {
-            modalHero.classList.add('unknown');
-          } else {
-            modalHero.classList.add(normFamily);
-          }
-          console.log('normFamily', normFamily);
-          toggleModal();
-        } else {
-          console.log('Hero not found');
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    char.addEventListener('click', openHeroModal);
+  changeBtn.addEventListener('click', () => {
+    heroHouse.parentElement.classList.add('editable');
+    heroHouse.disabled = false;
+    heroDied.parentElement.classList.add('editable');
+    heroDied.disabled = false;
+    changeBtn.style.display = 'none';
   });
-}
+
+  if (hero.house.name !== 'Unknown') {
+    const files = ['Baratheon', 'Bolton', 'Greyjoy', 'Lannister', 'Stark', 'Targaryen', 'Tyrell '];
+    let { name, words } = hero.house;
+    name = name.split('House')[1].trim();
+
+    const image = `./dist/img/houseSVG/${name}.svg`;
+    modalImg.src = files.includes(name) ? image : `./dist/img/houseSVG/throne.svg`;
+    houseLogo.src = `./dist/img/houseLogo/${name}.png`;
+    houseWords.textContent = words !== 'Unknown' ? words : 'Game Of Thrones';
+  } else {
+    modalImg.src = `../dist/img/houseSVG/throne.svg`;
+    houseLogo.src = `./dist/img/logo.png`;
+    houseWords.textContent = 'Game Of Thrones';
+  }
+
+  globalHousesList.forEach(
+    (e) => (heroHouse.innerHTML += `<option value='${e.name}'>${e.name}</option>`)
+  );
+
+  ['Alive', 'Died'].forEach(
+    (e) => (heroDied.innerHTML += `<option value='${e.toLowerCase()}'>${e}</option>`)
+  );
+
+  heroHouse.addEventListener('change', (e) => {
+    e.preventDefault();
+    hero.house = globalHousesList.find((el) => el.name === e.target.value);
+    heroChance.textContent = 'If you was an author of original book, chance will be:';
+
+    heroChance.innerHTML =
+      'If you was an author of original book, chance will be: <br>' +
+      winChance(globalCharacterList, hero);
+  });
+
+  heroDied.addEventListener('change', (e) => {
+    e.preventDefault();
+    hero.died = e.target.value === 'alive' || e.target.value === 'unknown' ? 'Unknown' : 'Died';
+    heroChance.innerHTML =
+      'If you was an author of original book, chance will be: <br>' +
+      winChance(globalCharacterList, hero);
+  });
+};
+
+/******************* Setup Modal On Click***********************************/
+const handleModal = (hero) => {
+  if (hero) {
+    openModal();
+
+    const chance = winChance(globalCharacterList, hero);
+    renderModalData(hero, chance);
+  }
+};

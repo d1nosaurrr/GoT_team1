@@ -1,7 +1,7 @@
 //=============character filter==================//
-let alphabetSort = 'asc';
-let nameSort = '';
-let houseSort = 'all';
+let alphabetSortValue = 'asc';
+let nameSortValue = '';
+let houseSortValue = 'all';
 
 const handleAlphabetFilter = (list, value) => {
   switch (value) {
@@ -13,42 +13,40 @@ const handleAlphabetFilter = (list, value) => {
       list.sort((a, b) =>
         (a.fullName < b.fullName) ? 1 : ((b.fullName < a.fullName) ? -1 : 0));
   }
-  globalCharacterList = list;
   return list;
 };
 
 const characterFilter = (list) => {
-  let filteredCharacters = handleAlphabetFilter(list, alphabetSort);
+  let filteredCharacters = handleAlphabetFilter(list, alphabetSortValue);
 
-  if (houseSort !== 'all') {
+  if (houseSortValue !== 'all') {
     filteredCharacters = list.filter(({ fullName, house }) =>
-      house[0].name.toLowerCase().trim() === houseSort.trim()
+      house.name.toLowerCase().trim() === houseSortValue.trim()
       &&
-      fullName.toLowerCase().includes(nameSort)
+      fullName.toLowerCase().includes(nameSortValue)
     );
   } else {
     filteredCharacters = list.filter(({ fullName }) =>
-      fullName.toLowerCase().includes(nameSort));
+      fullName.toLowerCase().includes(nameSortValue));
   }
 
   if (filteredCharacters.length === 0) {
     charactersList.innerHTML = '<p class="no-results">No matches</p>';
   } else {
     renderCharacters(filteredCharacters);
-    setupCardClick(filteredCharacters);
   }
 };
 
 const handleFilter = (type, value, list) => {
   switch (type) {
     case 'alphabetic':
-      alphabetSort = value.toLowerCase();
+      alphabetSortValue = value.toLowerCase();
       break;
     case 'name':
-      nameSort = value.toLowerCase();
+      nameSortValue = value.toLowerCase();
       break;
     case 'houses':
-      houseSort = value.toLowerCase();
+      houseSortValue = value.toLowerCase();
       break;
   }
 
