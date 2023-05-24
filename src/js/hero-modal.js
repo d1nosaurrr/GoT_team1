@@ -79,10 +79,6 @@ const renderModalData = (hero, chance) => {
     name = name.split('House')[1].trim();
 
     const imageBackground = `./dist/img/houseSVG/${name}.svg`;
-    //setProperty(
-    //     '--editorScrollbarClr',
-    //      localStorage.getItem("Color")
-    // );
     modalHero.style.setProperty('::backdrop', 'background-color: #2c2c2c');
     modalImg.src = files.includes(name) ? imageBackground : `./dist/img/houseSVG/throne.svg`;
     houseLogo.src = `./dist/img/houseLogo/${name}.png`;
