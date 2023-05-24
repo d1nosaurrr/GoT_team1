@@ -1,6 +1,6 @@
 /***************header***************/
 .header {
-  padding: 15rem 0;
+  padding: 240px 0;
   position: relative;
 
   background-image: url("../img/map2.jpg");
@@ -64,11 +64,11 @@
   font-family: GameofThronesKG, serif;
   letter-spacing: 3px;
   text-align: center;
-  font-size: 2rem;
+  font-size: 32px;
 }
 
 .h2 {
-  font-size: 1.2rem;
+  font-size: 19.2px;
   text-align: center;
 }
 
@@ -78,8 +78,8 @@
   justify-content: center;
   flex-wrap: wrap;
   gap: 5px;
-  margin: 0.8rem;
-  padding: 1rem;
+  margin: 12.8px;
+  padding: 16px;
 }
 
 form {
@@ -101,14 +101,15 @@ form {
   color: #ff0000;
 }
 
-.filter__block > form{
+.filter__block>form {
   width: 100%;
   overflow: hidden;
 }
 
-.filter__block select, .filter__block .input {
+.filter__block select,
+.filter__block .input {
   border-radius: 5px;
-  font-size: 1.5rem;
+  font-size: 20px;
   border: 1px solid rgba(108, 108, 108, 0.22);
   padding: 5px;
 }
@@ -148,7 +149,7 @@ select::-ms-expand {
 
 ::placeholder {
   color: #fff;
-  font-size: 1.5rem;
+  font-size: 24px;
 }
 
 .scroll {
@@ -156,16 +157,16 @@ select::-ms-expand {
   top: 0;
   left: 0;
   z-index: 999;
-  font-size: 1rem;
+  font-size: 16px;
   width: 100%;
   margin-top: 0;
 
-  > .header__banner {
+  >.header__banner {
     flex-direction: row;
     justify-content: center;
     background: rgb(108 108 108);
 
-    & > .header__dropdown {
+    &>.header__dropdown {
       display: block;
 
       position: fixed;
@@ -174,23 +175,23 @@ select::-ms-expand {
       transition: all .5s ease;
     }
 
-    & > .header__title {
-      & > .h1 {
-        font-size: 1.6rem;
+    &>.header__title {
+      &>.h1 {
+        font-size: 25.6px;
       }
 
-      & > .h2 {
+      &>.h2 {
         display: none;
       }
 
-      & > .h1,
-      & > .h2 {
-        margin: 0.5rem;
+      &>.h1,
+      &>.h2 {
+        margin: 8px;
       }
     }
   }
 
-  & > .filter__block {
+  &>.filter__block {
     display: none;
   }
 
@@ -211,7 +212,7 @@ select::-ms-expand {
   bottom: 0;
   width: 100%;
   z-index: -1;
-  height: 20rem;
+  height: 320px;
   background: linear-gradient(0deg, rgb(27, 31, 34) 0%, rgba(255, 255, 255, 0) 100%);
 }
 
@@ -264,12 +265,14 @@ select::-ms-expand {
 
 .img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
 
 }
 
 .card__text {
-  font-size: 2rem;
+  font-size: 24px;
   color: var(--white-color);
   text-align: center;
   padding: 0 5px;
@@ -327,20 +330,21 @@ select::-ms-expand {
 
 
 .footer-text p {
-  font-size: 1.1rem;
+  font-size: 13.6px;
   color: var(--white-color);
   text-align: right;
-  padding: 2rem;
+  padding: 32px;
   margin: 0;
 }
+
 /* footer end */
 
 @media screen and (min-width: 535px) {
-  .filter__block > form {
+  .filter__block>form {
     width: auto;
   }
 
-  .scroll > .header__banner > .header__dropdown {
+  .scroll>.header__banner>.header__dropdown {
     right: 10px;
     top: 10px;
   }
@@ -349,23 +353,24 @@ select::-ms-expand {
 @media screen and (min-width: 800px) {
   .h1 {
     padding: 10px 15px;
-    font-size: 2.6rem;
+    font-size: 41.6px;
   }
 
   .h2 {
-    font-size: 1.3rem;
+    font-size: 20.8px;
   }
+
   .scroll {
-    & > .header__banner {
+    &>.header__banner {
       width: 100%;
       justify-content: space-between;
 
-      & > .header__dropdown {
+      &>.header__dropdown {
         display: none;
       }
     }
 
-    & > .filter__block {
+    &>.filter__block {
       display: flex;
       flex-direction: row;
       justify-content: center;
@@ -377,32 +382,32 @@ select::-ms-expand {
       background-color: rgba(159, 157, 157, 0.95);
     }
 
-    & > .header__banner > .header__logo {
+    &>.header__banner>.header__logo {
       display: block;
       padding: 10px 15px;
     }
   }
 
   ::placeholder {
-    font-size: 1.5rem;
+    font-size: 20px;
   }
 
   .shadow-block {
-    height: 2rem;
+    height: 32px;
   }
 }
 
 
 @media screen and (min-width: 1000px) {
   .h1 {
-    font-size: 3.3rem;
+    font-size: 52.8px;
   }
 
   .h2 {
-    font-size: 1.6rem;
+    font-size: 25.6px;
   }
+
   .mainNew {
     height: auto;
   }
 }
-

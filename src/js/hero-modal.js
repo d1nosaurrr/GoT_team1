@@ -27,7 +27,7 @@ const closeModal = () => {
   modalHero.close();
 };
 
-modalHero.addEventListener('click', e => {
+modalHero.addEventListener('click', (e) => {
   const dialogDimensions = modalHero.getBoundingClientRect();
   if (
     (e.clientX !== 0 && e.clientX < dialogDimensions.left) ||
@@ -66,15 +66,7 @@ const renderModalData = (hero, chance) => {
   });
 
   if (hero.house.name !== 'Unknown') {
-    const files = [
-      'Baratheon',
-      'Bolton',
-      'Greyjoy',
-      'Lannister',
-      'Stark',
-      'Targaryen',
-      'Tyrell'
-    ];
+    const files = ['Baratheon', 'Bolton', 'Greyjoy', 'Lannister', 'Stark', 'Targaryen', 'Tyrell'];
     let { name, words } = hero.house;
     name = name.split('House')[1].trim();
 
@@ -89,24 +81,30 @@ const renderModalData = (hero, chance) => {
     houseWords.textContent = 'Game Of Thrones';
   }
 
-  globalHousesList.forEach(e =>
-    heroHouse.innerHTML += `<option value='${e.name}'>${e.name}</option>`);
+  globalHousesList.forEach(
+    (e) => (heroHouse.innerHTML += `<option value='${e.name}'>${e.name}</option>`)
+  );
 
-  ['Alive', 'Died'].forEach(e =>
-    heroDied.innerHTML += `<option value='${e.toLowerCase()}'>${e}</option>`);
+  ['Alive', 'Died'].forEach(
+    (e) => (heroDied.innerHTML += `<option value='${e.toLowerCase()}'>${e}</option>`)
+  );
 
   heroHouse.addEventListener('change', (e) => {
     e.preventDefault();
-    hero.house = globalHousesList.find(el => el.name === e.target.value);
+    hero.house = globalHousesList.find((el) => el.name === e.target.value);
     heroChance.textContent = 'If you was an author of original book, chance will be:';
 
-    heroChance.innerHTML = 'If you was an author of original book, chance will be: <br>' + winChance(globalCharacterList, hero);
+    heroChance.innerHTML =
+      'If you was an author of original book, chance will be: <br>' +
+      winChance(globalCharacterList, hero);
   });
 
   heroDied.addEventListener('change', (e) => {
     e.preventDefault();
     hero.died = e.target.value === 'alive' || e.target.value === 'unknown' ? 'Unknown' : 'Died';
-    heroChance.innerHTML = 'If you was an author of original book, chance will be: <br>' + winChance(globalCharacterList, hero);
+    heroChance.innerHTML =
+      'If you was an author of original book, chance will be: <br>' +
+      winChance(globalCharacterList, hero);
   });
 };
 
@@ -119,4 +117,3 @@ const handleModal = (hero) => {
     renderModalData(hero, chance);
   }
 };
-

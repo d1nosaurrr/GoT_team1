@@ -37,21 +37,25 @@ const getAdditionalInfo = async (list) => {
               let houseInfo = [];
               for (const house of allegiances) {
                 const { data } = await axios.get(house);
-                houseInfo.push({ name: data.name.split('of')[0].trim(), words: data.words ? data.words : 'Unknown' });
+                houseInfo.push({
+                  name: data.name.split('of')[0].trim(),
+                  words: data.words ? data.words : 'Unknown',
+                });
               }
 
               if (houseInfo.length > 1) {
-                let uniqueHouse = houseInfo.find(e => e.name.includes(lastName));
+                let uniqueHouse = houseInfo.find((e) => e.name.includes(lastName));
                 houseInfo = [uniqueHouse ? uniqueHouse : houseInfo[0]];
               }
-              const title = titles.find(e =>
-                e.includes('King') ||
-                e.includes('Queen') ||
-                e.includes('Princess') ||
-                e.includes('Prince') ||
-                e.includes('Ser') ||
-                e.includes('Lord') ||
-                e.includes('Ser')
+              const title = titles.find(
+                (e) =>
+                  e.includes('King') ||
+                  e.includes('Queen') ||
+                  e.includes('Princess') ||
+                  e.includes('Prince') ||
+                  e.includes('Ser') ||
+                  e.includes('Lord') ||
+                  e.includes('Ser')
               );
 
               const addon = {
@@ -59,7 +63,7 @@ const getAdditionalInfo = async (list) => {
                 gender: gender ? gender : 'Unknown',
                 born: born ? born : 'Unknown',
                 died: died ? died : 'Unknown',
-                title: title ? title : ''
+                title: title ? title : '',
               };
               characterList.push({ ...character, ...addon });
               houseList.push(addon.house);
@@ -70,7 +74,7 @@ const getAdditionalInfo = async (list) => {
             house: { name: 'Unknown', words: 'Unknown' },
             gender: 'Unknown',
             born: 'Unknown',
-            died: 'Unknown'
+            died: 'Unknown',
           };
 
           characterList.push({ ...character, ...addon });
@@ -79,21 +83,20 @@ const getAdditionalInfo = async (list) => {
       });
   }
 
-  characterList = characterList.filter((obj, index) =>
-    index === characterList.findIndex(o => obj.fullName === o.fullName)
+  characterList = characterList.filter(
+    (obj, index) => index === characterList.findIndex((o) => obj.fullName === o.fullName)
   );
   characterList = handleAlphabetFilter(characterList, 'asc');
 
-  houseList = houseList.filter((obj, index) =>
-    index === houseList.findIndex(o => obj.name === o.name)
+  houseList = houseList.filter(
+    (obj, index) => index === houseList.findIndex((o) => obj.name === o.name)
   );
 
-  houseList.sort((a, b) =>
-    (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
+  houseList.sort((a, b) => (a.name > b.name ? 1 : b.name > a.name ? -1 : 0));
 
-  characterList.forEach(e => {
+  characterList.forEach((e) => {
     if (e.house.name === 'Unknown') {
-      const findHouse = houseList.find(el => e.lastName !== '' && el.name.includes(e.lastName));
+      const findHouse = houseList.find((el) => e.lastName !== '' && el.name.includes(e.lastName));
       e.house = findHouse ? findHouse : e.house;
     }
   });
