@@ -10,6 +10,10 @@ const heroChance = document.querySelector('.character__chance');
 
 const changeBtn = document.querySelector('.character__change');
 
+const houseLogo = document.querySelector('.house__logo');
+const houseWords = document.querySelector('.coatOfArms__text');
+const modalImg = document.querySelector('.modal__background');
+
 const openModal = () => modalHero.showModal();
 const closeModal = () => {
   heroHouse.parentElement.classList.remove('editable');
@@ -17,6 +21,9 @@ const closeModal = () => {
   heroDied.parentElement.classList.remove('editable');
   heroDied.disabled = true;
   changeBtn.style.display = 'block';
+  modalImg.src = '';
+  houseLogo.src = '';
+  houseWords.textContent = '';
   modalHero.close();
 };
 
@@ -49,7 +56,6 @@ const renderModalData = (hero, chance) => {
   heroDied.innerHTML = `<option value='${died.toLowerCase()}' selected>${died}</option>`;
 
   heroChance.innerHTML = chance;
-  const normFamily = house.name.toLowerCase().replace(/\s/g, '');
 
   changeBtn.addEventListener('click', () => {
     heroHouse.parentElement.classList.add('editable');
@@ -58,11 +64,28 @@ const renderModalData = (hero, chance) => {
     heroDied.disabled = false;
     changeBtn.style.display = 'none';
   });
-  if (hero.house.name !== 'Unknown') {
-    console.log(hero.house.name.split('House')[1].trim());
-    console.log('../dist/img/housesLogo/' + hero.house.name.split('House')[1].trim() + '.png');
-    modalHero.style.backgroundImage = `url('../dist/img/housesLogo/${hero.house.name.split('House')[1].trim()}.png')`;
 
+  if (hero.house.name !== 'Unknown') {
+    const files = [
+      'Baratheon',
+      'Bolton',
+      'Greyjoy',
+      'Lannister',
+      'Stark',
+      'Targaryen',
+      'Tyrell '
+    ];
+    let { name, words } = hero.house;
+    name = name.split('House')[1].trim();
+
+    const image = (`./dist/img/houseSVG/${name}.svg`);
+    modalImg.src = files.includes(name) ? image : `./dist/img/houseSVG/throne.svg`;
+    houseLogo.src = `./dist/img/houseLogo/${name}.png`;
+    houseWords.textContent = words !== 'Unknown' ? words : 'Game Of Thrones';
+  } else {
+    modalImg.src = `../dist/img/houseSVG/throne.svg`;
+    houseLogo.src = `./dist/img/logo.png`;
+    houseWords.textContent = 'Game Of Thrones';
   }
 
   globalHousesList.forEach(e =>
@@ -84,7 +107,6 @@ const renderModalData = (hero, chance) => {
     hero.died = e.target.value === 'alive' || e.target.value === 'unknown' ? 'Unknown' : 'Died';
     heroChance.innerHTML = 'If you was an author of original book, chance will be: <br>' + winChance(globalCharacterList, hero);
   });
-  modalHero.classList.add(greatHouses.includes(normFamily) ? 'unknown' : normFamily);
 };
 
 /******************* Setup Modal On Click***********************************/
