@@ -28,14 +28,6 @@ modalHero.addEventListener('click', e => {
     (e.clientY !== 0 && e.clientY < dialogDimensions.top) ||
     (e.clientY !== 0 && e.clientY > dialogDimensions.bottom)
   ) {
-    console.log(e.clientX < dialogDimensions.left);
-    console.log(e.clientX > dialogDimensions.right);
-    console.log(e.clientY < dialogDimensions.top);
-    console.log(e.clientY > dialogDimensions.bottom);
-    console.log(e.clientX);
-    console.log(e.clientX);
-    console.log(e.clientY);
-    console.log(e.clientY);
     closeModal();
   }
 });
@@ -65,8 +57,14 @@ const renderModalData = (hero, chance) => {
     heroDied.parentElement.classList.add('editable');
     heroDied.disabled = false;
     changeBtn.style.display = 'none';
-
   });
+  if (hero.house.name !== 'Unknown') {
+    console.log(hero.house.name.split('House')[1].trim());
+    console.log('../dist/img/housesLogo/' + hero.house.name.split('House')[1].trim() + '.png');
+    modalHero.style.backgroundImage = `url('../dist/img/housesLogo/${hero.house.name.split('House')[1].trim()}.png')`;
+
+  }
+
   globalHousesList.forEach(e =>
     heroHouse.innerHTML += `<option value='${e.name}'>${e.name}</option>`);
 
