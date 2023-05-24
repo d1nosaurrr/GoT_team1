@@ -1,6 +1,6 @@
 /***************header***************/
 .header {
-  padding: 15rem 0;
+  padding: 240px 0;
   position: relative;
 
   background-image: url("../img/map2.jpg");
@@ -64,11 +64,11 @@
   font-family: GameofThronesKG, serif;
   letter-spacing: 3px;
   text-align: center;
-  font-size: 2rem;
+  font-size: 32px;
 }
 
 .h2 {
-  font-size: 1.2rem;
+  font-size: 19.2px;
   text-align: center;
 }
 
@@ -78,8 +78,8 @@
   justify-content: center;
   flex-wrap: wrap;
   gap: 5px;
-  margin: 0.8rem;
-  padding: 1rem;
+  margin: 12.8px;
+  padding: 16px;
 }
 
 form {
@@ -109,7 +109,7 @@ form {
 .filter__block select,
 .filter__block .input {
   border-radius: 5px;
-  font-size: 1.5rem;
+  font-size: 24px;
   border: 1px solid rgba(108, 108, 108, 0.22);
   padding: 5px;
 }
@@ -149,7 +149,7 @@ select::-ms-expand {
 
 ::placeholder {
   color: #fff;
-  font-size: 1.5rem;
+  font-size: 24px;
 }
 
 .scroll {
@@ -157,7 +157,7 @@ select::-ms-expand {
   top: 0;
   left: 0;
   z-index: 999;
-  font-size: 1rem;
+  font-size: 16px;
   width: 100%;
   margin-top: 0;
 
@@ -177,7 +177,7 @@ select::-ms-expand {
 
     &>.header__title {
       &>.h1 {
-        font-size: 1.6rem;
+        font-size: 25.6px;
       }
 
       &>.h2 {
@@ -186,7 +186,7 @@ select::-ms-expand {
 
       &>.h1,
       &>.h2 {
-        margin: 0.5rem;
+        margin: 8px;
       }
     }
   }
@@ -212,7 +212,7 @@ select::-ms-expand {
   bottom: 0;
   width: 100%;
   z-index: -1;
-  height: 20rem;
+  height: 320px;
   background: linear-gradient(0deg, rgb(27, 31, 34) 0%, rgba(255, 255, 255, 0) 100%);
 }
 
@@ -272,7 +272,7 @@ select::-ms-expand {
 }
 
 .card__text {
-  font-size: 2rem;
+  font-size: 24px;
   color: var(--white-color);
   text-align: center;
   padding: 0 5px;
@@ -330,10 +330,10 @@ select::-ms-expand {
 
 
 .footer-text p {
-  font-size: 1.1rem;
+  font-size: 17.6px;
   color: var(--white-color);
   text-align: right;
-  padding: 2rem;
+  padding: 32px;
   margin: 0;
 }
 
@@ -353,11 +353,11 @@ select::-ms-expand {
 @media screen and (min-width: 800px) {
   .h1 {
     padding: 10px 15px;
-    font-size: 2.6rem;
+    font-size: 41.6px;
   }
 
   .h2 {
-    font-size: 1.3rem;
+    font-size: 20.8px;
   }
 
   .scroll {
@@ -389,22 +389,22 @@ select::-ms-expand {
   }
 
   ::placeholder {
-    font-size: 1.5rem;
+    font-size: 24px;
   }
 
   .shadow-block {
-    height: 2rem;
+    height: 32px;
   }
 }
 
 
 @media screen and (min-width: 1000px) {
   .h1 {
-    font-size: 3.3rem;
+    font-size: 52.8px;
   }
 
   .h2 {
-    font-size: 1.6rem;
+    font-size: 25.6px;
   }
 
   .mainNew {

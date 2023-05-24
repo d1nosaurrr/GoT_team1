@@ -36,7 +36,7 @@ body.modal-open {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
+    gap: 16px;
   }
 
   &__close {
@@ -91,7 +91,7 @@ body.modal-open {
     font-family: GameofThronesKG, serif;
     line-height: 2;
     letter-spacing: 3px;
-    font-size: 1.2rem;
+    font-size: 19.2px;
   }
 }
 
