@@ -203,7 +203,7 @@ select::-ms-expand {
     flex-wrap: wrap;
     gap: 5px;
     margin: 0;
-    padding: 25px 10px;
+    padding: 10px;
   }
 }
 
@@ -221,6 +221,10 @@ select::-ms-expand {
 .main {
   position: relative;
   background-color: rgb(27, 31, 34);
+
+  background-image: url(../img/game.svg);
+  background-size: 200px;
+  background-repeat: repeat;
 }
 
 .characters__list {
@@ -389,7 +393,7 @@ select::-ms-expand {
   }
 
   ::placeholder {
-    font-size: 20px;
+    font-size: 15px;
   }
 
   .shadow-block {
@@ -400,7 +404,7 @@ select::-ms-expand {
 
 @media screen and (min-width: 1000px) {
   .h1 {
-    font-size: 52.8px;
+    font-size: 52px;
   }
 
   .h2 {
