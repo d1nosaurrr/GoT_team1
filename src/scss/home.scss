@@ -109,7 +109,7 @@ form {
 .filter__block select,
 .filter__block .input {
   border-radius: 5px;
-  font-size: 18px;
+  font-size: 15px;
   border: 1px solid rgba(108, 108, 108, 0.22);
   padding: 5px;
 }
@@ -149,9 +149,9 @@ select::-ms-expand {
 }
 
 
-::placeholder {
+#findName::placeholder {
   color: #fff;
-
+  font-size: 15px;
 }
 
 .scroll {
