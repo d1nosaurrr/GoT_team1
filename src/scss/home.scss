@@ -50,11 +50,10 @@
 }
 
 #alphabetSort,
-#houseSort {
+#houseSort,
+#findName {
   width: 100%;
 }
-
-
 
 .logo__img {
   width: 50px;
@@ -92,7 +91,7 @@ form {
   font-size: 25px;
   color: #fff;
   position: absolute;
-  top: 2px;
+  top: 0;
   right: 5px;
   z-index: 2;
 }
@@ -139,10 +138,6 @@ form {
 
 }
 
-.filter__input {
-  width: 240px;
-}
-
 /* Remove IE arrow */
 select::-ms-expand {
   display: none;
@@ -156,7 +151,9 @@ select::-ms-expand {
 }
 
 
-
+::placeholder {
+  color: #fff;
+}
 
 .scroll {
   position: fixed;
@@ -395,8 +392,7 @@ select::-ms-expand {
   }
 
   ::placeholder {
-    color: #fff;
-    font-size: 18px;
+    font-size: 20px;
   }
 
   .shadow-block {
