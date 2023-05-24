@@ -119,6 +119,10 @@ body.modal-open {
     font-size: 12px;
   }
 
+  &__change {
+    transition: color 250ms cubic-bezier(.4, 0, .2, 1);
+  }
+
   &__chance {
     font-family: 'Julius Sans One', sans-serif;
   }
