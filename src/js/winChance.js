@@ -27,6 +27,5 @@ const winChance = (list, hero) => {
 
     winner = ((((1 / length) * 100) + Math.abs(list)).toFixed(2) + '%');
   }
-  console.log(winner);
   return winner;
 };

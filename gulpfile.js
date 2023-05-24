@@ -66,8 +66,24 @@ const js = () => {
     .pipe(browserSync.stream());
 };
 const img = () => {
-  return src('./src/img/**/*.+(png|jpg|gif|svg|json|ico|xml)')
-    .pipe(imagemin())
+  return src('./src/img/**/*.+(png|jpg|gif|json|ico|xml)')
+    .pipe(imagemin([
+      imagemin.gifsicle({ interlaced: true }),
+      imagemin.mozjpeg({ progressive: true }),
+      imagemin.optipng(),
+      imagemin.svgo([
+        { cleanupIDs: false },
+        { removeUselessDefs: false },
+        { removeViewBox: false },
+        { minifyStyles: false }
+      ])
+    ], { verbose: true }))
+    .pipe(dest('./dist/img'))
+    .pipe(browserSync.stream());
+};
+
+const svg = () => {
+  return src('./src/img/**/*.svg')
     .pipe(dest('./dist/img'))
     .pipe(browserSync.stream());
 };
@@ -80,6 +96,6 @@ const watcher = (cb) => {
   cb();
 };
 
-exports.dev = parallel(serv, watcher, series(html, styles, js, img));
-exports.build = series(cleanDist, html, styles, js, img);
+exports.dev = parallel(serv, watcher, series(html, styles, js, img, svg));
+exports.build = series(cleanDist, html, styles, js, img, svg);
 exports.styles = styles;

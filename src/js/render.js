@@ -28,5 +28,5 @@ const renderFamiliesList = (list) => {
   familiesList.innerHTML = `<option value='all' selected>All</option>`;
   list.forEach(({ name }) => familiesList.innerHTML += `<option value='${name}'>${name}</option>`);
   form.append(familiesList);
-  inputBlock.append(form, familiesList);
+  inputBlock.append(form);
 };
