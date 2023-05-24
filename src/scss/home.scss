@@ -50,10 +50,11 @@
 }
 
 #alphabetSort,
-#houseSort,
-#findName {
+#houseSort {
   width: 100%;
 }
+
+
 
 .logo__img {
   width: 50px;
@@ -91,7 +92,7 @@ form {
   font-size: 25px;
   color: #fff;
   position: absolute;
-  top: 0;
+  top: 2px;
   right: 5px;
   z-index: 2;
 }
@@ -114,6 +115,8 @@ form {
   padding: 5px;
 }
 
+
+
 .filter__input,
 .filter__name,
 .filter__house {
@@ -132,7 +135,15 @@ form {
   display: block;
   border-radius: .25em;
   overflow: hidden;
+
+
 }
+
+::placeholder {
+  color: #fff;
+  font-size: 18px;
+}
+
 
 /* Remove IE arrow */
 select::-ms-expand {
@@ -272,7 +283,7 @@ select::-ms-expand {
 }
 
 .card__text {
-  font-size: 24px;
+  font-size: 20px;
   color: var(--white-color);
   text-align: center;
   padding: 0 5px;
@@ -389,7 +400,8 @@ select::-ms-expand {
   }
 
   ::placeholder {
-    font-size: 20px;
+    color: #fff;
+    font-size: 18px;
   }
 
   .shadow-block {
@@ -400,11 +412,11 @@ select::-ms-expand {
 
 @media screen and (min-width: 1000px) {
   .h1 {
-    font-size: 52.8px;
+    font-size: 40px;
   }
 
   .h2 {
-    font-size: 25.6px;
+    font-size: 20px;
   }
 
   .mainNew {
