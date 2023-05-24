@@ -82,10 +82,11 @@
   padding: 1rem;
 }
 
-form{
+form {
   position: relative;
 }
-#clearInput{
+
+#clearInput {
   display: block;
   font-size: 25px;
   color: #fff;
@@ -94,9 +95,15 @@ form{
   right: 5px;
   z-index: 2;
 }
+
 #clearInput:hover,
-#clearInput:focus{
+#clearInput:focus {
   color: #ff0000;
+}
+
+.filter__block > form{
+  width: 100%;
+  overflow: hidden;
 }
 
 .filter__block select, .filter__block .input {
@@ -105,9 +112,11 @@ form{
   border: 1px solid rgba(108, 108, 108, 0.22);
   padding: 5px;
 }
+
 .filter__input,
 .filter__name,
-.filter__house{
+.filter__house {
+  width: 100%;
   /* Reset Select */
   appearance: none;
   outline: 0;
@@ -118,25 +127,21 @@ form{
   background-color: #2c2c2c;
   background-image: none;
   cursor: pointer;
+
+  display: block;
+  border-radius: .25em;
+  overflow: hidden;
 }
+
 /* Remove IE arrow */
 select::-ms-expand {
   display: none;
-}
-/* Custom Select wrapper */
-.filter__name,
-.filter__input,
-.filter__house{
-  position: relative;
-  display: flex;
-  border-radius: .25em;
-  overflow: hidden;
 }
 
 /* Transition */
 .filter__name:hover::after,
 .filter__input:hover::after,
-.filter__house:hover::after{
+.filter__house:hover::after {
   color: #f39c12;
 }
 
@@ -283,21 +288,21 @@ select::-ms-expand {
 
 /* cards effect start */
 
-.characters__list li{
+.characters__list li {
   position: relative;
   z-index: 1;
   perspective: 1000px;
-  
-  
+
+
   &:hover .card__body {
     transform: rotateX(7deg) translateY(-6px);
 
     &::after {
       transform: translateY(0%);
     }
-    
+
   }
-  
+
 }
 
 /* cards effect end */
@@ -322,12 +327,10 @@ select::-ms-expand {
   padding: 2rem;
   margin: 0;
 }
-
 /* footer end */
+
 @media screen and (min-width: 535px) {
-  #alphabetSort,
-  #houseSort,
-  #findName {
+  .filter__block > form {
     width: auto;
   }
 

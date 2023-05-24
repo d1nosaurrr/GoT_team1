@@ -7,89 +7,90 @@ body.modal-open {
 }
 
 .modal {
+  min-width: 320px;
+  max-width: 400px;
   padding: 0;
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(159, 157, 157, 0.95);
+  margin: 0 auto;
+  top: 50%;
+  transform: translate(0, -50%);
+  background-color: #2c2c2c;
   border-radius: 10px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto;
 
-  &__img{
-    width: 100%;
-    height: 99%;
+  &::backdrop {
+    background-color: rgba(0, 0, 0, 0.9);
   }
 
-  &__contant {
+  &__background {
     position: absolute;
     top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    background: rgba(108, 108, 108, 0.68);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+    transform: translate(0, -50%);
+    left: 0;
+    filter: blur(2px);
+    z-index: -999;
   }
 
   &__card {
-    // width: 400px;
     margin: 0 40px 40px;
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    // align-items: center;
-    gap: 1rem;
-  }
-}
-
-.person__img{
-  display: flex;
     flex-direction: column;
     justify-content: center;
-    // align-items: center;
-    gap: 5px;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &__close {
+    cursor: pointer;
+    display: block;
+    text-align: right;
+    margin: 15px 40px 0 0;
+    font-size: 45px;
+    font-weight: 600;
+    color: #000000;
+  }
+
+  &__close:hover,
+  &__close:focus {
+    color: #FFFFFF;
+  }
+
 }
 
-.coatOfArms{
+.person__img {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
   // align-items: center;
   gap: 5px;
 }
 
-.coatOfArms div{
-  width: 50%;
-  padding: 5px;
-}
+.coatOfArms {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
 
-.coatOfArms img{
-  width: 100%;
-}
+  & > div {
+    width: 50%;
+    padding: 5px;
+  }
 
-.coatOfArms__text{
-  margin: auto 0;
-  color: rgb(255, 255, 255);
-  font-family: GameofThronesKG, serif;
-  line-height: 2;
-  letter-spacing: 3px;
-  font-size: 1.2rem;
-}
+  &__img > img {
+    width: 100%;
+  }
 
-
-
-.modal__close {
-  cursor: pointer;
-  display: block;
-  text-align: right;
-  margin: 15px 40px 0 0;
-  font-size: 45px;
-  font-weight: 600;
-  color: #000000;
-}
-
-.modal__close:hover,
-.modal__close:focus {
-  color: #FFFFFF;
+  &__text {
+    margin: auto 0;
+    color: rgb(255, 255, 255);
+    font-family: GameofThronesKG, serif;
+    line-height: 2;
+    letter-spacing: 3px;
+    font-size: 1.2rem;
+  }
 }
 
 .character {
@@ -104,6 +105,8 @@ body.modal-open {
   &__change {
     width: calc(100% - 6px);
     display: block;
+    margin: 0;
+    padding: 0;
     border: 1px solid rgb(97, 97, 97);
     outline: none;
     background-color: rgb(97, 97, 97);
@@ -118,8 +121,10 @@ body.modal-open {
   }
 
   &__image {
+    border: none;
+    background-color: transparent;
+
     width: auto;
-    // height: 250px;
     object-fit: contain;
     object-position: top;
     margin: 0 auto;
@@ -147,117 +152,4 @@ body.modal-open {
 .editable > select {
   border-color: rgb(159, 156, 156);
   background-color: rgb(159, 156, 156);
-}
-
-
-//=========houses background=============//
-.unknown {
-  // background: rgb(238, 174, 202);
-  // background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
-}
-
-.housestark,
-.stark {
-  // background-size: cover;
-  // background-image: url('https://media.giphy.com/media/dAyD6PWoQRs40/giphy.gif');
-  // background: rgb(128, 128, 128);
-  // background: linear-gradient(142deg, rgba(128, 128, 128, 1) 0%, rgba(222, 222, 222, 1) 39%, rgba(255, 255, 255, 1) 100%);
-}
-
-
-.housetargaryen,
-.targaryan {
-  // background-size: cover;
-  // background-image: url('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZjNiYjgzYWIxMTAwNjk5NGQ0NTc5NTQyNmExZjc0ZTRjN2Y4NmQ3NyZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/T24yEf6Cx3XVRFByxe/giphy.gif');
-  // background: rgb(184, 10, 10);
-  // background: #C02425;
-  /* fallback for old browsers */
-  // background: -webkit-linear-gradient(to left, #F0CB35, #C02425);
-  /* Chrome 10-25, Safari 5.1-6 */
-  // background: linear-gradient(to left, #F0CB35, #C02425);
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-}
-
-.housetarly {
-  // background-size: cover;
-  // background-image: url('https://i.gifer.com/2ZtZ.gif');
-  // background: #6D6027;
-  /* fallback for old browsers */
-  // background: -webkit-linear-gradient(to bottom, #D3CBB8, #6D6027);
-  /* Chrome 10-25, Safari 5.1-6 */
-  // background: linear-gradient(to bottom, #D3CBB8, #6D6027);
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-
-}
-
-.housebaratheon,
-.baratheon {
-  // background: #1e130c;
-  // background: -webkit-linear-gradient(to bottom, #9a8478, #1e130c);
-  // background: linear-gradient(to bottom, #9a8478, #1e130c);
-
-
-}
-
-.houselannister,
-.lannister,
-.qyburn,
-.bronn,
-.houselanister {
-  // background: rgb(171, 22, 22);
-  // background: linear-gradient(101deg, rgba(171, 22, 22, 1) 22%, rgba(191, 178, 0, 1) 53%);
-}
-
-
-.housegreyjoy,
-.greyjoy {
-  // background: rgb(191, 178, 0);
-  // background: radial-gradient(circle, rgba(191, 178, 0, 1) 16%, rgba(0, 0, 0, 1) 100%);
-}
-
-.houseclegane {
-  // background: rgb(0, 0, 0);
-  // background: linear-gradient(301deg, rgba(0, 0, 0, 1) 0%, rgba(255, 237, 0, 1) 91%);
-}
-
-.housebaelish {
-  // background: linear-gradient(320deg, rgba(59, 59, 59, 1) 28%, rgba(255, 125, 28, 1) 41%, rgba(90, 226, 98, 1) 51%);
-}
-
-.houseseaworth {
-  // background: rgb(255, 255, 255);
-  // background: linear-gradient(17deg, rgba(255, 255, 255, 1) 0%, rgba(59, 59, 59, 1) 58%, rgba(0, 0, 0, 1) 74%);
-}
-
-.housetyrell,
-.tyrell {
-  // background: rgb(39, 163, 0);
-  // background: linear-gradient(17deg, rgba(39, 163, 0, 1) 0%, rgba(255, 224, 0, 1) 88%);
-}
-
-.freefolk {
-  // background: rgb(0, 163, 146);
-  // background: linear-gradient(17deg, rgba(0, 163, 146, 1) 0%, rgba(50, 87, 122, 1) 88%);
-}
-
-.tarth {
-  // background: rgb(255, 233, 0);
-  // background: linear-gradient(10deg, rgba(255, 233, 0, 1) 0%, rgba(255, 255, 255, 1) 52%, rgba(43, 24, 126, 1) 91%);
-}
-
-.naathi {
-  // background: rgb(255, 255, 255);
-  // background: linear-gradient(16deg, rgba(255, 255, 255, 1) 32%, rgba(24, 126, 40, 1) 91%);
-}
-
-.bolton {
-  // background: rgb(206, 0, 0);
-  // background: linear-gradient(17deg, rgba(206, 0, 0, 1) 12%, rgba(126, 24, 68, 1) 96%);
-}
-
-.mormont {
-  // background: rgb(5, 149, 8);
-  // background: linear-gradient(0deg, rgba(5, 149, 8, 1) 0%, rgba(0, 0, 0, 1) 100%);
 }
