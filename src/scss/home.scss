@@ -50,10 +50,11 @@
 }
 
 #alphabetSort,
-#houseSort,
-#findName {
+#houseSort {
   width: 100%;
 }
+
+
 
 .logo__img {
   width: 50px;
@@ -91,7 +92,7 @@ form {
   font-size: 25px;
   color: #fff;
   position: absolute;
-  top: 0;
+  top: 2px;
   right: 5px;
   z-index: 2;
 }
@@ -109,7 +110,7 @@ form {
 .filter__block select,
 .filter__block .input {
   border-radius: 5px;
-  font-size: 20px;
+  font-size: 15px;
   border: 1px solid rgba(108, 108, 108, 0.22);
   padding: 5px;
 }
@@ -134,6 +135,12 @@ form {
   overflow: hidden;
 }
 
+::placeholder {
+  color: #fff;
+  font-size: 18px;
+}
+
+
 /* Remove IE arrow */
 select::-ms-expand {
   display: none;
@@ -147,9 +154,9 @@ select::-ms-expand {
 }
 
 
-::placeholder {
+#findName::placeholder {
   color: #fff;
-  font-size: 24px;
+  font-size: 15px;
 }
 
 .scroll {
@@ -272,7 +279,7 @@ select::-ms-expand {
 }
 
 .card__text {
-  font-size: 24px;
+  font-size: 20px;
   color: var(--white-color);
   text-align: center;
   padding: 0 5px;
@@ -389,7 +396,8 @@ select::-ms-expand {
   }
 
   ::placeholder {
-    font-size: 20px;
+    color: #fff;
+    font-size: 18px;
   }
 
   .shadow-block {
@@ -400,11 +408,11 @@ select::-ms-expand {
 
 @media screen and (min-width: 1000px) {
   .h1 {
-    font-size: 52.8px;
+    font-size: 40px;
   }
 
   .h2 {
-    font-size: 25.6px;
+    font-size: 20px;
   }
 
   .mainNew {

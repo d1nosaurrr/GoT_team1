@@ -33,10 +33,10 @@ dropdown.addEventListener('click', () => {
 });
 
 getFullInfo().then(({ characterList, houseList }) => {
-  // renderCharacters(characterList);
-  // renderFamiliesList(houseList);
-  // root.style.display = 'block';
-  // loader.remove();
+  renderCharacters(characterList);
+  renderFamiliesList(houseList);
+  root.style.display = 'block';
+  loader.remove();
 
   /***********************************FILTER**********************************/
   const nameFind = document.querySelector('.input');
