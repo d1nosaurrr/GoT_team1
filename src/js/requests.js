@@ -81,7 +81,7 @@ const getAdditionalInfo = async (list) => {
           characterList.push({ ...character, ...addon });
           houseList.push(addon.house);
         }
-        loaderBar.value = Math.round(1.85);
+        loaderBar.value += Math.round(1.85);
       });
   }
 
