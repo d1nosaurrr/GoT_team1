@@ -1,4 +1,5 @@
 const modalHero = document.querySelector('.modal');
+const modalBackdrop = document.querySelector('.modal::backdrop');
 const modalWrapper = document.querySelector('.modal__contant');
 const modalClose = document.querySelector('.modal__close');
 
@@ -19,7 +20,7 @@ const rootEl = document.querySelector('#root');
 const openModal = () => {
   document.body.style.overflow = 'hidden';
   modalHero.showModal();
-  rootEl.style.display = 'none';
+  // rootEl.style.opacity = '0';
 };
 const closeModal = () => {
   heroHouse.parentElement.classList.remove('editable');
@@ -27,12 +28,12 @@ const closeModal = () => {
   heroDied.parentElement.classList.remove('editable');
   heroDied.disabled = true;
   changeBtn.style.display = 'block';
-  modalImg.src = '';
+  // modalImg.src = '';
   houseLogo.src = '';
   houseWords.textContent = '';
   document.body.style.overflow = 'auto';
 
-  rootEl.style.display = 'block';
+  rootEl.style.opacity = '1';
 
   modalHero.close();
 };
@@ -84,13 +85,15 @@ const renderModalData = (hero, chance) => {
     let { name, words } = hero.house;
     name = name.split('House')[1].trim();
 
-    const imageBackground = `./dist/img/houseSVG/${name}.svg`;
-    modalHero.style.setProperty('::backdrop', 'background-color: #2c2c2c');
-    modalImg.src = files.includes(name) ? imageBackground : `./dist/img/houseSVG/throne.svg`;
+    const imageBackground = `url(../dist/img/houseSVG/${name}.svg)`;
+
+    modalHero.style.setProperty('--backgroundImage',
+      files.includes(name) ? imageBackground : `url(../dist/img/houseSVG/throne.svg)`);
+
     houseLogo.src = `./dist/img/houseLogo/${name}.png`;
     houseWords.textContent = words !== 'Unknown' ? words : 'Game Of Thrones';
   } else {
-    modalImg.src = `../dist/img/houseSVG/throne.svg`;
+    // modalImg.src = `../dist/img/houseSVG/throne.svg`;
     houseLogo.src = `./dist/img/logo.png`;
     houseWords.textContent = 'Game Of Thrones';
   }
