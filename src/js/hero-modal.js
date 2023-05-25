@@ -1,4 +1,5 @@
 const modalHero = document.querySelector('.modal');
+const modalWrapper = document.querySelector('.modal__contant');
 const modalClose = document.querySelector('.modal__close');
 
 const heroImage = document.querySelector('.character__image');
@@ -28,7 +29,7 @@ const closeModal = () => {
 };
 
 modalHero.addEventListener('click', (e) => {
-  const dialogDimensions = modalHero.getBoundingClientRect();
+  const dialogDimensions = modalWrapper.getBoundingClientRect();
   if (
     (e.clientX !== 0 && e.clientX < dialogDimensions.left) ||
     (e.clientX !== 0 && e.clientX > dialogDimensions.right) ||
