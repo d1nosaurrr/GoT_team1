@@ -1,11 +1,9 @@
 let globalCharacterList;
 let globalHousesList;
-let value = 0;
 const loaderBar = document.querySelector('#loaderBar');
 const getCharactersList = async () => {
   const { data } = await axios.get('https://thronesapi.com/api/v2/Characters');
-  value += 1.85;
-  loaderBar.value = value;
+  loaderBar.value += Math.round(1.85);
   return data;
 };
 const getAdditionalInfo = async (list) => {
@@ -83,8 +81,7 @@ const getAdditionalInfo = async (list) => {
           characterList.push({ ...character, ...addon });
           houseList.push(addon.house);
         }
-        value += 1.85;
-        loaderBar.value = value;
+        loaderBar.value = Math.round(1.85);
       });
   }
 
