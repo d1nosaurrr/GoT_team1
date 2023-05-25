@@ -15,7 +15,10 @@ const houseLogo = document.querySelector('.house__logo');
 const houseWords = document.querySelector('.coatOfArms__text');
 const modalImg = document.querySelector('.modal__background');
 
-const openModal = () => modalHero.showModal();
+const openModal = () => {
+  document.body.style.overflow = 'hidden';
+  modalHero.showModal();
+};
 const closeModal = () => {
   heroHouse.parentElement.classList.remove('editable');
   heroHouse.disabled = true;
@@ -25,16 +28,20 @@ const closeModal = () => {
   modalImg.src = '';
   houseLogo.src = '';
   houseWords.textContent = '';
+  document.body.style.overflow = 'auto';
+
   modalHero.close();
 };
 
 modalHero.addEventListener('click', (e) => {
   const dialogDimensions = modalWrapper.getBoundingClientRect();
+
   if (
-    (e.clientX !== 0 && e.clientX < dialogDimensions.left) ||
-    (e.clientX !== 0 && e.clientX > dialogDimensions.right) ||
-    (e.clientY !== 0 && e.clientY < dialogDimensions.top) ||
-    (e.clientY !== 0 && e.clientY > dialogDimensions.bottom)
+    ((e.clientX !== 0 && e.clientX < dialogDimensions.left) ||
+      (e.clientX !== 0 && e.clientX > dialogDimensions.right) ||
+      (e.clientY !== 0 && e.clientY < dialogDimensions.top) ||
+      (e.clientY !== 0 && e.clientY > dialogDimensions.bottom)) &&
+    (e.target !== changeBtn)
   ) {
     closeModal();
   }
@@ -58,7 +65,9 @@ const renderModalData = (hero, chance) => {
 
   heroChance.innerHTML = chance;
 
-  changeBtn.addEventListener('click', () => {
+  changeBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    console.log('click');
     heroHouse.parentElement.classList.add('editable');
     heroHouse.disabled = false;
     heroDied.parentElement.classList.add('editable');
