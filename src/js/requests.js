@@ -1,8 +1,11 @@
 let globalCharacterList;
 let globalHousesList;
-
+let value = 0;
+const loaderBar = document.querySelector('#loaderBar');
 const getCharactersList = async () => {
   const { data } = await axios.get('https://thronesapi.com/api/v2/Characters');
+  value += 1.85;
+  loaderBar.value = value;
   return data;
 };
 const getAdditionalInfo = async (list) => {
@@ -39,7 +42,7 @@ const getAdditionalInfo = async (list) => {
                 const { data } = await axios.get(house);
                 houseInfo.push({
                   name: data.name.split('of')[0].trim(),
-                  words: data.words ? data.words : 'Unknown',
+                  words: data.words ? data.words : 'Unknown'
                 });
               }
 
@@ -63,7 +66,7 @@ const getAdditionalInfo = async (list) => {
                 gender: gender ? gender : 'Unknown',
                 born: born ? born : 'Unknown',
                 died: died ? died : 'Unknown',
-                title: title ? title : '',
+                title: title ? title : ''
               };
               characterList.push({ ...character, ...addon });
               houseList.push(addon.house);
@@ -74,12 +77,14 @@ const getAdditionalInfo = async (list) => {
             house: { name: 'Unknown', words: 'Unknown' },
             gender: 'Unknown',
             born: 'Unknown',
-            died: 'Unknown',
+            died: 'Unknown'
           };
 
           characterList.push({ ...character, ...addon });
           houseList.push(addon.house);
         }
+        value += 1.85;
+        loaderBar.value = value;
       });
   }
 
