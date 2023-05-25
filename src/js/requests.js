@@ -69,6 +69,7 @@ const getAdditionalInfo = async (list) => {
               characterList.push({ ...character, ...addon });
               houseList.push(addon.house);
             }
+            loaderBar.value += Math.round(1.85);
           }
         } else {
           const addon = {
@@ -78,10 +79,10 @@ const getAdditionalInfo = async (list) => {
             died: 'Unknown'
           };
 
+          loaderBar.value += Math.round(1.85);
           characterList.push({ ...character, ...addon });
           houseList.push(addon.house);
         }
-        loaderBar.value = Math.round(1.85);
       });
   }
 

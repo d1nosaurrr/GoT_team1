@@ -71,14 +71,14 @@ const renderModalData = (hero, chance) => {
     let { name, words } = hero.house;
     name = name.split('House')[1].trim();
 
-    const imageBackground = `./dist/img/houseSVG/${name}.svg`;
+    const imageBackground = `./img/houseSVG/${name}.svg`;
     modalHero.style.setProperty('::backdrop', 'background-color: #2c2c2c');
-    modalImg.src = files.includes(name) ? imageBackground : `./dist/img/houseSVG/throne.svg`;
-    houseLogo.src = `./dist/img/houseLogo/${name}.png`;
+    modalImg.src = files.includes(name) ? imageBackground : `./img/houseSVG/throne.svg`;
+    houseLogo.src = `./img/houseLogo/${name}.png`;
     houseWords.textContent = words !== 'Unknown' ? words : 'Game Of Thrones';
   } else {
-    modalImg.src = `../dist/img/houseSVG/throne.svg`;
-    houseLogo.src = `./dist/img/logo.png`;
+    modalImg.src = `../img/houseSVG/throne.svg`;
+    houseLogo.src = `./img/logo.png`;
     houseWords.textContent = 'Game Of Thrones';
   }
 

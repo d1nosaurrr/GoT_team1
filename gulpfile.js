@@ -35,7 +35,7 @@ const html = () => {
       prefix: '@@',
       basepath: '@file'
     }))
-    .pipe(dest('./'))
+    .pipe(dest('./dist'))
     .pipe(browserSync.stream());
 };
 const styles = () => {
