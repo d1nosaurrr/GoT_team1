@@ -115,8 +115,6 @@ form {
   padding: 5px;
 }
 
-
-
 .filter__input,
 .filter__name,
 .filter__house {
@@ -135,8 +133,6 @@ form {
   display: block;
   border-radius: .25em;
   overflow: hidden;
-
-
 }
 
 ::placeholder {
@@ -214,7 +210,7 @@ select::-ms-expand {
     flex-wrap: wrap;
     gap: 5px;
     margin: 0;
-    padding: 25px 10px;
+    padding: 10px;
   }
 }
 
@@ -327,8 +323,8 @@ select::-ms-expand {
 
 /* cards effect end */
 
-.mainNew {
-  height: calc(100vh - 202px);
+.main.mainNew {
+  height: calc(100vh - 200px);
 }
 
 /* main end */
@@ -400,8 +396,7 @@ select::-ms-expand {
   }
 
   ::placeholder {
-    color: #fff;
-    font-size: 18px;
+    font-size: 15px;
   }
 
   .shadow-block {
@@ -412,7 +407,7 @@ select::-ms-expand {
 
 @media screen and (min-width: 1000px) {
   .h1 {
-    font-size: 40px;
+    font-size: 52px;
   }
 
   .h2 {
