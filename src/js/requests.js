@@ -33,7 +33,7 @@ const getAdditionalInfo = async (list) => {
       .get('https://anapioficeandfire.com/api/characters?name=' + fullName)
       .then(async ({ data }) => {
         if (data && data.length > 0) {
-          for (const { allegiances, gender, born, died, titles, tvSeries } of data) {
+          for (let { allegiances, gender, born, died, titles, tvSeries } of data) {
             if (tvSeries && tvSeries.length > 0 && tvSeries[0] !== '') {
               let houseInfo = [];
               for (const house of allegiances) {
@@ -42,6 +42,14 @@ const getAdditionalInfo = async (list) => {
                   name: data.name.split('of')[0].trim(),
                   words: data.words ? data.words : 'Unknown'
                 });
+              }
+              if (born) {
+                born = born.substring(0, born.indexOf('AC') + 2);
+                if (born[0].match(/^[1-9][0-9]*$/)) born = 'In ' + born;
+              }
+              if (died) {
+                died = died.substring(0, died.indexOf('AC') + 2);
+                if (died[0].match(/^[1-9][0-9]*$/)) died = 'In ' + died;
               }
 
               if (houseInfo.length > 1) {
@@ -69,7 +77,6 @@ const getAdditionalInfo = async (list) => {
               characterList.push({ ...character, ...addon });
               houseList.push(addon.house);
             }
-            loaderBar.value += Math.round(1.85);
           }
         } else {
           const addon = {
@@ -79,10 +86,10 @@ const getAdditionalInfo = async (list) => {
             died: 'Unknown'
           };
 
-          loaderBar.value += Math.round(1.85);
           characterList.push({ ...character, ...addon });
           houseList.push(addon.house);
         }
+        loaderBar.value += Math.round(1.85);
       });
   }
 

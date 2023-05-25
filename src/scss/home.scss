@@ -55,7 +55,6 @@
 }
 
 
-
 .logo__img {
   width: 50px;
   height: 50px;
@@ -65,11 +64,11 @@
   font-family: GameofThronesKG, serif;
   letter-spacing: 3px;
   text-align: center;
-  font-size: 32px;
+  font-size: 16px;
 }
 
 .h2 {
-  font-size: 19.2px;
+  font-size: 14px;
   text-align: center;
 }
 
@@ -102,7 +101,7 @@ form {
   color: #ff0000;
 }
 
-.filter__block>form {
+.filter__block > form {
   width: 100%;
   overflow: hidden;
 }
@@ -168,12 +167,12 @@ select::-ms-expand {
   width: 100%;
   margin-top: 0;
 
-  >.header__banner {
+  > .header__banner {
     flex-direction: row;
     justify-content: center;
-    background: rgb(108 108 108);
+    background: rgb(70, 70, 70);
 
-    &>.header__dropdown {
+    & > .header__dropdown {
       display: block;
 
       position: fixed;
@@ -182,35 +181,35 @@ select::-ms-expand {
       transition: all .5s ease;
     }
 
-    &>.header__title {
-      &>.h1 {
-        font-size: 25.6px;
+    & > .header__title {
+      & > .h1 {
+        font-size: 14px;
       }
 
-      &>.h2 {
+      & > .h2 {
         display: none;
       }
 
-      &>.h1,
-      &>.h2 {
+      & > .h1,
+      & > .h2 {
         margin: 8px;
       }
     }
   }
 
-  &>.filter__block {
+  & > .filter__block {
     display: none;
   }
 
   .active {
-    background-color: rgba(255, 255, 255, .623);
+    background-color: rgba(95, 95, 95, 0.95);
     display: flex;
     flex-direction: row;
     justify-content: center;
     flex-wrap: wrap;
     gap: 5px;
     margin: 0;
-    padding: 10px;
+    padding: 25px 10px;
   }
 }
 
@@ -322,9 +321,8 @@ select::-ms-expand {
 }
 
 /* cards effect end */
-
-.main.mainNew {
-  height: calc(100vh - 200px);
+.mainNew {
+  height: calc(100vh - 202px);
 }
 
 /* main end */
@@ -337,7 +335,7 @@ select::-ms-expand {
 
 
 .footer-text p {
-  font-size: 13.6px;
+  font-size: 13px;
   color: var(--white-color);
   text-align: right;
   padding: 32px;
@@ -347,37 +345,26 @@ select::-ms-expand {
 /* footer end */
 
 @media screen and (min-width: 535px) {
-  .filter__block>form {
+  .h1 {
+    font-size: 24px;
+  }
+  .h2 {
+    font-size: 18px;
+  }
+  .filter__block > form {
     width: auto;
   }
-
-  .scroll>.header__banner>.header__dropdown {
-    right: 10px;
-    top: 10px;
-  }
-}
-
-@media screen and (min-width: 800px) {
-  .h1 {
-    padding: 10px 15px;
-    font-size: 41.6px;
-  }
-
-  .h2 {
-    font-size: 20.8px;
-  }
-
   .scroll {
-    &>.header__banner {
+    & > .header__banner {
       width: 100%;
       justify-content: space-between;
 
-      &>.header__dropdown {
+      & > .header__dropdown {
         display: none;
       }
     }
 
-    &>.filter__block {
+    & > .filter__block {
       display: flex;
       flex-direction: row;
       justify-content: center;
@@ -386,17 +373,34 @@ select::-ms-expand {
       margin: 0;
       padding: 10px;
 
-      background-color: rgba(159, 157, 157, 0.95);
+      background-color: rgba(95, 95, 95, 0.95);
     }
 
-    &>.header__banner>.header__logo {
+    & > .header__banner > .header__logo {
       display: block;
       padding: 10px 15px;
     }
   }
+  .scroll > .header__banner > .header__dropdown {
+    right: 10px;
+    top: 50px;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .h1 {
+    padding: 10px 15px;
+    font-size: 37px;
+  }
+
+  .h2 {
+    font-size: 21px;
+  }
+
 
   ::placeholder {
-    font-size: 15px;
+    color: #fff;
+    font-size: 18px;
   }
 
   .shadow-block {
@@ -407,14 +411,18 @@ select::-ms-expand {
 
 @media screen and (min-width: 1000px) {
   .h1 {
-    font-size: 52px;
+    font-size: 40px;
   }
 
   .h2 {
-    font-size: 20px;
+    font-size: 24px;
   }
 
   .mainNew {
     height: auto;
+  }
+
+  .scroll > .header__banner > .header__title > .h1 {
+    font-size: 24px;
   }
 }
