@@ -14,10 +14,12 @@ const changeBtn = document.querySelector('.character__change');
 const houseLogo = document.querySelector('.house__logo');
 const houseWords = document.querySelector('.coatOfArms__text');
 const modalImg = document.querySelector('.modal__background');
+const rootEl = document.querySelector('#root');
 
 const openModal = () => {
   document.body.style.overflow = 'hidden';
   modalHero.showModal();
+  rootEl.style.display = 'none';
 };
 const closeModal = () => {
   heroHouse.parentElement.classList.remove('editable');
@@ -29,6 +31,8 @@ const closeModal = () => {
   houseLogo.src = '';
   houseWords.textContent = '';
   document.body.style.overflow = 'auto';
+
+  rootEl.style.display = 'block';
 
   modalHero.close();
 };

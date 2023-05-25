@@ -47,8 +47,14 @@ getFullInfo().then(({ characterList, houseList }) => {
     handleFilter('alphabetic', target.value, characterList)
   );
 
-  nameFind.addEventListener('input', ({ target }) =>
-    handleFilter('name', target.value, characterList)
+  document.querySelectorAll('form').forEach(e =>
+    e.addEventListener('submit', (e) => e.preventDefault()));
+
+  nameFind.addEventListener('input', (e) => {
+      e.preventDefault();
+      handleFilter('name', e.target.value, characterList);
+
+    }
   );
 
   houseSort.addEventListener('change', ({ target }) =>
