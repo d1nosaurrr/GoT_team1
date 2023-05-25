@@ -6,38 +6,79 @@ body.modal-open {
   margin: 0;
 }
 
+// .modal {
+  // min-width: 320px;
+  // max-width: 600px;
+  // padding: 0;
+  // margin: 0 auto;
+  // top: 50%;
+  // transform: translate(0, -50%);
+  // background-color: #2c2c2c;
+  // border-radius: 10px;
+  // background-position: center;
+  // background-repeat: no-repeat;
+  // background-size: auto;
+
+  // &::backdrop {}
+
+  // &__background {
+  //   position: absolute;
+  //   top: 50%;
+  //   transform: translate(0, -50%);
+  //   left: 0;
+  //   filter: blur(2px);
+  //   z-index: -999;
+  // }
+
+  // &__card {
+  //   margin: 40px;
+  //   display: flex;
+  //   flex-direction: column;
+  //   justify-content: center;
+  //   align-items: center;
+  //   gap: 16px;
+  // }
+
 .modal {
-  min-width: 320px;
-  max-width: 600px;
-  padding: 0;
-  margin: 0 auto;
-  top: 50%;
-  transform: translate(0, -50%);
-  background-color: #2c2c2c;
+  // padding: 0;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(159, 157, 157, 0.95);
   border-radius: 10px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: auto;
+  border-color: rgba(159, 157, 157, 0.95);
+  overflow: hidden;
 
 
-  &::backdrop {}
+  &__background{
+    width: 110%;
+    height: 100%;
+  }
 
-  &__background {
+  &__contant {
+    -webkit-animation: fade-in 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+    animation: fade-in 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+
+
     position: absolute;
     top: 50%;
-    transform: translate(0, -50%);
-    left: 0;
-    filter: blur(2px);
-    z-index: -999;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 5px;
+
+    background: rgba(108, 108, 108, 0.68);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
   }
 
   &__card {
-    margin: 40px;
+    // width: 400px;
+    margin: 40px 40px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 16px;
+    gap: 10px;
   }
 
   &__close {
@@ -61,20 +102,47 @@ body.modal-open {
 
 }
 
-.person__img {
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.person__img{
+  max-width: 300px;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  // align-items: center;
-  gap: 5px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.person__info{
+  max-width: 400px;
+  min-width: 400px;
+  display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
 }
 
 .coatOfArms {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
-  align-items: center;
+  // align-items: center;
   gap: 5px;
 
   &>div {
@@ -136,11 +204,18 @@ body.modal-open {
     margin: 0 auto;
     width: 100%;
     height: 100%;
+    transition: transform 0.3s ease;
+    overflow: hidden;
+  }
+
+  &__image:hover{
+    transform: scale(1.02);
   }
 
   &__label,
   &__change {
     width: calc(100% - 20px);
+
     padding: 5px;
     margin: 5px;
     border: 1px solid rgb(97, 97, 97);
@@ -148,6 +223,12 @@ body.modal-open {
     color: #B4886B;
     font-weight: bold;
     float: left;
+  }
+
+  &__img{
+    max-width: 200px;
+    min-width: 200px;
+    // max-height: 150px;
   }
 
   &__change:hover {
@@ -162,20 +243,37 @@ body.modal-open {
   background-color: rgb(159, 156, 156);
 }
 
-.modal-image-wrap {
-  min-width: 230px;
-  max-width: 230px;
-  height: 210px;
-  padding: 5px;
-  margin: 0 auto;
-  overflow: hidden;
+@media screen and (max-width: 750px) {
+  .modal__contant {
+    top: 1%;
+    left: 50%;
+    -webkit-transform: translate(-50%,0);
+    -ms-transform: translate(-51%,0);
+    transform: translate(-51%, 0);
+  }
+
+  .modal__card {
+    flex-direction: column;
+  }
+
+  .coatOfArms {
+    display: none;
+}
 }
 
-.modal-image {
-  width: 100%;
-  height: 100%;
+@media screen and (max-width: 500px) {
+  .modal__card {
+    margin: 5px;
+    gap: 5px;
+    align-items: start;
+  }
 
-  object-fit: cover;
-
-  object-position: top;
+  .person__info {
+    max-width: 260px;
+    min-width: 260px;
+  }
+  
+  .modal__close {
+    right: 10px;
+}
 }

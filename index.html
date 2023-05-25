@@ -36,43 +36,50 @@
 <!-- MODAL -->
 <dialog class='modal'>
   <img src='' class='modal__background' alt='modal background' />
-  <span class='modal__close' data-modal-close>&times;</span>
-  <div class='modal__card character'>
-    <div class='person__img'>
-      <div class='coatOfArms'>
-        <div class='coatOfArms__img'>
-          <img src='' class='house__logo' alt='house logo'>
+
+  <div class="modal__contant">
+    <span class='modal__close' data-modal-close>&times;</span>
+    <div class='modal__card character'>
+
+
+      <div class='person__img'>
+        <div class='coatOfArms'>
+          <div class='coatOfArms__img'>
+            <img src='' class='house__logo' alt='house logo'>
+          </div>
+          <div class='coatOfArms__text'>
+            <p class='tagline'></p>
+          </div>
         </div>
-        <div class='coatOfArms__text'>
-          <p class='tagline'></p>
+        <div class='character__label character__img'>
+          <img src='' alt='' class='character__image' width='150' height='150'>
         </div>
-      </div>
-      <div class='character__label modal-image-wrap'>
-        <img src='' alt='' class='character__image modal-image' width='150' height='150'>
       </div>
 
+      <div class='person__info'>
+        <div class='character__label'>
+          Name:
+          <span class='character__name'></span>
+        </div>
+        <label class='character__label' for='houseOption'>House:
+          <select name='houseOption' class='character__house' id='houseOption' autocomplete='off' disabled>
+          </select>
+        </label>
+        <div class='character__label'>
+          Born:
+          <span class='character__born'></span>
+        </div>
+        <label class='character__label' for='diedOption'>Died:
+          <select name='diedOption' class='character__died' id='diedOption' autocomplete='off' disabled>
+          </select>
+        </label>
+        <div class='character__label'>
+          Chance to became a king:
+          <span class='character__chance'></span>
+        </div>
+        <button class='character__change' type='button'>Change</button>
+      </div>
     </div>
-    <div class='character__label'>
-      Name:
-      <span class='character__name'></span>
-    </div>
-    <label class='character__label' for='houseOption'>House:
-      <select name='houseOption' class='character__house' id='houseOption' autocomplete='off' disabled>
-      </select>
-    </label>
-    <div class='character__label'>
-      Born:
-      <span class='character__born'></span>
-    </div>
-    <label class='character__label' for='diedOption'>Died:
-      <select name='diedOption' class='character__died' id='diedOption' autocomplete='off' disabled>
-      </select>
-    </label>
-    <div class='character__label'>
-      Chance to became a king:
-      <span class='character__chance'></span>
-    </div>
-    <button class='character__change' type='button'>Change</button>
   </div>
 </dialog>
 <!-- MODAL -->
