@@ -42,7 +42,7 @@ const styles = () => {
   return src('./src/scss/style.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer())
-    // .pipe(cleanCSS({compatibility: 'ie8'}))
+    .pipe(cleanCSS({ compatibility: 'ie8' }))
     .pipe(cleanCSS({
       inline: ['none']
     }))
@@ -88,6 +88,11 @@ const svg = () => {
     .pipe(browserSync.stream());
 };
 
+const fonts = () => {
+  return src('./fonts/*')
+    .pipe(dest('./dist/fonts'));
+};
+
 const watcher = (cb) => {
   watch('./index.html', bsReload);
   watch('./src/scss/*.scss', styles);
@@ -97,5 +102,5 @@ const watcher = (cb) => {
 };
 
 exports.dev = parallel(serv, watcher, series(html, styles, js, img, svg));
-exports.build = series(cleanDist, html, styles, js, img, svg);
+exports.build = series(cleanDist, html, styles, js, img, svg, fonts);
 exports.styles = styles;
