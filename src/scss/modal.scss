@@ -250,6 +250,7 @@ body.modal-open {
     -ms-transform: translate(-51%,0);
     transform: translate(-51%, 0);
   }
+
   .modal__card {
     flex-direction: column;
   }
@@ -263,9 +264,15 @@ body.modal-open {
   .modal__card {
     margin: 5px;
     gap: 5px;
+    align-items: start;
   }
+
   .person__info {
     max-width: 260px;
     min-width: 260px;
   }
+  
+  .modal__close {
+    right: 10px;
+}
 }
