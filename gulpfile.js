@@ -42,7 +42,7 @@ const styles = () => {
   return src('./src/scss/style.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer())
-    // .pipe(cleanCSS({compatibility: 'ie8'}))
+    .pipe(cleanCSS({compatibility: 'ie8'}))
     .pipe(cleanCSS({
       inline: ['none']
     }))
