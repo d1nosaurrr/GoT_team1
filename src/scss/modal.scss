@@ -61,7 +61,7 @@
 
   &__card {
     // width: 400px;
-    margin: 40px 40px;
+    margin: 60px 40px 40px 40px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -110,6 +110,7 @@
 
 .person__img {
   max-width: 300px;
+  max-height: 300px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -188,18 +189,17 @@
 
   &__image {
     border: none;
-    width: 200px;
+    width: 100%;
+    max-width: 200px;
     height: auto;
     object-fit: contain;
-    object-position: top;
+    object-position: center;
     margin: 0 auto;
-    transition: transform 0.3s ease;
-    overflow: hidden;
+   
+    
   }
 
-  &__image:hover {
-    transform: scale(1.02);
-  }
+  
 
   &__label,
   &__change {
@@ -209,21 +209,36 @@
     margin: 5px;
     border: 1px solid rgb(97, 97, 97);
     border-radius: 4px;
-    color: #B4886B;
+    // color: #ad7956;
+    color: #521b1b;
     font-weight: bold;
     float: left;
+    transition: all 0.2s ease;
   }
 
   &__img {
     max-width: 200px;
     min-width: 200px;
-    // max-height: 150px;
+    max-height: 200px;
+    min-height: 200px;
+    overflow: hidden;
+    padding: 0px;
+    border: 5px solid rgb(97, 97, 97);
+    display: flex;
+    justify-content: center;
+    transition: all 0.2s ease;
+  }
+
+  &__img:hover {
+    -webkit-box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+              box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
   }
 
   &__change:hover,
   &__change:focus {
-    background-color: #B4886B;
+    background-color: #521b1b;
     color: rgb(97, 97, 97);
+    // color: #fff;
   }
 }
 
