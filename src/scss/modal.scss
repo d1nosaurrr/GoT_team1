@@ -1,28 +1,45 @@
+// .modal {
+// min-width: 320px;
+// max-width: 600px;
+// padding: 0;
+// margin: 0 auto;
+// top: 50%;
+// transform: translate(0, -50%);
+// background-color: #2c2c2c;
+// border-radius: 10px;
+// background-position: center;
+// background-repeat: no-repeat;
+// background-size: auto;
+
+// &__background {
+//   position: absolute;
+//   top: 50%;
+//   transform: translate(0, -50%);
+//   left: 0;
+//   filter: blur(2px);
+//   z-index: -999;
+// }
+
+// &__card {
+//   margin: 40px;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   gap: 16px;
+// }
+
 .modal {
-  --backgroundImage: url('../img/houseSVG/throne.svg');
-  width: auto;
-  height: auto;
-  //background: rgba(159, 157, 157, 0.95);
-  background: transparent;
-  border: none;
-  //border-color: rgba(159, 157, 157, 0.95);
-  border-right: 10px;
+  // padding: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(159, 157, 157, 0.95);
+  border-color: rgba(159, 157, 157, 0.95);
   //overflow: hidden;
   z-index: 9999;
 
-  &::backdrop {
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-
-    width: 100%;
-    height: 100%;
-    background-color: rgba(159, 157, 157, 0.2);
-
-    background-image: var(--backgroundImage);
-    //background-image: url('../img/houseSVG/Stark.svg');
-  }
-
   &__background {
+    //display: none;
     width: 100%;
     height: 100%;
   }
@@ -39,10 +56,12 @@
 
     background: rgba(108, 108, 108, 0.68);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
   }
 
   &__card {
-    margin: 40px 40px;
+    // width: 400px;
+    margin: 60px 40px 40px 40px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -91,6 +110,7 @@
 
 .person__img {
   max-width: 300px;
+  max-height: 300px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -169,18 +189,17 @@
 
   &__image {
     border: none;
-    width: 200px;
+    width: 100%;
+    max-width: 200px;
     height: auto;
     object-fit: contain;
-    object-position: top;
+    object-position: center;
     margin: 0 auto;
-    transition: transform 0.3s ease;
-    overflow: hidden;
+   
+    
   }
 
-  &__image:hover {
-    transform: scale(1.02);
-  }
+  
 
   &__label,
   &__change {
@@ -190,21 +209,36 @@
     margin: 5px;
     border: 1px solid rgb(97, 97, 97);
     border-radius: 4px;
-    color: #B4886B;
+    // color: #ad7956;
+    color: #521b1b;
     font-weight: bold;
     float: left;
+    transition: all 0.2s ease;
   }
 
   &__img {
     max-width: 200px;
     min-width: 200px;
-    // max-height: 150px;
+    max-height: 200px;
+    min-height: 200px;
+    overflow: hidden;
+    padding: 0px;
+    border: 5px solid rgb(97, 97, 97);
+    display: flex;
+    justify-content: center;
+    transition: all 0.2s ease;
+  }
+
+  &__img:hover {
+    -webkit-box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+              box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
   }
 
   &__change:hover,
   &__change:focus {
-    background-color: #B4886B;
+    background-color: #521b1b;
     color: rgb(97, 97, 97);
+    // color: #fff;
   }
 }
 
