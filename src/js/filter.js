@@ -18,7 +18,7 @@ const handleAlphabetFilter = (list, value) => {
 
 const characterFilter = (list) => {
   let filteredCharacters;
-
+  handleAlphabetFilter(list, alphabetSortValue);
   if (houseSortValue !== 'all') {
     filteredCharacters = list.filter(({ fullName, house }) =>
       house.name.toLowerCase().trim() === houseSortValue.trim()
