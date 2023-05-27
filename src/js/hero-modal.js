@@ -19,8 +19,11 @@ const rootEl = document.querySelector('#root');
 const openModal = () => {
   document.body.style.overflow = 'hidden';
   modalHero.showModal();
-  rootEl.style.display = 'none';
+  // rootEl.style.display = 'none';
+  rootEl.style.opacity = '0';
+
 };
+
 const closeModal = () => {
   heroHouse.parentElement.classList.remove('editable');
   heroHouse.disabled = true;
@@ -31,13 +34,14 @@ const closeModal = () => {
   houseLogo.src = '';
   houseWords.textContent = '';
   document.body.style.overflow = 'auto';
-
   rootEl.style.display = 'block';
+  rootEl.style.opacity = '1';
 
   modalHero.close();
 };
 
-modalHero.addEventListener('click', (e) => {
+// Handle click outside the modal container
+const handleOutsideClick = (e) => {
   const dialogDimensions = modalWrapper.getBoundingClientRect();
 
   if (
@@ -49,42 +53,29 @@ modalHero.addEventListener('click', (e) => {
   ) {
     closeModal();
   }
-});
+};
 
-modalClose.addEventListener('click', closeModal);
-
-const renderModalData = (hero, chance) => {
+const setHeroProperties = (hero, chance) => {
   const { imageUrl, fullName, house, born, died } = hero;
 
   heroImage.src = imageUrl.trim();
   heroImage.alt = fullName;
-
   heroName.innerHTML = fullName;
-
   heroHouse.innerHTML = `<option value='${house.name}' selected>${house.name}</option>`;
-
   heroBorn.innerHTML = born;
-
   heroDied.innerHTML = `<option value='${died.toLowerCase()}' selected>${died}</option>`;
-
   heroChance.innerHTML = chance;
+};
 
-  changeBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    console.log('click');
-    heroHouse.parentElement.classList.add('editable');
-    heroHouse.disabled = false;
-    heroDied.parentElement.classList.add('editable');
-    heroDied.disabled = false;
-    changeBtn.style.display = 'none';
-  });
-
+const updateModalImg = (hero) => {
   if (hero.house.name !== 'Unknown') {
     const files = ['Baratheon', 'Bolton', 'Greyjoy', 'Lannister', 'Stark', 'Targaryen', 'Tyrell'];
     let { name, words } = hero.house;
+
     name = name.split('House')[1].trim();
 
     const imageBackground = `./dist/img/houseSVG/${name}.svg`;
+
     modalHero.style.setProperty('::backdrop', 'background-color: #2c2c2c');
     modalImg.src = files.includes(name) ? imageBackground : `./dist/img/houseSVG/throne.svg`;
     houseLogo.src = `./dist/img/houseLogo/${name}.png`;
@@ -94,35 +85,55 @@ const renderModalData = (hero, chance) => {
     houseLogo.src = `./dist/img/logo.png`;
     houseWords.textContent = 'Game Of Thrones';
   }
+};
+
+const handleChangeBtnClick = (e) => {
+  e.preventDefault();
+  heroHouse.parentElement.classList.add('editable');
+  heroHouse.disabled = false;
+  heroDied.parentElement.classList.add('editable');
+  heroDied.disabled = false;
+  changeBtn.style.display = 'none';
+};
+
+const handleHouseChange = (e, hero) => {
+  e.preventDefault();
+  hero.house = globalHousesList.find((el) => el.name === e.target.value);
+  heroChance.textContent = 'If you was an author of original book, chance will be:';
+
+  heroChance.innerHTML =
+    'If you was an author of original book, chance will be: <br>' +
+    winChance(globalCharacterList, hero);
+};
+
+const handleDiedChange = (e, hero) => {
+  e.preventDefault();
+  hero.died = e.target.value === 'alive' || e.target.value === 'unknown' ? 'Unknown' : 'Died';
+  heroChance.innerHTML =
+    'If you was an author of original book, chance will be: <br>' +
+    winChance(globalCharacterList, hero);
+};
+const renderModalData = (hero, chance) => {
+
+  setHeroProperties(hero, chance);
+  updateModalImg(hero);
 
   globalHousesList.forEach(
-    (e) => (heroHouse.innerHTML += `<option value='${e.name}'>${e.name}</option>`)
+    (e) =>
+      (heroHouse.innerHTML += `<option value='${e.name}'>${e.name}</option>`)
   );
 
   ['Alive', 'Died'].forEach(
-    (e) => (heroDied.innerHTML += `<option value='${e.toLowerCase()}'>${e}</option>`)
+    (e) =>
+      (heroDied.innerHTML += `<option value='${e.toLowerCase()}'>${e}</option>`)
   );
 
-  heroHouse.addEventListener('change', (e) => {
-    e.preventDefault();
-    hero.house = globalHousesList.find((el) => el.name === e.target.value);
-    heroChance.textContent = 'If you was an author of original book, chance will be:';
-
-    heroChance.innerHTML =
-      'If you was an author of original book, chance will be: <br>' +
-      winChance(globalCharacterList, hero);
-  });
-
-  heroDied.addEventListener('change', (e) => {
-    e.preventDefault();
-    hero.died = e.target.value === 'alive' || e.target.value === 'unknown' ? 'Unknown' : 'Died';
-    heroChance.innerHTML =
-      'If you was an author of original book, chance will be: <br>' +
-      winChance(globalCharacterList, hero);
-  });
+  changeBtn.addEventListener('click', handleChangeBtnClick);
+  heroHouse.addEventListener('change', (e) => handleHouseChange(e, hero));
+  heroDied.addEventListener('change', (e) => handleDiedChange(e, hero));
 };
 
-/******************* Setup Modal On Click***********************************/
+/******************* Setup Modal On Click ***********************************/
 const handleModal = (hero) => {
   if (hero) {
     openModal();
@@ -131,3 +142,6 @@ const handleModal = (hero) => {
     renderModalData(hero, chance);
   }
 };
+
+modalHero.addEventListener('click', handleOutsideClick);
+modalClose.addEventListener('click', closeModal);
