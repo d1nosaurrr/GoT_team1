@@ -39,7 +39,7 @@ const html = () => {
     .pipe(browserSync.stream());
 };
 const styles = () => {
-  return src('./src/scss/style.scss')
+  return src('./src/styles/styles.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer())
     .pipe(cleanCSS({compatibility: 'ie8'}))

@@ -1,19 +1,6 @@
-const greatHouses = [
-  'House Stark',
-  'House Targaryen',
-  'House Lannister',
-  'House Tyrell',
-  'House Baratheon',
-  'House Greyjoy',
-  'House Tully',
-  'House Mormont',
-  'House Martell',
-  'House Bolton',
-  'House Baelish'
-];
 const winChance = (list, hero) => {
   let winner;
-
+  const greatHouses = CONSTANTS.greatHouses;
   list = list.filter(({ house, died }) => greatHouses.includes(house.name) && died === 'Unknown');
 
   if (!list.includes(hero)) {

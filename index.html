@@ -35,9 +35,9 @@
 
 <!-- MODAL -->
 <dialog class='modal'>
-<!--  <img src='' class='modal__background' alt='modal background' />-->
+  <img src='' class='modal__background' alt='modal background' />
 
-  <div class="modal__contant">
+  <div class='modal__contant'>
     <span class='modal__close' data-modal-close>&times;</span>
     <div class='modal__card character'>
 
@@ -81,12 +81,16 @@
     </div>
   </div>
 </dialog>
-<!-- MODAL -->
+<!-- END MODAL -->
+
+<!-- LOADER -->
 <div class='loader__wrapper'>
   <label class='loader__label' for='loaderBar'>Loading</label>
-  <progress id='loaderBar' max="100" value="0"></progress>
+  <progress id='loaderBar' max='100' value='0'></progress>
 </div>
+<!-- END LOADER -->
 
+<!-- MAIN CONTENT -->
 <div id='root'>
   <header class='header'>
     <div class='header__fixed'>
@@ -131,6 +135,9 @@
     </div>
   </footer>
 </div>
+<!-- END MAIN CONTENT -->
+
 <script type='module' src='./dist/js/script.min.js'></script>
+
 </body>
 </html>
