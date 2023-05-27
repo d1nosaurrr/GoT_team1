@@ -28,7 +28,7 @@
   },
   "browserslist": [
     "last 5 version",
-    "> 5%",
+    "> 15%",
     "IE 10"
   ],
   "lint-staged": {

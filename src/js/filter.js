@@ -17,7 +17,7 @@ const handleAlphabetFilter = (list, value) => {
 };
 
 const characterFilter = (list) => {
-  let filteredCharacters = handleAlphabetFilter(list, alphabetSortValue);
+  let filteredCharacters;
 
   if (houseSortValue !== 'all') {
     filteredCharacters = list.filter(({ fullName, house }) =>
@@ -30,7 +30,7 @@ const characterFilter = (list) => {
       fullName.toLowerCase().includes(nameSortValue));
   }
 
-  if (filteredCharacters.length === 0) {
+  if (!filteredCharacters.length) {
     charactersList.innerHTML = '<p class="no-results">No matches</p>';
   } else {
     renderCharacters(filteredCharacters);
