@@ -35,14 +35,14 @@ const html = () => {
       prefix: '@@',
       basepath: '@file'
     }))
-    .pipe(dest('./'))
+    .pipe(dest('./dist'))
     .pipe(browserSync.stream());
 };
 const styles = () => {
   return src('./src/styles/styles.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer())
-    .pipe(cleanCSS({compatibility: 'ie8'}))
+    .pipe(cleanCSS({ compatibility: 'ie8' }))
     .pipe(cleanCSS({
       inline: ['none']
     }))
@@ -87,6 +87,10 @@ const svg = () => {
     .pipe(dest('./dist/img'))
     .pipe(browserSync.stream());
 };
+const fonts = () => {
+  return src('./fonts/*')
+    .pipe(dest('./dist/fonts'));
+};
 
 const watcher = (cb) => {
   watch('./index.html', bsReload);
@@ -97,5 +101,5 @@ const watcher = (cb) => {
 };
 
 exports.dev = parallel(serv, watcher, series(html, styles, js, img, svg));
-exports.build = series(cleanDist, html, styles, js, img, svg);
+exports.build = series(cleanDist, html, styles, js, img, svg, fonts);
 exports.styles = styles;

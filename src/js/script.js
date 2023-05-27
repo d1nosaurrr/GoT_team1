@@ -53,7 +53,6 @@ getFullInfo().then(({ characterList, houseList }) => {
   nameFind.addEventListener('input', (e) => {
       e.preventDefault();
       handleFilter('name', e.target.value, characterList);
-
     }
   );
 
