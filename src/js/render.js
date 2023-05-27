@@ -1,6 +1,8 @@
 const renderCharacters = (list) => {
   charactersList.innerHTML = '';
 
+  if (list.length > 20) main.style.height = '100%';
+
   list.forEach((hero) => {
     const { fullName, imageUrl } = hero;
     const charactersItem = document.createElement('li');
