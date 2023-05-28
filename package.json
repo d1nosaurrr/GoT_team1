@@ -1,7 +1,7 @@
 {
   "name": "game_of_thrones",
   "version": "1.0.0",
-  "main": "index.html",
+  "main": "./dist/index.html",
   "homepage": "https://github.com/d1nosaurrr/GoT_team1",
   "scripts": {
     "build": "gulp build",

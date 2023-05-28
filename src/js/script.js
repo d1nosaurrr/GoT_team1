@@ -10,19 +10,22 @@ const headerFixed = document.querySelector('.header__fixed');
 const dropdown = document.querySelector('.header__dropdown');
 const filterBlock = document.querySelector('.filter__block');
 
-window.addEventListener('scroll', () => {
-  let mainNew = document.querySelector('.main');
-  if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-    if (document.querySelector('.container').clientHeight < 560) {
-      mainNew.classList.add('mainNew');
-    }
-    headerFixed.classList.add('scroll');
+let header = document.querySelector('.header__fixed');
+let main = document.querySelector('.main');
+const cards = document.querySelectorAll('.list');
+const container = document.querySelector('.container');
+
+const handleHeaderSrcoll = () => {
+  if (window.scrollY > 240) {
+    header.classList.add('scroll');
+    if (container.clientHeight < 560) main.style.height = '100vh';
   } else {
-    if (document.querySelector('.container').clientHeight > 560) {
-      mainNew.classList.remove('mainNew');
-    }
-    headerFixed.classList.remove('scroll');
+    header.classList.remove('scroll');
   }
+};
+
+window.addEventListener('scroll', () => {
+  handleHeaderSrcoll();
 });
 
 let isOpen = false;

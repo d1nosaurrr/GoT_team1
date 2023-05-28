@@ -20,7 +20,7 @@ const cleanDist = () => {
 const serv = () => {
   browserSync.init({
     server: {
-      baseDir: './'
+      baseDir: './dist/'
     }
   });
 };
